@@ -698,5 +698,30 @@
   <div class="footer-logo">Silica Lagoon</div>
   <p class="footer-tagline">Bringing the world's finest silica hot spring to your bath · © 2024 Silica Lagoon</p>
 </footer>
+ <script>
+  const SUPABASE_URL = 'https://mrcvwlaawmlfpoibxjec.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_nONkmADAMLoZ1wxUrZqwug_F_Fm08yO';
+
+  async function trackClick() {
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get('ref');
+    if (!ref) return;
+
+    await fetch(`${SUPABASE_URL}/rest/v1/clicks`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`
+      },
+      body: JSON.stringify({
+        ref: ref,
+        ip: 'unknown'
+      })
+    });
+  }
+
+  trackClick();
+</script>
 </body>
 </html>
