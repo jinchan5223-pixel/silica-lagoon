@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>シリカラグーン | 管理ダッシュボード</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0e1a; color: #fff; font-family: sans-serif; }
+  .login { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+  .login-box { background: #0d1829; border: 1px solid rgba(76,201,240,0.2); padding: 48px; width: 360px; text-align: center; }
+  .login-title { font-size: 24px; letter-spacing: 4px; color: #4cc9f0; margin-bottom: 32px; }
+  .login-input { width: 100%; padding: 12px 16px; background: #0a0e1a; border: 1px solid rgba(76,201,240,0.3); color: #fff; font-size: 14px; margin-bottom: 16px; }
+  .login-btn { width: 100%; padding: 14px; background: #c9a96e; color: #0a0e1a; font-size: 12px; letter-spacing: 3px; cursor: pointer; border: none; }
+  .login-btn:hover { background: #e8d5a3; }
+  .login-error { color: #ff6b6b; font-size: 12px; margin-top: 8px; display: none; }
+  .dashboard { display: none; padding: 40px; }
+  .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+  .dash-title { font-size: 20px; letter-spacing: 4px; color: #4cc9f0; }
+  .dash-logout { padding: 8px 24px; border: 1px solid rgba(76,201,240,0.3); color: #4cc9f0; background: transparent; cursor: pointer; font-size: 11px; letter-spacing: 2px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
+  .stat-card { background: #0d1829; border: 1px solid rgba(76,201,240,0.15); padding: 32px; text-align: center; }
+  .stat-num { font-size: 48px; color: #4cc9f0; line-height: 1; margin-bottom: 8px; }
+  .stat-label { font-size: 11px; letter-spacing: 3px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+  .table-wrap { background: #0d1829; border: 1px solid rgba(76,201,240,0.15); }
+  .table-title { padding: 20px 24px; border-bottom: 1px solid rgba(76,201,240,0.15); font-size: 12px; letter-spacing: 3px; color: #4cc9f0; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; }
+  .refresh-btn { padding: 6px 16px; border: 1px solid rgba(76,201,240,0.3); color: #4cc9f0; background: transparent; cursor: pointer; font-size: 10px; letter-spacing: 2px; }
+  table { width: 100%; border-collapse: collapse; }
+  th { padding: 12px 24px; text-align: left; font-size: 10px; letter-spacing: 3px; color: rgba(255,255,255,0.3); text-transform: uppercase; border-bottom: 1px solid rgba(76,201,240,0.1); }
+  td { padding: 14px 24px; font-size: 14px; color: rgba(255,255,255,0.7); border-bottom: 1px solid rgba(76,201,240,0.05); }
+  tr:hover td { background: rgba(76,201,240,0.05); }
+  .badge { display: inline-block; padding: 4px 12px; background: rgba(76,201,240,0.15); color: #4cc9f0; font-size: 11px; letter-spacing: 1px; }
+  .loading { text-align: center; padding: 40px; color: rgba(255,255,255,0.3); font-size: 12px; letter-spacing: 2px; }
+</style>
+</head>
+<body>
+
+<!-- ログイン画面 -->
+<div class="login" id="loginScreen">
+  <div class="login-box">
+    <div class="login-title">DASHBOARD</div>
+    <input class="login-input" type="password" id="passwordInput" placeholder="パスワードを入力" />
+    <button class="login-btn" onclick="checkPassword()">ログイン</button>
+    <div class="login-error" id="loginError">パスワードが違います</div>
+  </div>
+</div>
+
+<!-- ダッシュボード -->
+<div class="dashboard" id="dashboard">
+  <div class="dash-header">
+    <div class="dash-title">SILICA LAGOON · 管理画面</div>
+    <button class="dash-logout" onclick="logout()">ログアウト</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-num" id="totalClicks">-</div>
+      <div class="stat-label">Total Clicks</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="totalInfluencers">-</div>
+      <div class="stat-label">Influencers</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="todayClicks">-</div>
+      <div class="stat-label">Today's Clicks</div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <div class="table-title">
+      インフルエンサー別クリック数
+      <button class="refresh-btn" onclick="loadData()">更新</button>
+    </div>
+    <div id="tableContent">
+      <div class="loading">読み込み中...</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const SUPABASE_URL = 'https://mrcvwlaawmlfpoibxjec.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_nONkmADAMLoZ1wxUrZqwug_F_Fm08yO';
+  const PASSWORD = 'Yuma0223';
+
+  function checkPassword() {
+    const input = document.getElementById('passwordInput').value;
+    if (input === PASSWORD) {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      loadData();
+    } else {
+      document.getElementById('loginError').style.display = 'block';
+    }
+  }
+
+  document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+
+  function logout() {
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('dashboard').style.display = 'none';
+    document.getElementById('passwordInput').value = '';
+  }
+
+  async function loadData() {
+    document.getElementById('tableContent').innerHTML = '<div class="loading">読み込み中...</div>';
+
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/clicks?select=*&order=created_at.desc`, {
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`
+      }
+    });
+    const data = await res.json();
+
+    // 集計
+    const today = new Date().toISOString().split('T')[0];
+    const todayClicks = data.filter(d => d.created_at.startsWith(today)).length;
+    const refCount = {};
+    data.forEach(d => {
+      refCount[d.ref] = (refCount[d.ref] || 0) + 1;
+    });
+
+    document.getElementById('totalClicks').textContent = data.length;
+    document.getElementById('totalInfluencers').textContent = Object.keys(refCount).length;
+    document.getElementById('todayClicks').textContent = todayClicks;
+
+    // テーブル
+    const sorted = Object.entries(refCount).sort((a, b) => b[1] - a[1]);
+    if (sorted.length === 0) {
+      document.getElementById('tableContent').innerHTML = '<div class="loading">データがありません</div>';
+      return;
+    }
+
+    let html = '<table><thead><tr><th>インフルエンサー</th><th>クリック数</th><th>最終クリック</th></tr></thead><tbody>';
+    sorted.forEach(([ref, count]) => {
+      const last = data.find(d => d.ref === ref);
+      const lastDate = new Date(last.created_at).toLocaleString('ja-JP');
+      html += `<tr><td><span class="badge">${ref}</span></td><td>${count}</td><td>${lastDate}</td></tr>`;
+    });
+    html += '</tbody></table>';
+    document.getElementById('tableContent').innerHTML = html;
+  }
+</script>
+</body>
+</html>
