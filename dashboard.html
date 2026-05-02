@@ -71,7 +71,7 @@
 
   <div class="table-wrap">
     <div class="table-title">
-      インフルエンサー別クリック数
+      インフルエンサー別 実績
       <button class="refresh-btn" onclick="loadData()">更新</button>
     </div>
     <div id="tableContent">
@@ -146,11 +146,22 @@ document.getElementById('todayClicks').textContent = todayClicks;
       return;
     }
 
-    let html = '<table><thead><tr><th>インフルエンサー</th><th>クリック数</th><th>最終クリック</th></tr></thead><tbody>';
+    const ordersByRef = {};
+    const salesByRef = {};
+    orders.forEach(o => {
+      if (o.status === 'completed' || o.status === 'paid') {
+        ordersByRef[o.ref] = (ordersByRef[o.ref] || 0) + 1;
+        salesByRef[o.ref] = (salesByRef[o.ref] || 0) + (o.amount || 0);
+      }
+    });
+
+    let html = '<table><thead><tr><th>インフルエンサー</th><th>クリック数</th><th>購入数</th><th>売上金額</th><th>最終クリック</th></tr></thead><tbody>';
     sorted.forEach(([ref, count]) => {
       const last = data.find(d => d.ref === ref);
       const lastDate = new Date(last.created_at).toLocaleString('ja-JP');
-      html += `<tr><td><span class="badge">${ref}</span></td><td>${count}</td><td>${lastDate}</td></tr>`;
+      const purchaseCount = ordersByRef[ref] || 0;
+      const salesAmount = (salesByRef[ref] || 0).toLocaleString('ja-JP');
+      html += `<tr><td><span class="badge">${ref}</span></td><td>${count}</td><td>${purchaseCount}</td><td>¥${salesAmount}</td><td>${lastDate}</td></tr>`;
     });
     html += '</tbody></table>';
     document.getElementById('tableContent').innerHTML = html;
