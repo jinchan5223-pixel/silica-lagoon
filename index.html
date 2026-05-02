@@ -249,6 +249,55 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .nav-cta:hover { background: var(--milk-blue); }
 
 /* ═══════════════════════════════════════
+   INFLUENCER BANNER
+═══════════════════════════════════════ */
+#inf-banner {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+  background: linear-gradient(135deg, var(--dark-blue) 0%, #3D4FA8 100%);
+  border-top: 1px solid rgba(125,162,255,0.3);
+  box-shadow: 0 -8px 32px rgba(46,58,140,0.35);
+  animation: bannerSlide 0.5s ease-out;
+}
+@keyframes bannerSlide {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+.inf-banner-inner {
+  max-width: 430px; margin: 0 auto;
+  padding: 14px 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.inf-left { flex: 1; min-width: 0; }
+.inf-badge {
+  display: inline-block;
+  font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px;
+  color: var(--gold-dark); border: 1px solid var(--gold-dark);
+  padding: 2px 8px; border-radius: 2px; margin-bottom: 4px;
+}
+.inf-message {
+  font-size: 13px; color: var(--white); line-height: 1.4;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.inf-name { color: var(--gold); font-weight: 400; }
+.inf-cta {
+  flex-shrink: 0;
+  background: var(--gold-dark); color: var(--white);
+  font-family: 'Noto Sans JP', sans-serif; font-size: 12px; font-weight: 400;
+  padding: 10px 16px; border-radius: 50px; white-space: nowrap;
+  transition: background 0.3s;
+}
+.inf-cta:hover { background: var(--gold); color: var(--dark-blue); }
+.inf-close {
+  flex-shrink: 0; width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.4); font-size: 14px;
+  cursor: pointer; background: none; border: none;
+  transition: color 0.2s;
+}
+.inf-close:hover { color: rgba(255,255,255,0.9); }
+
+/* ═══════════════════════════════════════
    SEC-1: HERO
 ═══════════════════════════════════════ */
 #hero {
@@ -805,6 +854,18 @@ footer {
 
 <!-- PARTICLES -->
 <canvas id="crystalCanvas"></canvas>
+
+<!-- INFLUENCER BANNER -->
+<div id="inf-banner">
+  <div class="inf-banner-inner">
+    <div class="inf-left">
+      <span class="inf-badge">SPECIAL</span>
+      <p class="inf-message"><span class="inf-name" id="infName"></span>さん紹介のお客様へ</p>
+    </div>
+    <a class="inf-cta" href="#purchase-section">詳細を見る</a>
+    <button class="inf-close" id="infClose" aria-label="閉じる">✕</button>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -1416,24 +1477,35 @@ document.querySelectorAll('.fade, .fade-l, .fade-r').forEach(function(el) { obs.
   });
 })();
 
-/* ── AFFILIATE TRACKING ── */
+/* ── AFFILIATE TRACKING + INFLUENCER BANNER ── */
 (function() {
   var SUP_URL = 'https://mrcvwlaawmlfpoibxjec.supabase.co';
   var SUP_KEY = 'sb_publishable_nONkmADAMLoZ1wxUrZqwug_F_Fm08yO';
   var ref = new URLSearchParams(window.location.search).get('ref');
   if (!ref) return;
+
+  // クリック記録
   fetch(SUP_URL + '/rest/v1/clicks', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'apikey': SUP_KEY, 'Authorization': 'Bearer ' + SUP_KEY },
     body: JSON.stringify({ ref: ref, ip: 'unknown' })
   });
-  // Stripeの購入リンクにclient_reference_idとしてrefを付与
+
+  // Stripeリンクにclient_reference_idを付与
   document.querySelectorAll('a[href*="buy.stripe.com"]').forEach(function(a) {
     try {
       var url = new URL(a.href);
       url.searchParams.set('client_reference_id', ref);
       a.href = url.toString();
     } catch(e) {}
+  });
+
+  // インフルエンサーバナー表示
+  document.getElementById('infName').textContent = ref;
+  var banner = document.getElementById('inf-banner');
+  setTimeout(function() { banner.style.display = 'block'; }, 1500);
+  document.getElementById('infClose').addEventListener('click', function() {
+    banner.style.display = 'none';
   });
 })();
 </script>
