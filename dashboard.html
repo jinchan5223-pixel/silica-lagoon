@@ -31,6 +31,13 @@
   tr:hover td { background: rgba(76,201,240,0.05); }
   .badge { display: inline-block; padding: 4px 12px; background: rgba(76,201,240,0.15); color: #4cc9f0; font-size: 11px; letter-spacing: 1px; }
   .loading { text-align: center; padding: 40px; color: rgba(255,255,255,0.3); font-size: 12px; letter-spacing: 2px; }
+  .toggle-btn { background: none; border: 1px solid rgba(76,201,240,0.3); color: #4cc9f0; font-size: 11px; padding: 3px 10px; cursor: pointer; letter-spacing: 1px; }
+  .toggle-btn:hover { background: rgba(76,201,240,0.1); }
+  .detail-row td { padding: 0; }
+  .monthly-table { width: 100%; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(76,201,240,0.1); }
+  .monthly-table th { font-size: 9px; color: rgba(255,255,255,0.25); padding: 8px 32px; }
+  .monthly-table td { font-size: 13px; color: rgba(255,255,255,0.55); padding: 8px 32px; border-bottom: 1px solid rgba(76,201,240,0.04); }
+  .monthly-table tr:last-child td { border-bottom: none; }
 </style>
 </head>
 <body>
@@ -148,23 +155,63 @@ document.getElementById('todayClicks').textContent = todayClicks;
 
     const ordersByRef = {};
     const salesByRef = {};
+    const monthlyByRef = {};
     orders.forEach(o => {
       if (o.status === 'completed' || o.status === 'paid') {
-        ordersByRef[o.ref] = (ordersByRef[o.ref] || 0) + 1;
-        salesByRef[o.ref] = (salesByRef[o.ref] || 0) + (o.amount || 0);
+        const ref = o.ref;
+        const month = o.created_at ? o.created_at.slice(0, 7) : 'unknown';
+        ordersByRef[ref] = (ordersByRef[ref] || 0) + 1;
+        salesByRef[ref] = (salesByRef[ref] || 0) + (o.amount || 0);
+        if (!monthlyByRef[ref]) monthlyByRef[ref] = {};
+        if (!monthlyByRef[ref][month]) monthlyByRef[ref][month] = { count: 0, amount: 0 };
+        monthlyByRef[ref][month].count++;
+        monthlyByRef[ref][month].amount += (o.amount || 0);
       }
     });
 
-    let html = '<table><thead><tr><th>インフルエンサー</th><th>クリック数</th><th>購入数</th><th>売上金額</th><th>最終クリック</th></tr></thead><tbody>';
+    let html = '<table><thead><tr><th></th><th>インフルエンサー</th><th>クリック数</th><th>購入数</th><th>売上金額</th><th>最終クリック</th></tr></thead><tbody>';
     sorted.forEach(([ref, count]) => {
       const last = data.find(d => d.ref === ref);
       const lastDate = new Date(last.created_at).toLocaleString('ja-JP');
       const purchaseCount = ordersByRef[ref] || 0;
       const salesAmount = (salesByRef[ref] || 0).toLocaleString('ja-JP');
-      html += `<tr><td><span class="badge">${ref}</span></td><td>${count}</td><td>${purchaseCount}</td><td>¥${salesAmount}</td><td>${lastDate}</td></tr>`;
+      const safeRef = ref.replace(/[^a-zA-Z0-9_-]/g, '_');
+      html += `<tr>
+        <td><button class="toggle-btn" onclick="toggleMonthly('${safeRef}')">▶ 月別</button></td>
+        <td><span class="badge">${ref}</span></td>
+        <td>${count}</td><td>${purchaseCount}</td><td>¥${salesAmount}</td><td>${lastDate}</td>
+      </tr>
+      <tr class="detail-row" id="monthly-${safeRef}" style="display:none">
+        <td colspan="6">${buildMonthlyTable(monthlyByRef[ref] || {})}</td>
+      </tr>`;
     });
     html += '</tbody></table>';
     document.getElementById('tableContent').innerHTML = html;
+  }
+
+  function buildMonthlyTable(monthly) {
+    const months = Object.keys(monthly).sort().reverse();
+    if (months.length === 0) return '<div class="loading" style="padding:16px">購入データなし</div>';
+    let h = '<table class="monthly-table"><thead><tr><th>月</th><th>購入数</th><th>売上金額</th></tr></thead><tbody>';
+    months.forEach(m => {
+      const label = m === 'unknown' ? '不明' : m.replace('-', '年') + '月';
+      h += `<tr><td>${label}</td><td>${monthly[m].count}件</td><td>¥${monthly[m].amount.toLocaleString('ja-JP')}</td></tr>`;
+    });
+    h += '</tbody></table>';
+    return h;
+  }
+
+  function toggleMonthly(safeRef) {
+    const row = document.getElementById('monthly-' + safeRef);
+    const btn = row.previousElementSibling.querySelector('.toggle-btn');
+    if (row.style.display === 'none') {
+      row.style.display = '';
+      btn.textContent = '▼ 月別';
+    } else {
+      row.style.display = 'none';
+      btn.textContent = '▶ 月別';
+    }
+  }
   }
 </script>
 </body>
