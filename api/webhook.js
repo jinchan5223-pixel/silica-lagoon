@@ -34,7 +34,7 @@ export default async function handler(req, res) {
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
-    const ref = session.metadata?.ref || 'direct';
+    const ref = session.client_reference_id || session.metadata?.ref || 'direct';
     const amount = session.amount_total;
 
     await fetch(`${SUPABASE_URL}/rest/v1/orders`, {
@@ -47,7 +47,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         ref: ref,
         amount: amount,
-        status: 'complete'
+        status: 'completed'
       })
     });
   }

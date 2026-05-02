@@ -22,7 +22,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@1,300&family=Noto+Serif+JP:wght@300;400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 /* ═══════════════════════════════════════
    ROOT & RESET
@@ -581,26 +580,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .meta-card-h { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 400; color: var(--dark-blue); margin-bottom: 8px; }
 .meta-card-body { font-size: 13px; line-height: 1.85; color: rgba(46,58,140,0.65); }
 
-/* ═══════════════════════════════════════
-   SEC-11: SCIENCE GRAPHS
-═══════════════════════════════════════ */
-#graphs { background: var(--milk-blue-soft); text-align: center; }
-.graph-block { margin-bottom: 48px; }
-.graph-block:last-of-type { margin-bottom: 0; }
-.graph-card {
-  background: var(--white); border-radius: 12px; padding: 28px 20px;
-  box-shadow: 0 8px 32px var(--shadow-soft);
-  margin-top: 16px;
-}
-.graph-title { font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 300; color: var(--dark-blue); margin-bottom: 4px; }
-.graph-cap { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; color: var(--accent-blue); margin-bottom: 20px; display: block; }
-.graph-wrap { position: relative; height: 220px; }
-.graph-note {
-  margin-top: 16px; padding: 10px 14px;
-  background: rgba(125,162,255,0.08); border-radius: 6px;
-  border-left: 2px solid var(--accent-blue);
-  font-size: 12px; color: rgba(46,58,140,0.65); line-height: 1.7; text-align: left;
-}
 
 /* ═══════════════════════════════════════
    SEC-12: EXPERIENCE (FULLSCREEN)
@@ -1133,38 +1112,6 @@ footer {
   </div>
 </section>
 
-<!-- ══ SEC-11: GRAPHS ══ -->
-<section id="graphs" class="sec">
-  <div class="wrap">
-    <span class="label fade" style="text-align:center;">Scientific Evidence</span>
-    <h2 class="h2 fade" style="text-align:center;">科学が証明する、<br>シリカの実力。</h2>
-    <div class="gold-div fade"></div>
-
-    <div class="graph-block">
-      <p class="body fade"><strong>お肌の保湿・保水力UP</strong><br>ヒアルロン酸の産生率が高く、お肌の保湿・保水を手助けします。</p>
-      <div class="graph-card fade">
-        <h4 class="graph-title">ヒアルロン酸産生率（%）</h4>
-        <span class="graph-cap">Hyaluronic Acid Production Rate</span>
-        <div class="graph-wrap"><canvas id="chart1"></canvas></div>
-        <div class="graph-note">お肌に良いヒアルロン酸産生が<strong style="color:var(--accent-blue);">1.2倍</strong>に向上</div>
-      </div>
-    </div>
-
-    <div class="graph-block">
-      <p class="body fade"><strong>シワ改善</strong><br>シリカの効果でシワを伸ばし、美肌へと導く効果が期待できます。</p>
-      <div class="graph-card fade">
-        <h4 class="graph-title">シワ面積（%）</h4>
-        <span class="graph-cap">Wrinkle Area Reduction</span>
-        <div class="graph-wrap"><canvas id="chart2"></canvas></div>
-        <div class="graph-note">シリカ効果でシワ面積を<strong style="color:var(--accent-blue);">約32%改善</strong></div>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:16px;" class="fade">
-      <a class="btn btn-main" href="#purchase-section">科学が証明したシリカを試す</a>
-    </div>
-  </div>
-</section>
 
 <!-- ══ SEC-12: EXPERIENCE ══ -->
 <section id="experience">
@@ -1311,8 +1258,9 @@ footer {
     <div class="footer-links">
       <a href="#world">ブランドストーリー</a>
       <a href="#silica">シリカとは</a>
-      <a href="#graphs">科学的根拠</a>
       <a href="#purchase-section">今すぐ購入</a>
+      <a href="tokushoho.html">特定商取引法に基づく表記</a>
+      <a href="privacy.html">プライバシーポリシー</a>
       <a href="dashboard.html">管理画面</a>
     </div>
     <div class="footer-sns">
@@ -1428,66 +1376,6 @@ var obs = new IntersectionObserver(function(entries) {
 }, { threshold: 0.12 });
 document.querySelectorAll('.fade, .fade-l, .fade-r').forEach(function(el) { obs.observe(el); });
 
-/* ── CHARTS (IntersectionObserver trigger) ── */
-var chart1Done = false, chart2Done = false;
-
-function mkChart1() {
-  if (chart1Done) return; chart1Done = true;
-  new Chart(document.getElementById('chart1').getContext('2d'), {
-    type: 'bar',
-    data: {
-      labels: ['純水', 'シリカ配合'],
-      datasets: [{
-        data: [100, 120],
-        backgroundColor: ['rgba(204,204,204,0.7)', 'rgba(125,162,255,0.7)'],
-        borderColor:     ['#CCCCCC', '#7DA2FF'],
-        borderWidth: 1.5, borderRadius: 4
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      animation: { duration: 1500, easing: 'easeOutQuart' },
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(c) { return c.parsed.y + '%'; } } } },
-      scales: {
-        y: { min: 85, max: 130, ticks: { color: 'rgba(46,58,140,0.5)', callback: function(v) { return v + '%'; } }, grid: { color: 'rgba(125,162,255,0.08)' } },
-        x: { ticks: { color: 'rgba(46,58,140,0.7)', font: { family: 'Noto Sans JP', size: 12 } }, grid: { display: false } }
-      }
-    }
-  });
-}
-function mkChart2() {
-  if (chart2Done) return; chart2Done = true;
-  new Chart(document.getElementById('chart2').getContext('2d'), {
-    type: 'bar',
-    data: {
-      labels: ['塗布前', '塗布後'],
-      datasets: [{
-        data: [100, 68],
-        backgroundColor: ['rgba(204,204,204,0.7)', 'rgba(125,162,255,0.7)'],
-        borderColor:     ['#CCCCCC', '#7DA2FF'],
-        borderWidth: 1.5, borderRadius: 4
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      animation: { duration: 1500, easing: 'easeOutQuart' },
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(c) { return c.parsed.y + '%'; } } } },
-      scales: {
-        y: { min: 40, max: 115, ticks: { color: 'rgba(46,58,140,0.5)', callback: function(v) { return v + '%'; } }, grid: { color: 'rgba(125,162,255,0.08)' } },
-        x: { ticks: { color: 'rgba(46,58,140,0.7)', font: { family: 'Noto Sans JP', size: 12 } }, grid: { display: false } }
-      }
-    }
-  });
-}
-var gObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (!e.isIntersecting) return;
-    if (e.target.id === 'chart1') mkChart1();
-    if (e.target.id === 'chart2') mkChart2();
-  });
-}, { threshold: 0.3 });
-gObs.observe(document.getElementById('chart1'));
-gObs.observe(document.getElementById('chart2'));
 
 /* ── EXP BG IMAGE with fallback ── */
 (function() {
@@ -1538,6 +1426,14 @@ gObs.observe(document.getElementById('chart2'));
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'apikey': SUP_KEY, 'Authorization': 'Bearer ' + SUP_KEY },
     body: JSON.stringify({ ref: ref, ip: 'unknown' })
+  });
+  // Stripeの購入リンクにclient_reference_idとしてrefを付与
+  document.querySelectorAll('a[href*="buy.stripe.com"]').forEach(function(a) {
+    try {
+      var url = new URL(a.href);
+      url.searchParams.set('client_reference_id', ref);
+      a.href = url.toString();
+    } catch(e) {}
   });
 })();
 </script>
