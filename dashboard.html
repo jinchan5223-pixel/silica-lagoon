@@ -90,11 +90,13 @@
 <script>
   const SUPABASE_URL = 'https://mrcvwlaawmlfpoibxjec.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_nONkmADAMLoZ1wxUrZqwug_F_Fm08yO';
-  const PASSWORD = 'Yuma0223';
+  const PW_HASH = 'b5ea956c2c4565baf833ef34850e9e10a51425c91006ab33bdf7a24a00d49c89';
 
-  function checkPassword() {
+  async function checkPassword() {
     const input = document.getElementById('passwordInput').value;
-    if (input === PASSWORD) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(input));
+    const hash = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    if (hash === PW_HASH) {
       document.getElementById('loginScreen').style.display = 'none';
       document.getElementById('dashboard').style.display = 'block';
       loadData();
