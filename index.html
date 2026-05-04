@@ -751,7 +751,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 ═══════════════════════════════════════ */
 #reviews { background: var(--white); }
 .reviews-header { text-align: center; }
-.reviews-slider { overflow: hidden; position: relative; }
+.reviews-slider { overflow-x: clip; overflow-y: visible; position: relative; }
 .reviews-track {
   display: flex; gap: 16px; transition: transform 0.5s ease;
 }
@@ -1305,12 +1305,12 @@ footer {
       <div class="reviews-track" id="reviewsTrack">
         <div class="review-card">
           <span class="review-stars">★★★★★</span>
-          <p class="review-text">「1週間で肌のくすみが取れた気がします。お湯の色が本当に綺麗でバスタイムが楽しみになりました」</p>
+          <p class="review-text">「1週間で肌のくすみが<br>取れた気がします。<br>お湯の色が本当に綺麗で<br>バスタイムが楽しみになりました」</p>
           <span class="review-meta">30代 · 会社員</span>
         </div>
         <div class="review-card">
           <span class="review-stars">★★★★★</span>
-          <p class="review-text">「高級スパに来た気分になれます。プレゼントでもらって即リピートしました」</p>
+          <p class="review-text">「高級スパに来た気分になれます。<br>プレゼントでもらって<br>即リピートしました」</p>
           <span class="review-meta">40代 · 主婦</span>
         </div>
         <div class="review-card">
