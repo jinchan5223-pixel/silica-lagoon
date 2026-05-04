@@ -755,6 +755,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   background: var(--white); border-radius: 12px; padding: 28px 24px;
   box-shadow: 0 8px 32px var(--shadow);
   border: 1px solid rgba(125,162,255,0.12);
+  text-align: center;
   /* 幅はJSで設定 */
 }
 .review-stars { color: var(--gold-dark); font-size: 15px; letter-spacing: 2px; margin-bottom: 14px; display: block; }
@@ -1557,11 +1558,15 @@ document.querySelectorAll('.fade, .fade-l, .fade-r').forEach(function(el) { obs.
     dots.forEach(function(d, i) { d.classList.toggle('on', i === cur); });
   }
 
-  setWidths();
+  // レイアウト確定後にカード幅を設定
+  function init() { setWidths(); go(cur); }
+  if (document.readyState === 'complete') { init(); }
+  else { window.addEventListener('load', init); }
+
   document.getElementById('nextBtn').addEventListener('click', function() { go(cur + 1); });
   document.getElementById('prevBtn').addEventListener('click', function() { go(cur - 1); });
   dots.forEach(function(d) { d.addEventListener('click', function() { go(parseInt(d.dataset.i)); }); });
-  window.addEventListener('resize', function() { setWidths(); go(0); });
+  window.addEventListener('resize', function() { setWidths(); go(cur); });
 
   // touch swipe
   var sx = null;
