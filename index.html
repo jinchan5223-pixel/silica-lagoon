@@ -751,10 +751,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex; gap: 16px; transition: transform 0.5s ease;
 }
 .review-card {
-  min-width: 100%; background: var(--white); border-radius: 12px; padding: 28px 24px;
+  flex-shrink: 0;
+  background: var(--white); border-radius: 12px; padding: 28px 24px;
   box-shadow: 0 8px 32px var(--shadow);
   border: 1px solid rgba(125,162,255,0.12);
-  flex-shrink: 0;
+  /* 幅はJSで設定 */
 }
 .review-stars { color: var(--gold-dark); font-size: 15px; letter-spacing: 2px; margin-bottom: 14px; display: block; }
 .review-text { font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 300; line-height: 1.85; color: rgba(46,58,140,0.75); margin-bottom: 16px; }
@@ -1541,17 +1542,26 @@ document.querySelectorAll('.fade, .fade-l, .fade-r').forEach(function(el) { obs.
   var dots  = document.querySelectorAll('.sl-dot');
   var cur   = 0;
   var total = track ? track.children.length : 4;
+  var cardW = 0;
+
+  function setWidths() {
+    cardW = track.parentElement.offsetWidth;
+    Array.from(track.children).forEach(function(card) {
+      card.style.width = cardW + 'px';
+    });
+  }
 
   function go(idx) {
     cur = Math.max(0, Math.min(idx, total - 1));
-    var w = track.parentElement.offsetWidth;
-    track.style.transform = 'translateX(-' + (cur * (w + 16)) + 'px)';
+    track.style.transform = 'translateX(-' + (cur * (cardW + 16)) + 'px)';
     dots.forEach(function(d, i) { d.classList.toggle('on', i === cur); });
   }
+
+  setWidths();
   document.getElementById('nextBtn').addEventListener('click', function() { go(cur + 1); });
   document.getElementById('prevBtn').addEventListener('click', function() { go(cur - 1); });
   dots.forEach(function(d) { d.addEventListener('click', function() { go(parseInt(d.dataset.i)); }); });
-  window.addEventListener('resize', function() { go(0); });
+  window.addEventListener('resize', function() { setWidths(); go(0); });
 
   // touch swipe
   var sx = null;
