@@ -835,6 +835,12 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .price-main small { font-size: 16px; color: rgba(255,255,255,0.6); }
 .price-note { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 6px; display: block; }
+.price-per-note {
+  display: block; margin-top: 8px; margin-bottom: 6px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 15px; font-weight: 400;
+  color: var(--gold); letter-spacing: 1px;
+}
 .purchase-btns { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
 .trust-row {
   display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
@@ -1360,8 +1366,8 @@ footer {
       <span class="price-name">SILICA LAGOON BATH SALT</span>
       <span class="price-vol">720g（12回分）</span>
       <div class="price-main"><small>¥</small>3,300<small style="font-size:16px;">（税込）</small></div>
-      <span class="price-note" style="display:block;margin-bottom:4px;">1回あたり 約275円</span>
-      <span class="price-note">送料無料</span>
+      <span class="price-per-note">1回あたり 約275円</span>
+      <span class="price-note">送料込み</span>
     </div>
     <div class="purchase-btns fade">
       <a class="btn btn-white btn-full" href="https://buy.stripe.com/test_fZu6oz0WBccA0IV9GCe7m00">今すぐ購入する</a>
