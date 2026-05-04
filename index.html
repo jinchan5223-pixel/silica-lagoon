@@ -709,6 +709,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   animation: heroWave 10s ease-in-out infinite; pointer-events: none;
 }
 .story-inner { position: relative; z-index: 1; }
+.story-lead {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 22px; letter-spacing: 2px;
+  color: var(--dark-blue); margin-bottom: 24px; display: block;
+}
 .story-h {
   font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 300;
   color: var(--dark-blue); line-height: 2; margin-bottom: 32px;
@@ -1066,7 +1071,7 @@ footer {
 
     <div class="body fade" style="margin-top:24px;">
       <p>アイスランドにある世界最大の温泉<br>「BLUE LAGOON」。<br>美のミネラル「シリカ」が豊富に含まれ、<br>美肌を求めて世界各地から<br>ブルーラグーンを訪れています。</p>
-      <p style="margin-top:16px;">「SILICA LAGOON BATH SALT」はそのブルーラグーンをイメージした入浴剤。<br>美のミネラル"シリカ"が含まれている入浴剤は、<span class="world-japan-first">日本初！</span><br>神秘的な青色も再現しました。</p>
+      <p style="margin-top:16px;">「SILICA LAGOON」はそのブルーラグーンをイメージした入浴剤。<br>美のミネラル"シリカ"が含まれている入浴剤は、<span class="world-japan-first">日本初！</span><br>神秘的な青色も再現しました。</p>
     </div>
   </div>
 </section>
@@ -1089,7 +1094,7 @@ footer {
     </div>
     <p class="diff-emphasis fade">"浸かる<em>美容液</em>"</p>
     <div style="text-align:center;" class="fade">
-      <a class="btn btn-main" href="#purchase-section">本物の美容入浴剤を試す</a>
+      <a class="btn btn-main" href="#purchase-section">本物の入浴化粧品を試す</a>
     </div>
   </div>
 </section>
@@ -1132,9 +1137,6 @@ footer {
         <div class="feature-ing-tag">ヒアルロン酸</div>
         <div class="feature-ing-tag">コラーゲン</div>
       </div>
-      <div style="margin-top:20px;" class="fade">
-        <a class="btn btn-sub btn-full" href="#purchase-section">成分詳細を見る</a>
-      </div>
     </div>
 
     <!-- POINT 03 -->
@@ -1144,9 +1146,14 @@ footer {
       <div class="gold-div left fade"></div>
       <div class="feature-blue-card fade">
         <div class="bath-color"></div>
+        <p class="bath-note" style="margin-top:8px;">実色</p>
         <p class="body" style="margin-top:16px;">バタフライピーがお湯を乳青色に染める。<br>上質なバスタイムを演出。</p>
         <p class="bath-note">*天然色素：バタフライピー &nbsp;|&nbsp; *お湯色：アイスランドブルー（乳青色）</p>
       </div>
+    </div>
+
+    <div style="margin-top:8px;text-align:center;" class="fade">
+      <a class="btn btn-sub btn-full" href="#purchase-section">体感する</a>
     </div>
   </div>
 </section>
@@ -1193,7 +1200,7 @@ footer {
       <span class="onsen-badge-icon">♨️</span>
       <span>"美肌の湯"と呼ばれる温泉の<br>成分基準をヒントに設計</span>
     </div>
-    <p class="body fade">メタケイ酸50mg/ℓ以上を含む温泉は、古来から"美人の湯"として知られています。<span style="white-space:nowrap">SILICA LAGOON</span>はその自然の知恵を、毎日のお風呂に届けます。</p>
+    <p class="body fade">メタケイ酸50mg/ℓ以上を含む温泉は、<br>古来から"美人の湯"として知られています。<br><span style="white-space:nowrap">SILICA LAGOON</span>はその自然の知恵を、<br>毎日のお風呂に届けます。</p>
   </div>
 </section>
 
@@ -1260,7 +1267,8 @@ footer {
   <div class="wrap story-inner" style="text-align:center;">
     <span class="label fade">Story</span>
     <div class="gold-div fade"></div>
-    <p class="story-h fade">日々の忙しさの中で、<br>自分を後回しにしてしまう<br>女性へ。<br><br>せめてお風呂の時間だけは、<br>何も頑張らなくていい<br>美容を。<br><br>そんな想いから、<br>SILICA LAGOONは<br>生まれました。</p>
+    <p class="story-lead fade">あの体験を、日常に。</p>
+    <p class="story-h fade">ある海外のスパで体験した、<br>肌が変わるような入浴時間。<br><br>お湯に浸かるだけで、<br>何も足さなくても整っていく感覚。<br><br>「これを、日本でも日常にできないか」<br><br>そう思ったことが、<br>すべての始まりでした。<br><br>特別な場所に行かなくても、<br>自宅で同じように整う時間をつくる。<br><br>頑張らなくてもいい美容を、<br>もっと身近に。<br><br>その想いから、<br>SILICA LAGOONは<br>生まれました。</p>
     <div class="fade">
       <a class="btn btn-sub" href="#purchase-section">SILICA LAGOONと出会う</a>
     </div>
@@ -1280,7 +1288,7 @@ footer {
       <div class="patent-corner br"></div>
       <span class="patent-icon">🔬</span>
       <h3 class="patent-h">SILICA LAGOONを開発した会社は、<br>40年以上ケイ素（シリカ）の研究を<br>続けてきた専門業者です。</h3>
-      <p class="patent-body">会長は水溶性有機珪素の研究に長年携わり、その知見が本製品の開発思想に活きています。<br><br>「シリカのことなら<br>誰にも負けない」という<br>プロフェッショナリズムが、<br>この入浴剤を生んでいます。</p>
+      <p class="patent-body">会長は水溶性有機珪素の研究に<br>長年携わり、その知見が<br>本製品の開発思想に活きています。<br><br>「シリカのことなら<br>誰にも負けない」という<br>プロフェッショナリズムが、<br>この入浴剤を生んでいます。</p>
     </div>
   </div>
 </section>
@@ -1351,6 +1359,7 @@ footer {
       <span class="price-name">SILICA LAGOON BATH SALT</span>
       <span class="price-vol">720g（12回分）</span>
       <div class="price-main"><small>¥</small>3,300<small style="font-size:16px;">（税込）</small></div>
+      <span class="price-note" style="display:block;margin-bottom:4px;">1回あたり 約275円</span>
       <span class="price-note">送料無料</span>
     </div>
     <div class="purchase-btns fade">
@@ -1547,21 +1556,26 @@ document.querySelectorAll('.fade, .fade-l, .fade-r').forEach(function(el) { obs.
 
   function setWidths() {
     cardW = track.parentElement.offsetWidth;
+    if (!cardW) return;
     Array.from(track.children).forEach(function(card) {
       card.style.width = cardW + 'px';
+      card.style.minWidth = cardW + 'px';
     });
   }
 
   function go(idx) {
+    setWidths(); // 毎回再計算
     cur = Math.max(0, Math.min(idx, total - 1));
     track.style.transform = 'translateX(-' + (cur * (cardW + 16)) + 'px)';
     dots.forEach(function(d, i) { d.classList.toggle('on', i === cur); });
   }
 
-  // レイアウト確定後にカード幅を設定
-  function init() { setWidths(); go(cur); }
-  if (document.readyState === 'complete') { init(); }
-  else { window.addEventListener('load', init); }
+  // 複数タイミングで初期化（フォント・フェード完了を待つ）
+  function init() { setWidths(); go(0); }
+  window.addEventListener('load', function() {
+    init();
+    setTimeout(init, 300); // フォントロード後に再計算
+  });
 
   document.getElementById('nextBtn').addEventListener('click', function() { go(cur + 1); });
   document.getElementById('prevBtn').addEventListener('click', function() { go(cur - 1); });
