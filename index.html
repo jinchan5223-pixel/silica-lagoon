@@ -878,7 +878,7 @@ footer {
       <span class="inf-badge">SPECIAL</span>
       <p class="inf-message"><span class="inf-name" id="infName"></span>さん紹介のお客様へ</p>
     </div>
-    <a class="inf-cta" href="#purchase-section">詳細を見る</a>
+    <a class="inf-cta" href="javascript:void(0)" onclick="document.getElementById('purchase-section').scrollIntoView({behavior:'smooth'})">詳細を見る</a>
     <button class="inf-close" id="infClose" aria-label="閉じる">✕</button>
   </div>
 </div>
@@ -914,7 +914,8 @@ footer {
 
     <div class="hero-img-wrap fade" style="transition-delay:.55s">
       <img src="product-720g-front.jpg" alt="SILICA LAGOON BATH SALT 720g"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" data-replace="product-720g-front.jpg">
+        onload="this.nextElementSibling.style.display='none';"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="hero-img-ph">
         <span>SILICA LAGOON<br>BATH SALT 720g<br><br>product-720g-front.jpg</span>
       </div>
@@ -1303,7 +1304,8 @@ footer {
     <p class="purchase-price-lead fade">エステに行かなくても、<br>自宅で整う贅沢時間</p>
     <span class="purchase-per fade">1回あたり 約275円</span>
     <div class="purchase-img fade">
-      <img src="product-720g-front.jpg" alt="SILICA LAGOON BATH SALT 720g" data-replace="product-720g-front.jpg"
+      <img src="product-720g-front.jpg" alt="SILICA LAGOON BATH SALT 720g"
+        onload="this.nextElementSibling.style.display='none';"
         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="purchase-img-ph">
         <span>SILICA LAGOON BATH SALT 720g<br>product-720g-front.jpg</span>
@@ -1470,6 +1472,14 @@ window.addEventListener('scroll', function() {
 
   function next() { goTo((current + 1) % total); }
   var timer = setInterval(next, 6000);
+})();
+
+/* ── HASH除去 → TOPから表示 ── */
+(function() {
+  if (window.location.hash) {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  }
+  window.addEventListener('load', function() { window.scrollTo(0, 0); });
 })();
 
 /* ── SCROLL FADE IN ── */
