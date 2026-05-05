@@ -859,6 +859,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; transition: background 0.15s;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none; -webkit-user-select: none;
 }
 .qty-btn:active { background: rgba(255,255,255,0.28); }
 .qty-num {
