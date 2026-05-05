@@ -860,6 +860,52 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .trust-text { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 1px; color: var(--milk-blue); }
 
 /* ═══════════════════════════════════════
+   FIXED BOTTOM CTA (スマホのみ)
+═══════════════════════════════════════ */
+#fixed-cta {
+  display: none;
+  position: fixed; bottom: 0; left: 0; width: 100%;
+  background: rgba(255,255,255,0.94);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -6px 32px rgba(0,0,0,0.10), 0 -1px 0 rgba(185,151,91,0.18);
+  padding: 12px 16px max(16px, env(safe-area-inset-bottom));
+  z-index: 9999;
+}
+.fcta-label {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  margin-bottom: 10px;
+}
+.fcta-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, #B9975B, transparent);
+}
+.fcta-label-text {
+  font-size: 11px; color: #5F6F7A; letter-spacing: 0.8px;
+  white-space: nowrap; font-family: 'Noto Sans JP', sans-serif;
+}
+.fcta-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; height: 52px;
+  background: #1F3A5F;
+  color: #fff; font-size: 16px; font-weight: 700;
+  border-radius: 14px; border: none; cursor: pointer;
+  letter-spacing: 1.8px;
+  font-family: 'Noto Sans JP', sans-serif;
+  transition: transform 0.12s ease, background 0.12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.fcta-btn:hover { background: #162d4a; }
+.fcta-btn:active { transform: scale(0.97); background: #0B2A45; }
+.fcta-arrow { font-size: 18px; margin-left: 4px; }
+
+@media (max-width: 768px) {
+  #fixed-cta { display: block; }
+  body { padding-bottom: 100px; }
+}
+
+/* ═══════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════ */
 footer {
@@ -1401,6 +1447,18 @@ footer {
   </div>
 </section>
 
+<!-- ══ FIXED BOTTOM CTA ══ -->
+<div id="fixed-cta">
+  <div class="fcta-label">
+    <span class="fcta-line"></span>
+    <span class="fcta-label-text">送料込み・追加料金なし</span>
+    <span class="fcta-line"></span>
+  </div>
+  <button class="fcta-btn" onclick="document.getElementById('purchase-section').scrollIntoView({behavior:'smooth'})">
+    今すぐ体験する <span class="fcta-arrow">→</span>
+  </button>
+</div>
+
 <!-- ══ SEC-17: FOOTER ══ -->
 <footer>
   <div class="footer-inner">
@@ -1543,6 +1601,20 @@ window.addEventListener('scroll', function() {
 
   function next() { goTo((current + 1) % total); }
   var timer = setInterval(next, 6000);
+})();
+
+/* ── FIXED CTA：購入セクション到達時は非表示 ── */
+(function() {
+  var cta = document.getElementById('fixed-cta');
+  var purchase = document.getElementById('purchase-section');
+  if (!cta || !purchase) return;
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      cta.style.opacity = e.isIntersecting ? '0' : '1';
+      cta.style.pointerEvents = e.isIntersecting ? 'none' : 'auto';
+    });
+  }, { threshold: 0.15 });
+  io.observe(purchase);
 })();
 
 /* ── HASH除去 → TOPから表示 ── */
