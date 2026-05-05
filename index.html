@@ -847,6 +847,30 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   font-size: 15px; font-weight: 400;
   color: var(--gold); letter-spacing: 1px;
 }
+.qty-wrap {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; margin: 20px 0 16px;
+}
+.qty-btn {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: var(--white); font-size: 22px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.qty-btn:active { background: rgba(255,255,255,0.28); }
+.qty-num {
+  width: 72px; text-align: center;
+  font-family: 'Cinzel', serif; font-size: 28px; font-weight: 600;
+  color: var(--white); letter-spacing: 2px;
+}
+.qty-total {
+  font-size: 13px; color: rgba(255,255,255,0.55);
+  margin-bottom: 16px; letter-spacing: 0.5px;
+}
+.qty-total span { color: var(--gold); font-weight: 600; font-size: 15px; }
 .purchase-btns { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
 .trust-row {
   display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
@@ -1431,13 +1455,24 @@ footer {
     <div class="price-block fade">
       <span class="price-name">SILICA LAGOON BATH SALT</span>
       <span class="price-vol">720g（12回分）</span>
-      <div class="price-main"><small>¥</small>3,300<small style="font-size:16px;">（税込）</small></div>
+      <div class="price-main"><small>¥</small><span id="priceDisplay">3,300</span><small style="font-size:16px;">（税込）</small></div>
       <span class="price-per-note">1回あたり 約275円</span>
       <span class="price-note">送料込み</span>
     </div>
+
+    <!-- 数量選択 -->
+    <div class="fade">
+      <div class="qty-wrap">
+        <button class="qty-btn" id="qtyMinus" aria-label="個数を減らす">−</button>
+        <div class="qty-num" id="qtyNum">1</div>
+        <button class="qty-btn" id="qtyPlus" aria-label="個数を増やす">+</button>
+      </div>
+      <p class="qty-total">合計 <span id="qtyTotal">¥3,300</span>（税込・送料込み）</p>
+    </div>
+
     <div class="purchase-btns fade">
-      <a class="btn btn-white btn-full" href="https://buy.stripe.com/test_fZu6oz0WBccA0IV9GCe7m00">今すぐ購入する</a>
-      <a class="btn btn-sub btn-full" href="https://buy.stripe.com/test_fZu6oz0WBccA0IV9GCe7m00">ギフトとして贈る</a>
+      <a class="btn btn-white btn-full" id="stripeMain" href="https://buy.stripe.com/test_fZu6oz0WBccA0IV9GCe7m00">今すぐ購入する</a>
+      <a class="btn btn-sub btn-full" id="stripeGift" href="https://buy.stripe.com/test_fZu6oz0WBccA0IV9GCe7m00">ギフトとして贈る</a>
     </div>
     <div class="trust-row fade">
       <div class="trust-badge"><span class="trust-icon">🇯🇵</span><span class="trust-text">日本製</span></div>
@@ -1488,6 +1523,45 @@ footer {
 
 <script>
 'use strict';
+
+/* ── 数量選択 ── */
+(function() {
+  var qty = 1;
+  var UNIT = 3300;
+  var minus = document.getElementById('qtyMinus');
+  var plus  = document.getElementById('qtyPlus');
+  var numEl = document.getElementById('qtyNum');
+  var priceEl  = document.getElementById('priceDisplay');
+  var totalEl  = document.getElementById('qtyTotal');
+  if (!minus || !plus) return;
+
+  function fmt(n) { return n.toLocaleString('ja-JP'); }
+
+  function updateLinks() {
+    ['stripeMain','stripeGift'].forEach(function(id) {
+      var a = document.getElementById(id);
+      if (!a) return;
+      try {
+        var u = new URL(a.href);
+        u.searchParams.set('prefilled_quantity', qty);
+        a.href = u.toString();
+      } catch(e) {}
+    });
+  }
+
+  function render() {
+    numEl.textContent = qty;
+    priceEl.textContent = fmt(UNIT * qty);
+    totalEl.innerHTML = '¥' + fmt(UNIT * qty);
+    minus.style.opacity = qty <= 1 ? '0.35' : '1';
+    plus.style.opacity  = qty >= 10 ? '0.35' : '1';
+    updateLinks();
+  }
+
+  minus.addEventListener('click', function() { if (qty > 1)  { qty--; render(); } });
+  plus.addEventListener('click',  function() { if (qty < 10) { qty++; render(); } });
+  render();
+})();
 
 /* ── LOADING ── */
 window.addEventListener('load', function() {
