@@ -555,12 +555,18 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 16px 0;
 }
 .feature-ing-tag {
-  padding: 10px 8px; text-align: center;
+  padding: 12px 8px; text-align: center;
   background: var(--white); border-radius: 6px;
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 1px;
   color: var(--dark-blue);
   box-shadow: 0 4px 12px var(--shadow-soft);
   border: 1px solid rgba(125,162,255,0.2);
+}
+.ing-name {
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.ing-desc {
+  font-size: 10px; color: rgba(46,58,140,0.6); line-height: 1.4;
 }
 .feature-blue-card {
   background: linear-gradient(135deg, var(--milk-blue) 0%, var(--milk-blue-soft) 100%);
@@ -942,7 +948,6 @@ footer {
       <div class="hero-badge-line"></div>
     </div>
     <h1 class="h1 hero-logo fade" style="transition-delay:.4s">SILICA<br>LAGOON</h1>
-    <span class="hero-cormorant fade" style="transition-delay:.5s">Bath Salt — ResortSpa</span>
 
     <div class="hero-img-wrap fade" style="transition-delay:.55s">
       <img src="product-720g-front.jpg" alt="SILICA LAGOON BATH SALT 720g"
@@ -1092,11 +1097,12 @@ footer {
     <div class="diff-compare fade">
       <div class="diff-card diff-card-normal">
         <span class="diff-card-label">一般的な入浴剤</span>
-        <p class="diff-card-text">香りだけ、温まるだけ。</p>
+        <p class="diff-card-text">香り・リラックス目的</p>
       </div>
       <div class="diff-card diff-card-us">
         <span class="diff-card-label" style="color:var(--gold-dark);">SILICA LAGOON</span>
-        <p class="diff-card-text">美容ケア＋保湿＋整肌</p>
+        <p class="diff-card-text" style="font-size:15px;font-weight:400;margin-bottom:4px;">肌を整える入浴美容</p>
+        <p class="diff-card-text" style="font-size:12px;">美容ケア＋保湿＋整肌</p>
       </div>
     </div>
     <p class="diff-emphasis fade">"浸かる<em>美容液</em>"</p>
@@ -1139,11 +1145,24 @@ footer {
       </div>
       <p class="body fade">メタケイ酸・スクワラン・ヒアルロン酸・コラーゲン配合。<br>温浴と保湿のW効果で全身を美肌へアプローチ。</p>
       <div class="feature-ingredients fade">
-        <div class="feature-ing-tag">メタケイ酸Na</div>
-        <div class="feature-ing-tag">スクワラン</div>
-        <div class="feature-ing-tag">ヒアルロン酸</div>
-        <div class="feature-ing-tag">コラーゲン</div>
+        <div class="feature-ing-tag">
+          <div class="ing-name">メタケイ酸Na</div>
+          <div class="ing-desc">ツルッとした肌に整える</div>
+        </div>
+        <div class="feature-ing-tag">
+          <div class="ing-name">スクワラン</div>
+          <div class="ing-desc">潤いを逃がさない</div>
+        </div>
+        <div class="feature-ing-tag">
+          <div class="ing-name">ヒアルロン酸</div>
+          <div class="ing-desc">小ジワ対策</div>
+        </div>
+        <div class="feature-ing-tag">
+          <div class="ing-name">コラーゲン</div>
+          <div class="ing-desc">ふっくらハリ感</div>
+        </div>
       </div>
+      <p class="body fade" style="margin-top:16px;text-align:center;">入浴するだけで、<br>お肌に必要なケアが完結。</p>
     </div>
 
     <!-- POINT 03 -->
@@ -1275,7 +1294,7 @@ footer {
     <span class="label fade">Story</span>
     <div class="gold-div fade"></div>
     <p class="story-lead fade">あの体験を、日常に。</p>
-    <p class="story-h fade">BLUE LAGOONで体験した、<br>肌が変わるような入浴時間。<br><br>お湯に浸かるだけで、<br>何も足さなくても整っていく感覚。<br><br>「これを、日本でも日常にできないか」<br><br>そう思ったことが、<br>すべての始まりでした。<br><br>特別な場所に行かなくても、<br>自宅で同じように整う時間をつくる。<br><br>頑張らなくてもいい美容を、<br>もっと身近に。<br><br>その想いから、<br>SILICA LAGOONは<br>生まれました。</p>
+    <p class="story-h fade">BLUE LAGOONで体験した、<br>肌が変わるような入浴時間。<br><br>お湯に浸かるだけで、<br>何も足さなくても整っていく感覚。<br><br>「これを、日本でも日常にできないか」<br><br>そう思ったことが、<br>すべての始まりでした。<br><br>特別な場所に行かなくても、<br>自宅で同じように整う時間をつくる。<br><br>肌が綺麗な人は、<br>"塗るケア"じゃなく<br>"整える習慣"を持っている。</p>
     <div class="fade">
       <a class="btn btn-sub" href="#purchase-section">SILICA LAGOONと出会う</a>
     </div>
@@ -1355,11 +1374,11 @@ footer {
     <p class="purchase-price-lead fade">エステに行かなくても、<br>自宅で整う贅沢時間</p>
     <span class="purchase-per fade">1回あたり 約275円</span>
     <div class="purchase-img fade">
-      <img src="product-720g-front.jpg" alt="SILICA LAGOON BATH SALT 720g"
+      <img src="product-720g-front2.jpg" alt="SILICA LAGOON BATH SALT 720g"
         onload="this.nextElementSibling.style.display='none';"
         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="purchase-img-ph">
-        <span>SILICA LAGOON BATH SALT 720g<br>product-720g-front.jpg</span>
+        <span>SILICA LAGOON BATH SALT 720g<br>product-720g-front2.jpg</span>
       </div>
     </div>
     <div class="price-block fade">
