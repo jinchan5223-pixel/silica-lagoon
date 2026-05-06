@@ -1624,7 +1624,7 @@ footer {
   render();
 })();
 
-/* 笏笏 LOADING 笏笏 */
+/* -- LOADING -- */
 function hideLoading() {
   var el = document.getElementById('loading');
   if (!el || el.style.display === 'none') return;
@@ -1632,17 +1632,17 @@ function hideLoading() {
   el.style.opacity = '0';
   setTimeout(function() {
     el.style.display = 'none';
-      // 繝ｭ繝ｼ繝・ぅ繝ｳ繧ｰ螳御ｺ・ｾ後↓CTA繧定｡ｨ遉ｺ
+    // ローディング完了後にCTAを表示
       var cta = document.getElementById('fixed-cta');
       if (cta) { cta.style.opacity = '1'; cta.style.pointerEvents = 'auto'; }
       if (window.__ctaShow) window.__ctaShow();
     }, 650);
-  }, 650);
+
 }
 window.addEventListener('load', function() { setTimeout(hideLoading, 1500); });
 setTimeout(hideLoading, 3000);
 
-/* 笏笏 CRYSTAL PARTICLES (milky blue) 笏笏 */
+/* -- CRYSTAL PARTICLES (milky blue) -- */
 (function() {
   var canvas = document.getElementById('crystalCanvas');
   var ctx    = canvas.getContext('2d');
