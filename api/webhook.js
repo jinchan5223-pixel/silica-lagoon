@@ -70,7 +70,7 @@ async function sendEmail({ name, email, addrStr, amount, mode, orderId }) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'SILICA LAGOON <onboarding@resend.dev>',
+      from: 'SILICA LAGOON <noreply@silica-lagoon.company>',
       to: [TO_EMAIL],
       subject: `【発送依頼】${mode} - ${name} 様`,
       html,
@@ -117,7 +117,14 @@ export default async function handler(req, res) {
           'apikey': SUPABASE_KEY,
           'Authorization': `Bearer ${SUPABASE_KEY}`
         },
-        body: JSON.stringify({ ref, amount: session.amount_total, status: 'completed' })
+        body: JSON.stringify({
+          ref,
+          amount: session.amount_total,
+          status: 'completed',
+          name,
+          email,
+          mode: session.mode === 'subscription' ? 'subscription' : 'one_time'
+        })
       }).catch(() => {});
     }
 
