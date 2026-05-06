@@ -1625,20 +1625,22 @@ footer {
 })();
 
 /* 笏笏 LOADING 笏笏 */
-window.addEventListener('load', function() {
+function hideLoading() {
+  var el = document.getElementById('loading');
+  if (!el || el.style.display === 'none') return;
+  el.style.transition = 'opacity 0.6s';
+  el.style.opacity = '0';
   setTimeout(function() {
-    var el = document.getElementById('loading');
-    el.style.transition = 'opacity 0.6s';
-    el.style.opacity = '0';
-    setTimeout(function() {
-      el.style.display = 'none';
+    el.style.display = 'none';
       // 繝ｭ繝ｼ繝・ぅ繝ｳ繧ｰ螳御ｺ・ｾ後↓CTA繧定｡ｨ遉ｺ
       var cta = document.getElementById('fixed-cta');
       if (cta) { cta.style.opacity = '1'; cta.style.pointerEvents = 'auto'; }
       if (window.__ctaShow) window.__ctaShow();
     }, 650);
-  }, 1500);
-});
+  }, 650);
+}
+window.addEventListener('load', function() { setTimeout(hideLoading, 1500); });
+setTimeout(hideLoading, 3000);
 
 /* 笏笏 CRYSTAL PARTICLES (milky blue) 笏笏 */
 (function() {
