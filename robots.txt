@@ -1,5 +1,6 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
 Disallow: /dashboard.html
 
-Sitemap: https://silica-lagoon.vercel.app/sitemap.xml
+Sitemap: https://silica-lagoon.company/sitemap.xml
+
