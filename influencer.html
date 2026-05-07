@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SILICA LAGOON | アフィリエイト実績</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #060b18; color: #fff; font-family: -apple-system, BlinkMacSystemFont, sans-serif; min-height: 100vh; }
+
+  /* ── AUTH ERROR ── */
+  .auth-error { display: flex; align-items: center; justify-content: center; min-height: 100vh; flex-direction: column; gap: 16px; padding: 24px; text-align: center; }
+  .auth-error .logo { font-size: 13px; letter-spacing: 4px; color: rgba(76,201,240,0.6); margin-bottom: 8px; }
+  .auth-error h2 { font-size: 18px; color: rgba(255,255,255,0.7); font-weight: 400; }
+  .auth-error p { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.7; }
+
+  /* ── LOADING ── */
+  .loading-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; flex-direction: column; gap: 16px; }
+  .loading-dot { width: 8px; height: 8px; border-radius: 50%; background: #4cc9f0; animation: pulse 1.2s ease-in-out infinite; }
+  .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+  .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+  .loading-dots { display: flex; gap: 8px; }
+  @keyframes pulse { 0%,100%{opacity:0.2;transform:scale(0.8)} 50%{opacity:1;transform:scale(1)} }
+
+  /* ── MAIN ── */
+  .main { display: none; padding: 0 0 48px; max-width: 480px; margin: 0 auto; }
+
+  /* ── HEADER ── */
+  .header { padding: 32px 24px 24px; border-bottom: 1px solid rgba(76,201,240,0.1); }
+  .header-logo { font-size: 11px; letter-spacing: 4px; color: rgba(76,201,240,0.7); margin-bottom: 12px; }
+  .header-name { font-size: 22px; font-weight: 600; color: #fff; letter-spacing: 1px; }
+  .header-sub { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 4px; letter-spacing: 1px; }
+
+  /* ── HERO STAT（入金予定額） ── */
+  .hero-stat { margin: 24px 16px; background: linear-gradient(135deg, #0d1e3d 0%, #0a1628 100%); border: 1px solid rgba(76,201,240,0.25); border-radius: 16px; padding: 32px 24px; text-align: center; position: relative; overflow: hidden; }
+  .hero-stat::before { content: ''; position: absolute; top: -40px; right: -40px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(76,201,240,0.12) 0%, transparent 70%); }
+  .hero-label { font-size: 11px; letter-spacing: 3px; color: rgba(76,201,240,0.7); text-transform: uppercase; margin-bottom: 12px; }
+  .hero-amount { font-size: 52px; font-weight: 700; color: #4cc9f0; line-height: 1; letter-spacing: -1px; }
+  .hero-amount-unit { font-size: 24px; font-weight: 400; }
+  .hero-note { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 10px; }
+  .hero-rate { display: inline-block; margin-top: 8px; padding: 4px 12px; background: rgba(76,201,240,0.1); border: 1px solid rgba(76,201,240,0.2); border-radius: 20px; font-size: 11px; color: rgba(76,201,240,0.8); letter-spacing: 1px; }
+
+  /* ── STAT GRID ── */
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 0 16px 8px; }
+  .stat-card { background: #0d1829; border: 1px solid rgba(76,201,240,0.12); border-radius: 12px; padding: 18px 12px; text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-size: 9px; letter-spacing: 2px; color: rgba(255,255,255,0.35); text-transform: uppercase; }
+  .stat-card.highlight .stat-num { color: #c9a96e; }
+
+  /* ── URL SECTION ── */
+  .url-section { margin: 16px 16px 0; background: #0d1829; border: 1px solid rgba(76,201,240,0.12); border-radius: 12px; padding: 20px; }
+  .url-label { font-size: 10px; letter-spacing: 3px; color: rgba(76,201,240,0.6); text-transform: uppercase; margin-bottom: 12px; }
+  .url-box { display: flex; gap: 10px; align-items: center; }
+  .url-text { flex: 1; background: rgba(0,0,0,0.3); border: 1px solid rgba(76,201,240,0.15); border-radius: 8px; padding: 10px 12px; font-size: 11px; color: rgba(255,255,255,0.5); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .copy-btn { flex-shrink: 0; padding: 10px 18px; background: #4cc9f0; color: #060b18; font-size: 11px; font-weight: 700; letter-spacing: 2px; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
+  .copy-btn:hover { background: #7dd8f5; }
+  .copy-btn.copied { background: #2ecc71; }
+  .url-hint { font-size: 10px; color: rgba(255,255,255,0.25); margin-top: 8px; line-height: 1.6; }
+
+  /* ── MONTHLY ── */
+  .monthly-section { margin: 16px 16px 0; }
+  .section-title { font-size: 10px; letter-spacing: 3px; color: rgba(76,201,240,0.6); text-transform: uppercase; margin-bottom: 12px; padding-left: 4px; }
+  .monthly-card { background: #0d1829; border: 1px solid rgba(76,201,240,0.12); border-radius: 12px; overflow: hidden; }
+  .monthly-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; padding: 14px 16px; border-bottom: 1px solid rgba(76,201,240,0.06); font-size: 13px; }
+  .monthly-row:last-child { border-bottom: none; }
+  .monthly-row.header { font-size: 9px; letter-spacing: 2px; color: rgba(255,255,255,0.25); text-transform: uppercase; background: rgba(0,0,0,0.2); padding: 10px 16px; }
+  .monthly-row .month { color: rgba(255,255,255,0.6); }
+  .monthly-row .clicks { color: rgba(255,255,255,0.5); text-align: right; }
+  .monthly-row .orders { color: rgba(255,255,255,0.5); text-align: right; }
+  .monthly-row .payout { color: #4cc9f0; font-weight: 600; text-align: right; }
+  .no-data { padding: 24px; text-align: center; font-size: 12px; color: rgba(255,255,255,0.25); letter-spacing: 1px; }
+
+  /* ── MOTIVATION ── */
+  .motivation { margin: 16px 16px 0; background: linear-gradient(135deg, rgba(201,169,110,0.08) 0%, rgba(201,169,110,0.03) 100%); border: 1px solid rgba(201,169,110,0.2); border-radius: 12px; padding: 20px; }
+  .motivation-text { font-size: 13px; color: rgba(201,169,110,0.9); line-height: 1.8; }
+  .motivation-sign { font-size: 11px; color: rgba(201,169,110,0.5); margin-top: 8px; text-align: right; letter-spacing: 2px; }
+
+  /* ── UPDATED ── */
+  .updated { text-align: center; font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 24px; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+
+<div class="loading-screen" id="loadingScreen">
+  <div class="loading-dots">
+    <div class="loading-dot"></div>
+    <div class="loading-dot"></div>
+    <div class="loading-dot"></div>
+  </div>
+</div>
+
+<div class="auth-error" id="authError" style="display:none">
+  <div class="logo">SILICA LAGOON</div>
+  <h2>URLが正しくありません</h2>
+  <p>このページはインフルエンサー専用です。<br>担当者からお送りしたURLをご利用ください。</p>
+</div>
+
+<div class="main" id="main">
+  <div class="header">
+    <div class="header-logo">SILICA LAGOON</div>
+    <div class="header-name" id="infName">-</div>
+    <div class="header-sub">アフィリエイト実績ダッシュボード</div>
+  </div>
+
+  <div class="hero-stat">
+    <div class="hero-label">入金予定額（累計）</div>
+    <div class="hero-amount"><span class="hero-amount-unit">¥</span><span id="totalPayout">0</span></div>
+    <div class="hero-note">確定済み購入分の合計</div>
+    <div class="hero-rate" id="commissionBadge">コミッション率 --%</div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-num" id="totalClicks">0</div>
+      <div class="stat-label">クリック数</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="totalOrders">0</div>
+      <div class="stat-label">購入件数</div>
+    </div>
+    <div class="stat-card highlight">
+      <div class="stat-num" id="convRate">0%</div>
+      <div class="stat-label">転換率</div>
+    </div>
+  </div>
+
+  <div class="url-section">
+    <div class="url-label">あなたの紹介URL</div>
+    <div class="url-box">
+      <div class="url-text" id="myUrl">-</div>
+      <button class="copy-btn" id="copyBtn" onclick="copyUrl()">コピー</button>
+    </div>
+    <div class="url-hint">このURLをシェアするたびに、クリック数がカウントされます</div>
+  </div>
+
+  <div class="monthly-section">
+    <div class="section-title">月別実績</div>
+    <div class="monthly-card" id="monthlyTable">
+      <div class="no-data">データを読み込み中...</div>
+    </div>
+  </div>
+
+  <div class="motivation" id="motivationBox" style="display:none">
+    <div class="motivation-text" id="motivationText"></div>
+    <div class="motivation-sign">— SILICA LAGOON チーム</div>
+  </div>
+
+  <div class="updated" id="updatedAt"></div>
+</div>
+
+<script>
+  const SUPABASE_URL = 'https://mrcvwlaawmlfpoibxjec.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_nONkmADAMLoZ1wxUrZqwug_F_Fm08yO';
+
+  const params = new URLSearchParams(window.location.search);
+  const ref   = params.get('ref');
+  const token = params.get('token');
+
+  function sbFetch(path) {
+    return fetch(SUPABASE_URL + path, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    }).then(r => r.json());
+  }
+
+  function motivationMessage(orders, payout) {
+    if (orders === 0) return 'まだ購入者はいませんが、あなたのシェアが誰かの肌を変えるきっかけになります。最初の1件、一緒に待っています。';
+    if (orders < 5)  return orders + '件の購入が生まれました。投稿を見て実際に買ってくれた方がいます。その方の肌が変わった瞬間を想像してみてください。';
+    if (orders < 20) return '累計' + orders + '件。あなたの紹介で、' + orders + '人の入浴時間が変わりました。この調子です。';
+    return '累計' + orders + '件、入金予定¥' + payout.toLocaleString('ja-JP') + '。本当にありがとうございます。あなたはSILICA LAGOONの大切なパートナーです。';
+  }
+
+  async function loadData() {
+    if (!ref || !token) {
+      document.getElementById('loadingScreen').style.display = 'none';
+      document.getElementById('authError').style.display    = 'flex';
+      return;
+    }
+
+    try {
+      // アフィリエイト認証
+      const affiliates = await sbFetch(
+        `/rest/v1/affiliates?ref=eq.${encodeURIComponent(ref)}&token=eq.${encodeURIComponent(token)}&select=name,commission_rate`
+      );
+
+      if (!affiliates || affiliates.length === 0) {
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('authError').style.display    = 'flex';
+        return;
+      }
+
+      const { name, commission_rate } = affiliates[0];
+      const rate = parseFloat(commission_rate);
+
+      // クリック数取得
+      const clicks = await sbFetch(
+        `/rest/v1/clicks?ref=eq.${encodeURIComponent(ref)}&select=created_at`
+      );
+
+      // 注文取得
+      const orders = await sbFetch(
+        `/rest/v1/orders?ref=eq.${encodeURIComponent(ref)}&select=amount,created_at,status`
+      );
+      const validOrders = (orders || []).filter(o => o.status === 'completed' || o.status === 'paid');
+
+      // 集計
+      const totalClicks = (clicks || []).length;
+      const totalOrders = validOrders.length;
+      const totalSales  = validOrders.reduce((s, o) => s + (o.amount || 0), 0);
+      const totalPayout = Math.floor(totalSales * rate / 100);
+      const convRate    = totalClicks > 0 ? ((totalOrders / totalClicks) * 100).toFixed(1) : '0.0';
+
+      // 月別集計
+      const monthly = {};
+      (clicks || []).forEach(c => {
+        const m = (c.created_at || '').slice(0, 7);
+        if (!m) return;
+        if (!monthly[m]) monthly[m] = { clicks: 0, orders: 0, payout: 0 };
+        monthly[m].clicks++;
+      });
+      validOrders.forEach(o => {
+        const m = (o.created_at || '').slice(0, 7);
+        if (!m) return;
+        if (!monthly[m]) monthly[m] = { clicks: 0, orders: 0, payout: 0 };
+        monthly[m].orders++;
+        monthly[m].payout += Math.floor((o.amount || 0) * rate / 100);
+      });
+
+      // UI更新
+      document.getElementById('infName').textContent        = name + ' さん';
+      document.getElementById('totalPayout').textContent    = totalPayout.toLocaleString('ja-JP');
+      document.getElementById('commissionBadge').textContent = 'コミッション率 ' + rate + '%';
+      document.getElementById('totalClicks').textContent    = totalClicks.toLocaleString('ja-JP');
+      document.getElementById('totalOrders').textContent    = totalOrders.toLocaleString('ja-JP');
+      document.getElementById('convRate').textContent       = convRate + '%';
+
+      const myUrl = 'https://silica-lagoon.company/?ref=' + encodeURIComponent(ref);
+      document.getElementById('myUrl').textContent = myUrl;
+      document.getElementById('myUrl').title       = myUrl;
+
+      // 月別テーブル
+      const sortedMonths = Object.keys(monthly).sort().reverse();
+      if (sortedMonths.length === 0) {
+        document.getElementById('monthlyTable').innerHTML = '<div class="no-data">まだデータがありません</div>';
+      } else {
+        let html = '<div class="monthly-row header"><div>月</div><div class="clicks">クリック</div><div class="orders">購入</div><div class="payout">入金予定</div></div>';
+        sortedMonths.forEach(m => {
+          const label = m.replace('-', '年') + '月';
+          const d = monthly[m];
+          html += `<div class="monthly-row">
+            <div class="month">${label}</div>
+            <div class="clicks">${d.clicks}</div>
+            <div class="orders">${d.orders}件</div>
+            <div class="payout">¥${d.payout.toLocaleString('ja-JP')}</div>
+          </div>`;
+        });
+        document.getElementById('monthlyTable').innerHTML = html;
+      }
+
+      // モチベーションメッセージ
+      const msg = motivationMessage(totalOrders, totalPayout);
+      document.getElementById('motivationText').textContent = msg;
+      document.getElementById('motivationBox').style.display = 'block';
+
+      // 更新時刻
+      document.getElementById('updatedAt').textContent =
+        '最終更新: ' + new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
+
+      // 表示切り替え
+      document.getElementById('loadingScreen').style.display = 'none';
+      document.getElementById('main').style.display          = 'block';
+
+    } catch(e) {
+      document.getElementById('loadingScreen').style.display = 'none';
+      document.getElementById('authError').style.display    = 'flex';
+    }
+  }
+
+  function copyUrl() {
+    const url = 'https://silica-lagoon.company/?ref=' + encodeURIComponent(ref);
+    navigator.clipboard.writeText(url).then(function() {
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = '✓ コピー完了';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'コピー';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
+  loadData();
+</script>
+</body>
+</html>
