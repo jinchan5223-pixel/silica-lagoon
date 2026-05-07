@@ -255,8 +255,6 @@
       // ランクカード
       const card = document.getElementById('rankCard');
       card.className = 'rank-card ' + tier.cls;
-      document.getElementById('rankEmoji').textContent = tier.emoji;
-      document.getElementById('rankName').textContent  = tier.name;
       document.getElementById('userName').textContent  = name + ' さん';
       document.getElementById('payoutNum').textContent = totalPayout.toLocaleString('ja-JP');
       document.getElementById('rateNote').textContent  = '現在のコミッション率 ' + tier.rate + '%';
@@ -320,7 +318,7 @@
                       t.min === 300 ? '300件〜' :
                       t.min + '件〜';
         tierHtml += '<tr class="' + (isCurrent ? 'current ' + t.cls : '') + '">' +
-          '<td>' + t.emoji + ' ' + t.name + (isCurrent ? ' ◀ 現在' : '') + '</td>' +
+          '<td>' + t.emoji + ' ' + t.name + '</td>' +
           '<td>' + range + '</td>' +
           '<td>' + t.rate + '%</td></tr>';
       });
