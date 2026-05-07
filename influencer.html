@@ -106,6 +106,18 @@
   .monthly-row .mp { color: #4cc9f0; font-weight: 600; text-align: right; }
   .no-data { padding: 20px; text-align: center; font-size: 11px; color: rgba(255,255,255,0.25); }
 
+  /* TIER TABLE */
+  .tier-table { width: 100%; border-collapse: collapse; background: #0d1829; border: 1px solid rgba(76,201,240,0.1); border-radius: 12px; overflow: hidden; }
+  .tier-table th { font-size: 9px; letter-spacing: 2px; color: rgba(255,255,255,0.2); text-transform: uppercase; padding: 10px 16px; background: rgba(0,0,0,0.2); text-align: left; }
+  .tier-table th:last-child { text-align: right; }
+  .tier-table td { padding: 11px 16px; font-size: 12px; color: rgba(255,255,255,0.45); border-top: 1px solid rgba(76,201,240,0.05); }
+  .tier-table td:last-child { text-align: right; }
+  .tier-table tr.current td { color: #fff; background: rgba(76,201,240,0.06); }
+  .tier-table tr.current td:first-child { border-left: 2px solid #4cc9f0; }
+  .tier-table tr.current.platinum td { background: rgba(201,169,110,0.08); }
+  .tier-table tr.current.platinum td:first-child { border-left-color: #e8c870; }
+  .tier-section-label { font-size: 10px; letter-spacing: 3px; color: rgba(76,201,240,0.5); text-transform: uppercase; margin-bottom: 10px; padding-left: 2px; }
+
   .updated { text-align: center; font-size: 10px; color: rgba(255,255,255,0.15); margin-top: 24px; letter-spacing: 1px; }
 </style>
 </head>
@@ -131,8 +143,6 @@
 
   <div class="rank-card drop" id="rankCard">
     <div class="rank-glow"></div>
-    <div class="rank-emoji" id="rankEmoji">🌊</div>
-    <div class="rank-name" id="rankName">DROP</div>
     <div class="payout-label">入金予定額（累計）</div>
     <div class="payout-amount"><span class="payout-yen">¥</span><span id="payoutNum">0</span></div>
     <div class="payout-note" id="rateNote">現在のコミッション率 10%</div>
@@ -175,6 +185,8 @@
       <div class="no-data" id="monthlyContent">データを読み込み中...</div>
     </div>
   </div>
+
+  <div class="tier-section" id="tierSection" style="margin:16px 16px 0;"></div>
 
   <div class="updated" id="updatedAt"></div>
 </div>
@@ -299,6 +311,21 @@
         });
         document.getElementById('monthlyContent').outerHTML = html;
       }
+
+      // ランク一覧テーブル
+      let tierHtml = '<div class="tier-section-label">ランク一覧</div><table class="tier-table"><thead><tr><th>ランク</th><th>達成件数</th><th>率</th></tr></thead><tbody>';
+      TIERS.forEach(t => {
+        const isCurrent = t.name === tier.name;
+        const range = t.min === 0 ? '1〜9件' :
+                      t.min === 300 ? '300件〜' :
+                      t.min + '件〜';
+        tierHtml += '<tr class="' + (isCurrent ? 'current ' + t.cls : '') + '">' +
+          '<td>' + t.emoji + ' ' + t.name + (isCurrent ? ' ◀ 現在' : '') + '</td>' +
+          '<td>' + range + '</td>' +
+          '<td>' + t.rate + '%</td></tr>';
+      });
+      tierHtml += '</tbody></table>';
+      document.getElementById('tierSection').innerHTML = tierHtml;
 
       document.getElementById('updatedAt').textContent =
         '最終更新: ' + new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
