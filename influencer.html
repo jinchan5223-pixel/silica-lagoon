@@ -64,6 +64,7 @@
   .platinum .payout-amount { color: #e8c870; }
   .payout-yen { font-size: 22px; font-weight: 400; vertical-align: super; margin-right: 2px; }
   .payout-note { font-size: 10px; color: rgba(255,255,255,0.25); margin-top: 8px; }
+  .payout-period { font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 4px; letter-spacing: 1px; }
 
   /* PROGRESS */
   .progress-wrap { margin-top: 20px; }
@@ -143,9 +144,10 @@
 
   <div class="rank-card drop" id="rankCard">
     <div class="rank-glow"></div>
-    <div class="payout-label">入金予定額（累計）</div>
+    <div class="payout-label" id="payoutLabel">今月の入金予定額</div>
     <div class="payout-amount"><span class="payout-yen">¥</span><span id="payoutNum">0</span></div>
     <div class="payout-note" id="rateNote">現在のコミッション率 10%</div>
+    <div class="payout-period" id="payoutPeriod"></div>
     <div class="progress-wrap" id="progressWrap">
       <div class="progress-label">
         <span id="progressLeft">0件</span>
@@ -208,13 +210,30 @@
     return TIERS.find(t => n >= t.min && n <= t.max) || TIERS[0];
   }
 
-  function calcPayout(sortedOrders) {
+  function calcPayout(sortedOrders, startIdx) {
     let payout = 0;
     sortedOrders.forEach((o, i) => {
-      const tier = getTier(i + 1);
+      const tier = getTier(startIdx + i + 1);
       payout += Math.floor((o.amount || 0) * tier.rate / 100);
     });
     return payout;
+  }
+
+  function getPaymentPeriod() {
+    const today = new Date();
+    const y = today.getFullYear(), m = today.getMonth(), d = today.getDate();
+    let start, end, payDay;
+    if (d <= 20) {
+      start  = new Date(m === 0 ? y - 1 : y, m === 0 ? 11 : m - 1, 21);
+      end    = new Date(y, m, 20, 23, 59, 59);
+      payDay = new Date(y, m + 1, 0);
+    } else {
+      start  = new Date(y, m, 21);
+      end    = new Date(y, m + 1, 20, 23, 59, 59);
+      payDay = new Date(y, m + 2, 0);
+    }
+    const fmt = dt => (dt.getMonth() + 1) + '/' + dt.getDate();
+    return { start, end, label: fmt(start) + ' 〜 ' + fmt(end), payDay: fmt(payDay) };
   }
 
   const params = new URLSearchParams(window.location.search);
@@ -247,17 +266,26 @@
       const validOrders = (orders || []).filter(o => o.status === 'completed' || o.status === 'paid');
       const totalClicks = (clicks || []).length;
       const totalOrders = validOrders.length;
-      const totalPayout = calcPayout(validOrders);
       const tier        = getTier(totalOrders);
       const nextTier    = TIERS[TIERS.indexOf(tier) + 1] || null;
       const convRate    = totalClicks > 0 ? ((totalOrders / totalClicks) * 100).toFixed(1) : '0.0';
 
+      // 今月の支払対象（20日締め）
+      const period = getPaymentPeriod();
+      const periodOrders = validOrders.filter(o => {
+        const t = new Date(o.created_at);
+        return t >= period.start && t <= period.end;
+      });
+      const periodStartIdx = validOrders.indexOf(periodOrders[0]);
+      const periodPayout   = calcPayout(periodOrders, periodStartIdx < 0 ? totalOrders : periodStartIdx);
+
       // ランクカード
       const card = document.getElementById('rankCard');
       card.className = 'rank-card ' + tier.cls;
-      document.getElementById('userName').textContent  = name + ' さん';
-      document.getElementById('payoutNum').textContent = totalPayout.toLocaleString('ja-JP');
-      document.getElementById('rateNote').textContent  = '現在のコミッション率 ' + tier.rate + '%';
+      document.getElementById('userName').textContent    = name + ' さん';
+      document.getElementById('payoutNum').textContent   = periodPayout.toLocaleString('ja-JP');
+      document.getElementById('rateNote').textContent    = '現在のコミッション率 ' + tier.rate + '%';
+      document.getElementById('payoutPeriod').textContent = '対象期間 ' + period.label + '　支払日 ' + period.payDay;
 
       // プログレスバー
       if (nextTier) {
