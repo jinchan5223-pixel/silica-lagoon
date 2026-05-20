@@ -5,30 +5,12 @@ export default function BathAsSerum() {
     <>
       <p className="sl-lead">
         美容液は、顔に塗るもの——<br />
-        そう思っていませんか。<br /><br />
-        "浸かる美容液"という発想が、<br />
-        全身のスキンケアを変えつつある。
+        "浸かる美容液"という発想が、それを変える。
       </p>
 
       <img src="/images/color-change.jpg" alt="バスソルトがお湯に溶け込む瞬間" className="sl-section-img" />
 
-      <p className="sl-article-lead-sub">
-        "塗る"から"浸かる"へ。<br />
-        スキンケアの新しい常識。
-      </p>
-
       <QuoteBlock text={'"塗る"から"浸かる"へ。\nスキンケアが、変わる。'} sub="SILICA LAGOON" />
-
-      <section className="sl-article-section">
-        <h2>浸かる美容液とは</h2>
-        <p>
-          シリカ・ヒアルロン酸・コラーゲン・スクワランが<br />
-          溶け込んだお湯に全身で浸かることで、<br />
-          顔だけでなく、全身の肌に成分が届く。<br /><br />
-          これが「浸かる美容液」という新しい習慣。<br />
-          全身美容液に20分、まるごと浸かる。
-        </p>
-      </section>
 
       <div className="sl-info-cards">
         <div className="sl-info-card">
@@ -61,20 +43,16 @@ export default function BathAsSerum() {
         </div>
       </div>
 
-      <img src="/images/blue-bath.jpg" alt="SILICA LAGOONの青いお湯と製品" className="sl-section-img" />
-
-      <section className="sl-article-section">
-        <h2>なぜ全身に届くのか</h2>
-        <p>
-          入浴中、体温が上がることで毛穴が開く。<br />
-          その状態で美容成分が溶け込んだお湯に浸かると、<br />
-          全身の皮膚から成分が届きやすくなる。<br /><br />
-          背中・ひじ・かかと・太もも——<br />
-          塗るケアでは届かない場所まで、まるごとケア。
-        </p>
-      </section>
+      <img src="/images/blue-bath.jpg" alt="SILICA LAGOONの青いお湯" className="sl-section-img" />
 
       <QuoteBlock text={"全身が美容液に包まれる、\nその20分が肌を変える。"} sub="SILICA LAGOON" />
+
+      <p className="sl-breath">
+        背中・ひじ・かかと・太もも——<br />
+        塗るケアでは届かない場所まで、まるごと浸る。
+      </p>
+
+      <QuoteBlock text={"浸るほどに、\n肌は透明感を取り戻す。"} sub="SILICA LAGOON" />
     </>
   )
 }

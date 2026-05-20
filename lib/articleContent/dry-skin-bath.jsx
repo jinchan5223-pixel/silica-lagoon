@@ -4,47 +4,27 @@ export default function DrySkinBath() {
   return (
     <>
       <p className="sl-lead">
-        乾燥肌の人ほど、<br />
-        お風呂に入るたびに肌を傷めている——<br /><br />
-        それは入浴法の問題ではなく、<br />
-        "お湯そのもの"が問題かもしれない。
+        お風呂は、洗う場所だと思っていた。<br />
+        でも今夜から、整える場所になる。
       </p>
 
-      <img src="/images/blue-bath.jpg" alt="SILICA LAGOONの青いお湯" className="sl-section-img" />
+      <img src="/images/blue-bath.jpg" alt="乳青色のお湯" className="sl-section-img" />
 
-      <p className="sl-article-lead-sub">
-        高価な保湿クリームを塗るより先に、<br />
-        毎日15分間浸かっている「お湯」を変える。
+      <QuoteBlock text={"乾燥肌に必要なのは、\nもっと塗ることではなく、\n浸かることだった。"} sub="SILICA LAGOON" />
+
+      <p className="sl-breath">
+        バスソルトが溶け込んだお湯に、ただ浸かる。<br />
+        それだけで、肌の感触が変わっていく。
       </p>
 
-      <QuoteBlock text={"お風呂は、洗う場所から\n整える場所へ。"} sub="SILICA LAGOON" />
+      <img src="/images/color-change.jpg" alt="バスソルトが溶け込む瞬間" className="sl-section-img" />
 
-      <section className="sl-article-section">
-        <h2>乾燥肌とお湯の関係</h2>
-        <p>
-          入浴後の「つっぱり感」は、<br />
-          お湯によって肌の天然保湿因子が流れ出るサイン。<br /><br />
-          熱いお湯・長時間入浴・洗いすぎ——<br />
-          これが重なるほど、バリア機能は低下する。<br /><br />
-          でも、もうひとつの視点がある。<br />
-          お湯に保湿成分が溶け込んでいれば、<br />
-          同じ入浴時間が、補給の時間に変わる。
-        </p>
-      </section>
+      <QuoteBlock text={"整う、という感覚を\n肌で知っている。"} sub="SILICA LAGOON" />
 
-      <img src="/images/color-change.jpg" alt="バスソルトが青く広がる瞬間" className="sl-section-img" />
-
-      <section className="sl-article-section">
-        <h2>浸かる保湿という発想</h2>
-        <p>
-          シリカ・ヒアルロン酸・コラーゲン・スクワランが<br />
-          溶け込んだお湯に全身で浸かること。<br /><br />
-          背中、ひじ、かかと、太もも——<br />
-          塗るケアでは届かない場所まで、<br />
-          まるごと同時にケアできる。<br /><br />
-          これが「浸かる保湿」という考え方。
-        </p>
-      </section>
+      <p className="sl-breath">
+        シリカ・ヒアルロン酸・スクワランが溶け込んだお湯。<br />
+        入浴中から、全身の肌に成分が届きはじめる。
+      </p>
 
       <QuoteBlock text={"頑張らなくていい美容を。\nお風呂の時間が、それを叶える。"} sub="SILICA LAGOON" />
     </>

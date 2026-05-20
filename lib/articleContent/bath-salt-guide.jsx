@@ -4,42 +4,20 @@ export default function BathSaltGuide() {
   return (
     <>
       <p className="sl-lead">
-        「なんとなく」で選ぶと、<br />
-        香りだけで終わる入浴剤になる。<br /><br />
-        美容効果を本当に求めるなら、<br />
-        成分を見て選ぶ必要がある。
-      </p>
-
-      <img src="/images/butterfly-pea.jpg" alt="バタフライピーの花" className="sl-section-img" />
-
-      <p className="sl-article-lead-sub">
         このコバルトブルーの花が、<br />
         お湯をミルキーブルーに変える。
       </p>
 
-      <section className="sl-article-section">
-        <h2>天然の青——バタフライピー</h2>
-        <p>
-          SILICA LAGOONのバスソルトに配合されている<br />
-          天然青色素の原料が、このバタフライピーの花。<br /><br />
-          東南アジア原産のマメ科植物で、<br />
-          古くから食用・薬用として使われてきた歴史がある。<br /><br />
-          合成着色料ではなく、植物由来の天然成分だから<br />
-          肌への負担なく、美しい青を体験できる。
-        </p>
-      </section>
+      <img src="/images/butterfly-pea.jpg" alt="バタフライピーの花" className="sl-section-img" />
 
       <QuoteBlock text={"成分で選ぶ人だけが、\n手に入れる肌がある。"} sub="SILICA LAGOON" />
 
-      <img src="/images/color-change.jpg" alt="バスソルトが青く溶け込む瞬間" className="sl-section-img" />
+      <p className="sl-breath">
+        バタフライピー——植物由来の天然の青。<br />
+        合成着色料ではなく、自然がつくった色で浸かる。
+      </p>
 
-      <section className="sl-article-section">
-        <h2>選ぶべき4つの美容成分</h2>
-        <p>
-          美肌を目的とするなら、<br />
-          この4成分を含むものを選んでほしい。
-        </p>
-      </section>
+      <img src="/images/color-change.jpg" alt="バスソルトが青く溶け込む瞬間" className="sl-section-img" />
 
       <div className="sl-info-cards">
         <div className="sl-info-card">
@@ -60,7 +38,7 @@ export default function BathSaltGuide() {
           <div className="ic-icon">✨</div>
           <div>
             <div className="ic-title">コラーゲン</div>
-            <div className="ic-desc">肌の弾力を支える成分。年齢とともに減少するため補給が必要。</div>
+            <div className="ic-desc">肌の弾力を支える成分。入浴中から全身に届く。</div>
           </div>
         </div>
         <div className="sl-info-card">
