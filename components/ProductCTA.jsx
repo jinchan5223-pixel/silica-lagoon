@@ -1,32 +1,31 @@
 export default function ProductCTA({ lp = 'lp2' }) {
   const isLp1 = lp === 'lp1'
-  const btnText = isLp1
-    ? 'SILICA LAGOONの世界を体験する'
-    : '今すぐ、うるおう体験をはじめる'
 
   return (
     <div className="sl-cta">
       <p className="sl-cta-eyebrow">SILICA LAGOON BATH SALT</p>
       <img
-        src={isLp1 ? "/images/bath-salt-crystal.png" : "/images/product-720g-front.jpg"}
+        src={isLp1 ? '/images/bath-salt-crystal.png' : '/images/product-720g-front.jpg'}
         alt="SILICA LAGOON BATH SALT"
         className="sl-cta-img"
         loading="lazy"
       />
       <div className="sl-cta-body">
         <h3 className="sl-cta-name">
-          美容液のようなお湯で、<br />
-          毎日整う。
+          {isLp1 ? (
+            <>美容液のようなお湯で、<br />毎日整う。</>
+          ) : (
+            <>今日のお風呂を、<br />うるおいの時間へ。</>
+          )}
         </h3>
         <p className="sl-cta-benefit">
-          シリカ・ヒアルロン酸・コラーゲン・スクワランが溶け込んだお湯。<br />
-          浸かるだけで、全身の肌が応えはじめる。
+          シリカ・ヒアルロン酸が溶け込んだ、<br />
+          やわらかなお湯。
         </p>
         {/* LP1はres.end()でHTMLを返すページのため<a>でフルリロード */}
         <a href={isLp1 ? '/' : '/lp2'} className="sl-cta-btn">
-          {btnText}
+          {isLp1 ? 'SILICA LAGOONの世界を体験する' : 'SILICA LAGOONを見る'}
         </a>
-        <p className="sl-cta-note">30日間返金保証 ／ 全国送料無料</p>
       </div>
     </div>
   )
