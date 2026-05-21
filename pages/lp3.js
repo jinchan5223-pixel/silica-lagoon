@@ -39,29 +39,34 @@ function Lp3Header({ shopUrl }) {
 }
 
 // ============================================================
-// HERO — 水中・没入感・余白
+// HERO — 没入感・余白・動画対応
 // ============================================================
 function HeroSection({ shopUrl }) {
   return (
     <section className={styles.hero}>
       <div className={styles.heroBg}>
-        <img
-          src="/images/blue-bath.jpg"
-          alt="ミルキーブルーの水面"
-          loading="eager"
-        />
+        {/* 動画ファイルが存在すれば表示、なければposterの静止画にフォールバック */}
+        <video
+          className={styles.heroBgVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/images/blue-bath.jpg"
+        >
+          <source src="/videos/hero-water.mp4" type="video/mp4" />
+        </video>
         <div className={styles.heroGrad} />
       </div>
 
       <div className={styles.heroBody}>
-        <span className={styles.heroEye}>SILICA LAGOON BATH SALT</span>
         <h1 className={styles.heroH1}>
           自宅で、<br />
           Blue Lagoon体験。
         </h1>
         <p className={styles.heroSub}>
-          遠い旅先で出会うような静けさを、<br />
-          今日のお風呂に。
+          青に包まれる、<br />
+          静かな20分。
         </p>
         <a href={shopUrl} className={styles.heroBtn}>
           体験をはじめる
@@ -73,7 +78,7 @@ function HeroSection({ shopUrl }) {
 }
 
 // ============================================================
-// EXPERIENCE — 物語化
+// EXPERIENCE — 物語・最小限のテキスト
 // ============================================================
 function ExperienceSection() {
   return (
@@ -85,12 +90,8 @@ function ExperienceSection() {
           静かな温泉体験。
         </h2>
         <p className={styles.expBody}>
-          アイスランドで出会った、<br />
-          白く青い、静かな温泉体験。
-        </p>
-        <p className={styles.expBody}>
-          その非日常を、<br />
-          日本の浴室でも楽しめるように。
+          アイスランドで出会った、白く青い温泉。<br />
+          その静けさを、今日の浴室へ。
         </p>
         <p className={styles.expStory}>
           SILICA LAGOONは、<br />
@@ -114,6 +115,20 @@ function DissolvingVisual() {
         loading="lazy"
       />
     </div>
+  )
+}
+
+// ============================================================
+// JOURNEY — 暗背景・旅の詩
+// ============================================================
+function JourneySection() {
+  return (
+    <section className={styles.journey}>
+      <p className={styles.journeyText}>
+        遠くへ行かなくても、<br />
+        お風呂は旅になる。
+      </p>
+    </section>
   )
 }
 
@@ -144,16 +159,16 @@ function LuxurySection() {
     {
       num: '01',
       title: '青に包まれる',
-      desc: '視界に広がる、やわらかなミルキーブルー。',
+      desc: 'ミルキーブルーの湯が、視界を静かに染める。',
     },
     {
       num: '02',
       title: '音が消える',
-      desc: '湯気と光だけが残る、静かな浴室。',
+      desc: '湯気と光だけが残る、静かな時間。',
     },
     {
       num: '03',
-      title: '旅の余韻に浸る',
+      title: '旅の余韻',
       desc: '遠くへ行かなくても、心だけ旅に出る。',
     },
   ]
@@ -202,7 +217,7 @@ function ImmersionVisual() {
 }
 
 // ============================================================
-// CTA — 体験導線
+// CTA — 世界観の入口
 // ============================================================
 function CtaSection({ shopUrl }) {
   return (
@@ -211,7 +226,7 @@ function CtaSection({ shopUrl }) {
         <span className={styles.ctaEye}>START YOUR EXPERIENCE</span>
         <h2 className={styles.ctaH2}>
           今日のお風呂を、<br />
-          Blue Lagoonのような時間へ。
+          少し遠くへ。
         </h2>
 
         <div className={styles.ctaVisual}>
@@ -230,9 +245,9 @@ function CtaSection({ shopUrl }) {
         </a>
 
         <div className={styles.ctaTrust}>
-          <span>🚚 迅速発送</span>
-          <span>↩️ 30日間返金保証</span>
-          <span>🇯🇵 国内製造</span>
+          <span>迅速発送</span>
+          <span>30日間返金保証</span>
+          <span>国内製造</span>
         </div>
       </div>
     </section>
@@ -276,6 +291,7 @@ export default function Lp3() {
         <HeroSection shopUrl={shopUrl} />
         <ExperienceSection />
         <DissolvingVisual />
+        <JourneySection />
         <QuoteSection />
         <LuxurySection />
         <ImmersionVisual />

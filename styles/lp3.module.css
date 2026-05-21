@@ -1,6 +1,6 @@
 /* ===================================================
    SILICA LAGOON — LP3 Blue Lagoon 体験LP
-   White / Milky Blue / Deep Blue
+   White / Milky Blue / Deep Blue / Void Dark
    Aesop × Blue Lagoon Iceland × AMAN
    =================================================== */
 
@@ -42,7 +42,7 @@
 }
 
 /* ===================================================
-   HERO
+   HERO — 没入感・余白・動画対応
    =================================================== */
 .hero {
   position: relative;
@@ -60,7 +60,8 @@
   top: 56px;
 }
 
-.heroBg img {
+/* 動画 — objectFitでposterも自動的に同じ扱い */
+.heroBgVideo {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -75,27 +76,18 @@
   background: linear-gradient(
     180deg,
     rgba(8, 17, 30, 0.00)  0%,
-    rgba(8, 17, 30, 0.00)  35%,
-    rgba(8, 17, 30, 0.55)  68%,
-    rgba(8, 17, 30, 0.88) 100%
+    rgba(8, 17, 30, 0.00)  30%,
+    rgba(8, 17, 30, 0.60)  65%,
+    rgba(8, 17, 30, 0.92) 100%
   );
 }
 
 .heroBody {
   position: relative;
   z-index: 2;
-  padding: 0 32px 80px;
+  padding: 0 32px 96px;
   width: 100%;
   max-width: 430px;
-}
-
-.heroEye {
-  display: block;
-  font-size: 8px;
-  letter-spacing: 4.5px;
-  color: rgba(221, 243, 255, 0.55);
-  text-transform: uppercase;
-  margin-bottom: 22px;
 }
 
 .heroH1 {
@@ -105,17 +97,17 @@
   color: #ffffff;
   line-height: 1.75;
   letter-spacing: 0.06em;
-  margin-bottom: 22px;
+  margin-bottom: 28px;
 }
 
 .heroSub {
   font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   font-weight: 300;
-  color: rgba(221, 243, 255, 0.75);
-  line-height: 2.0;
-  letter-spacing: 0.06em;
-  margin-bottom: 44px;
+  color: rgba(221, 243, 255, 0.68);
+  line-height: 2.2;
+  letter-spacing: 0.08em;
+  margin-bottom: 52px;
 }
 
 /* ガラスCTAボタン */
@@ -123,28 +115,28 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  color: #ffffff;
-  font-size: 11px;
-  letter-spacing: 2.5px;
-  padding: 15px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 10px;
+  letter-spacing: 3px;
+  padding: 16px 32px;
   border-radius: 40px;
 }
 
 .heroBtnArrow {
   font-size: 16px;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 /* ===================================================
-   EXPERIENCE
+   EXPERIENCE — 最小限のテキスト
    =================================================== */
 .experience {
   background: #ffffff;
-  padding: 128px 0 112px;
+  padding: 136px 0 120px;
 }
 
 .expInner {
@@ -159,7 +151,7 @@
   letter-spacing: 4px;
   color: #5B7CFA;
   text-transform: uppercase;
-  margin-bottom: 52px;
+  margin-bottom: 56px;
 }
 
 .expH2 {
@@ -169,15 +161,14 @@
   color: #2E3A8C;
   line-height: 2.1;
   letter-spacing: 0.07em;
-  margin-bottom: 52px;
+  margin-bottom: 44px;
 }
 
 .expBody {
   font-size: 0.84rem;
-  color: #777;
-  line-height: 2.1;
+  color: #888;
+  line-height: 2.3;
   letter-spacing: 0.04em;
-  margin-bottom: 18px;
 }
 
 .expStory {
@@ -185,11 +176,11 @@
   font-size: 0.9rem;
   font-weight: 300;
   color: #2E3A8C;
-  line-height: 2.3;
+  line-height: 2.4;
   letter-spacing: 0.07em;
-  margin-top: 44px;
-  padding-top: 44px;
-  border-top: 1px solid rgba(91, 124, 250, 0.12);
+  margin-top: 56px;
+  padding-top: 52px;
+  border-top: 1px solid rgba(91, 124, 250, 0.10);
 }
 
 /* ===================================================
@@ -210,11 +201,29 @@
 }
 
 /* ===================================================
+   JOURNEY — 暗背景・旅の詩
+   =================================================== */
+.journey {
+  background: #060f1e;
+  padding: 100px 40px;
+  text-align: center;
+}
+
+.journeyText {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: clamp(1.05rem, 4.5vw, 1.4rem);
+  font-weight: 300;
+  color: rgba(221, 243, 255, 0.62);
+  line-height: 2.5;
+  letter-spacing: 0.10em;
+}
+
+/* ===================================================
    QUOTE
    =================================================== */
 .quote {
   background: #DDF3FF;
-  padding: 120px 0;
+  padding: 128px 0;
 }
 
 .quoteInner {
@@ -228,10 +237,10 @@
   font-family: 'Georgia', serif;
   font-size: 4.5rem;
   color: #5B7CFA;
-  opacity: 0.22;
+  opacity: 0.18;
   line-height: 0.5;
   display: block;
-  margin-bottom: 40px;
+  margin-bottom: 44px;
 }
 
 .quoteText {
@@ -248,8 +257,8 @@
   width: 28px;
   height: 1px;
   background: #5B7CFA;
-  opacity: 0.35;
-  margin: 0 auto 22px;
+  opacity: 0.30;
+  margin: 0 auto 24px;
 }
 
 .quoteSub {
@@ -257,7 +266,7 @@
   letter-spacing: 4.5px;
   color: #5B7CFA;
   text-transform: uppercase;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 /* ===================================================
@@ -265,7 +274,7 @@
    =================================================== */
 .luxury {
   background: #ffffff;
-  padding: 120px 0;
+  padding: 128px 0;
 }
 
 .luxInner {
@@ -280,7 +289,7 @@
   letter-spacing: 4px;
   color: #5B7CFA;
   text-transform: uppercase;
-  margin-bottom: 52px;
+  margin-bottom: 56px;
 }
 
 .luxH2 {
@@ -290,18 +299,18 @@
   color: #2E3A8C;
   line-height: 2.1;
   letter-spacing: 0.07em;
-  margin-bottom: 72px;
+  margin-bottom: 80px;
 }
 
 .luxItems {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 64px;
 }
 
 .luxItem {
-  border-top: 1px solid rgba(91, 124, 250, 0.14);
-  padding-top: 36px;
+  border-top: 1px solid rgba(91, 124, 250, 0.10);
+  padding-top: 40px;
 }
 
 .luxNum {
@@ -309,8 +318,8 @@
   font-size: 9px;
   letter-spacing: 3px;
   color: #5B7CFA;
-  opacity: 0.45;
-  margin-bottom: 14px;
+  opacity: 0.38;
+  margin-bottom: 16px;
 }
 
 .luxTitle {
@@ -324,8 +333,8 @@
 }
 
 .luxDesc {
-  font-size: 0.81rem;
-  color: #999;
+  font-size: 0.8rem;
+  color: #aaa;
   line-height: 2.1;
   letter-spacing: 0.04em;
 }
@@ -360,8 +369,8 @@
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(8, 17, 50, 0.15) 0%,
-    rgba(8, 17, 50, 0.52) 100%
+    rgba(6, 15, 30, 0.10) 0%,
+    rgba(6, 15, 30, 0.55) 100%
   );
 }
 
@@ -383,17 +392,17 @@
 }
 
 .immersionSub {
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: rgba(221, 243, 255, 0.65);
+  font-size: 9px;
+  letter-spacing: 3.5px;
+  color: rgba(221, 243, 255, 0.55);
 }
 
 /* ===================================================
-   CTA
+   CTA — 世界観の入口（暗背景）
    =================================================== */
 .cta {
-  background: #f4faff;
-  padding: 128px 0 112px;
+  background: #060f1e;
+  padding: 136px 0 120px;
 }
 
 .ctaInner {
@@ -407,28 +416,29 @@
   display: block;
   font-size: 8px;
   letter-spacing: 4px;
-  color: #5B7CFA;
+  color: rgba(191, 231, 255, 0.40);
   text-transform: uppercase;
-  margin-bottom: 36px;
+  margin-bottom: 40px;
 }
 
 .ctaH2 {
   font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
   font-size: clamp(1.3rem, 5.5vw, 1.7rem);
   font-weight: 300;
-  color: #2E3A8C;
-  line-height: 2.1;
-  letter-spacing: 0.07em;
-  margin-bottom: 56px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 2.2;
+  letter-spacing: 0.08em;
+  margin-bottom: 64px;
 }
 
 .ctaVisual {
-  width: 220px;
-  height: 220px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 0 auto 28px;
-  border: 1px solid rgba(191, 231, 255, 0.7);
+  margin: 0 auto 32px;
+  border: 1px solid rgba(191, 231, 255, 0.15);
+  opacity: 0.72;
 }
 
 .ctaVisual img {
@@ -439,45 +449,51 @@
 }
 
 .ctaName {
-  font-size: 8.5px;
+  font-size: 8px;
   letter-spacing: 4px;
-  color: #5B7CFA;
-  opacity: 0.55;
+  color: rgba(191, 231, 255, 0.30);
   text-transform: uppercase;
-  margin-bottom: 44px;
+  margin-bottom: 48px;
 }
 
+/* ガラスボタン — 世界観の入口 */
 .ctaBtn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   width: 100%;
-  padding: 21px 32px;
-  background: #2E3A8C;
-  color: #ffffff;
+  padding: 22px 32px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.82);
   font-size: 10.5px;
-  letter-spacing: 2px;
+  letter-spacing: 2.5px;
   border-radius: 3px;
   font-weight: 300;
-  margin-bottom: 28px;
-  transition: opacity 0.2s;
+  margin-bottom: 32px;
+  transition: background 0.25s, border-color 0.25s;
 }
 
-.ctaBtn:active { opacity: 0.85; }
+.ctaBtn:active {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.28);
+}
 
 .ctaBtnArrow {
   font-size: 18px;
-  opacity: 0.65;
+  opacity: 0.5;
 }
 
 .ctaTrust {
   display: flex;
   justify-content: center;
-  gap: 18px;
-  font-size: 10px;
-  color: rgba(46, 58, 140, 0.35);
-  letter-spacing: 0.3px;
+  gap: 20px;
+  font-size: 9.5px;
+  color: rgba(191, 231, 255, 0.22);
+  letter-spacing: 0.5px;
   flex-wrap: wrap;
 }
 
@@ -485,7 +501,7 @@
    FOOTER
    =================================================== */
 .footer {
-  background: #2E3A8C;
+  background: #04090f;
   padding: 40px 24px;
   display: flex;
   flex-direction: column;
@@ -496,7 +512,7 @@
 .footerLogo {
   font-size: 9px;
   letter-spacing: 5.5px;
-  color: rgba(255, 255, 255, 0.38);
+  color: rgba(255, 255, 255, 0.22);
   text-transform: uppercase;
 }
 
@@ -505,10 +521,10 @@
   align-items: center;
   gap: 12px;
   font-size: 10px;
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.18);
 }
 
 .footerNav a {
-  color: rgba(255, 255, 255, 0.28);
+  color: rgba(255, 255, 255, 0.22);
   letter-spacing: 0.3px;
 }
