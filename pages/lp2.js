@@ -4,15 +4,25 @@ import { useState, useEffect } from 'react'
 import styles from '../styles/lp2.module.css'
 
 const STRIPE_URL = 'https://buy.stripe.com/4gMaEQ5l313Wfmg6n58k801'
+const SUP_URL = 'https://mrcvwlaawmlfpoibxjec.supabase.co'
+const SUP_KEY = 'sb_publishable_nONkmADAMLoZ1wxUrZqwug_F_Fm08yO'
 
-// ?ref= パラメータを読み取り、Stripeのclient_reference_idに引き継ぐ
+// ?ref= パラメータを読み取り、クリック記録 + Stripeのclient_reference_idに引き継ぐ
 function useShopUrl() {
   const [shopUrl, setShopUrl] = useState(STRIPE_URL)
   useEffect(() => {
     const ref = new URLSearchParams(window.location.search).get('ref')
-    if (ref) {
-      setShopUrl(`${STRIPE_URL}?client_reference_id=${encodeURIComponent(ref)}`)
-    }
+    if (!ref) return
+    setShopUrl(`${STRIPE_URL}?client_reference_id=${encodeURIComponent(ref)}`)
+    fetch(`${SUP_URL}/rest/v1/clicks`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUP_KEY,
+        'Authorization': `Bearer ${SUP_KEY}`,
+      },
+      body: JSON.stringify({ ref, lp: 'lp2' }),
+    }).catch(() => {})
   }, [])
   return shopUrl
 }
