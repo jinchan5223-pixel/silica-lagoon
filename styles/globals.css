@@ -42,6 +42,9 @@ body {
   font-family: var(--font-sans);
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
+  /* 日本語改行制御: 句読点を行頭・行末に出さない */
+  line-break: strict;
+  overflow-wrap: break-word;
 }
 
 a {
@@ -901,20 +904,98 @@ img {
   color: var(--text-muted);
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== RESPONSIVE — 640px ===== */
 @media (max-width: 640px) {
   .sl-header { padding: 0 20px; }
   .sl-header-nav { display: none; }
   .sl-breadcrumb { padding: 12px 20px; }
   .sl-hero { height: 60vh; min-height: 360px; }
-  .sl-hero-content { padding: 0 20px 40px; }
-  .sl-hero-catchphrase { font-size: 1.2rem; }
-  .sl-article-wrap { padding: 0 20px 80px; }
-  .sl-article-title { font-size: 1.35rem; padding: 40px 0 28px; }
-  .sl-quote { padding: 36px 22px; }
-  .sl-cta-body { padding: 28px 22px; }
-  .sl-blog-hero { padding: 64px 20px 52px; }
-  .sl-blog-list-wrap { padding: 40px 20px 80px; }
+  .sl-hero-content { padding: 0 24px 44px; }
+  .sl-hero-catchphrase {
+    font-size: 1.2rem;
+    line-height: 1.95;
+    letter-spacing: 0.04em;
+  }
+  /* 横パディング増：1行の文字数を自然に絞る */
+  .sl-article-wrap { padding: 0 28px 80px; }
+  .sl-article-title {
+    font-size: 1.35rem;
+    line-height: 1.95;
+    padding: 44px 0 32px;
+  }
+  .sl-quote { padding: 40px 28px; }
+  .sl-cta-body { padding: 52px 28px 64px; }
+  .sl-blog-hero { padding: 64px 24px 52px; }
+  .sl-blog-list-wrap { padding: 40px 24px 80px; }
   .sl-related-grid { grid-template-columns: 1fr; }
   .sl-timeline { grid-template-columns: 1fr; }
+}
+
+/* ===== RESPONSIVE — 430px iPhone最優先 ===== */
+@media (max-width: 430px) {
+  /* 日本語感情改行: max-widthで1行の文字数を12〜16文字に制御 */
+
+  .sl-lead {
+    font-size: 1.05rem;
+    line-height: 2.2;
+    padding: 60px 32px;
+    max-width: 16em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 56px;
+  }
+
+  .sl-breath {
+    font-size: 1.05rem;
+    line-height: 2.15;
+    padding: 72px 32px;
+    max-width: 15em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sl-closing {
+    font-size: 0.95rem;
+    line-height: 2.5;
+    padding: 72px 32px 96px;
+    max-width: 15em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sl-quote-text {
+    font-size: 1.15rem;
+    line-height: 2.1;
+    letter-spacing: 0.07em;
+  }
+
+  .sl-quote {
+    padding: 44px 32px;
+  }
+
+  .sl-hero-catchphrase {
+    font-size: 1.1rem;
+    line-height: 2.05;
+    max-width: 14em;
+    margin: 0 auto;
+  }
+
+  .sl-article-title {
+    font-size: 1.25rem;
+    line-height: 2.0;
+    letter-spacing: 0.03em;
+  }
+
+  .sl-body {
+    line-height: 2.05;
+    font-size: 15px;
+  }
+
+  .sl-body p {
+    margin-bottom: 32px;
+  }
+
+  .sl-cta-body {
+    padding: 52px 24px 64px;
+  }
 }
