@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SILICA LAGOON | アフィリエイト実績</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #060b18; color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif; min-height: 100vh; }
+
+  /* LOADING */
+  .loading-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+  .loading-dots { display: flex; gap: 8px; }
+  .loading-dot { width: 8px; height: 8px; border-radius: 50%; background: #4cc9f0; animation: pulse 1.2s ease-in-out infinite; }
+  .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+  .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes pulse { 0%,100%{opacity:0.2;transform:scale(0.8)} 50%{opacity:1;transform:scale(1)} }
+
+  /* AUTH ERROR */
+  .auth-error { display: none; align-items: center; justify-content: center; min-height: 100vh; flex-direction: column; gap: 12px; padding: 32px; text-align: center; }
+  .auth-error .logo { font-size: 11px; letter-spacing: 4px; color: rgba(76,201,240,0.5); }
+  .auth-error h2 { font-size: 18px; color: rgba(255,255,255,0.6); font-weight: 400; margin-top: 8px; }
+  .auth-error p { font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.8; }
+
+  /* MAIN */
+  .main { display: none; max-width: 420px; margin: 0 auto; padding: 0 0 60px; }
+
+  /* HEADER */
+  .header { padding: 36px 24px 20px; }
+  .brand { font-size: 10px; letter-spacing: 5px; color: rgba(76,201,240,0.5); margin-bottom: 6px; }
+  .user-name { font-size: 20px; font-weight: 600; letter-spacing: 0.5px; }
+
+  /* RANK CARD */
+  .rank-card { margin: 0 16px 16px; border-radius: 20px; padding: 28px 24px 24px; text-align: center; position: relative; overflow: hidden; }
+  .rank-card.drop     { background: linear-gradient(135deg, #0d1829 0%, #0a1220 100%); border: 1px solid rgba(76,201,240,0.2); }
+  .rank-card.wave     { background: linear-gradient(135deg, #0a1e35 0%, #071628 100%); border: 1px solid rgba(76,201,240,0.4); }
+  .rank-card.lagoon   { background: linear-gradient(135deg, #0d2040 0%, #081830 100%); border: 1px solid rgba(76,150,255,0.5); }
+  .rank-card.crystal  { background: linear-gradient(135deg, #0e1e3a 0%, #1a2a50 100%); border: 1px solid rgba(150,180,255,0.6); }
+  .rank-card.silica   { background: linear-gradient(135deg, #1a1a3e 0%, #0e1832 100%); border: 1px solid rgba(180,160,255,0.6); }
+  .rank-card.platinum { background: linear-gradient(135deg, #1e1a10 0%, #2a2010 100%); border: 1px solid rgba(201,169,110,0.7); }
+
+  .rank-glow { position: absolute; top: -30px; right: -30px; width: 100px; height: 100px; border-radius: 50%; opacity: 0.15; }
+  .drop .rank-glow     { background: radial-gradient(circle, #4cc9f0, transparent); }
+  .wave .rank-glow     { background: radial-gradient(circle, #60d0ff, transparent); }
+  .lagoon .rank-glow   { background: radial-gradient(circle, #7ab4ff, transparent); }
+  .crystal .rank-glow  { background: radial-gradient(circle, #a0b8ff, transparent); }
+  .silica .rank-glow   { background: radial-gradient(circle, #c0a8ff, transparent); }
+  .platinum .rank-glow { background: radial-gradient(circle, #e8c870, transparent); }
+
+  .rank-emoji { font-size: 36px; margin-bottom: 6px; line-height: 1; }
+  .rank-name { font-size: 13px; letter-spacing: 5px; font-weight: 700; text-transform: uppercase; margin-bottom: 16px; }
+  .drop .rank-name     { color: rgba(76,201,240,0.7); }
+  .wave .rank-name     { color: #60d0ff; }
+  .lagoon .rank-name   { color: #7ab4ff; }
+  .crystal .rank-name  { color: #a0b8ff; }
+  .silica .rank-name   { color: #c0a8ff; }
+  .platinum .rank-name { color: #e8c870; }
+
+  .payout-label { font-size: 10px; letter-spacing: 3px; color: rgba(255,255,255,0.35); margin-bottom: 6px; }
+  .payout-amount { font-size: 48px; font-weight: 800; line-height: 1; letter-spacing: -1px; }
+  .drop .payout-amount, .wave .payout-amount, .lagoon .payout-amount { color: #fff; }
+  .crystal .payout-amount { color: #d0dcff; }
+  .silica .payout-amount  { color: #dcd0ff; }
+  .platinum .payout-amount { color: #e8c870; }
+  .payout-yen { font-size: 22px; font-weight: 400; vertical-align: super; margin-right: 2px; }
+  .payout-note { font-size: 10px; color: rgba(255,255,255,0.25); margin-top: 8px; }
+  .payout-period { font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 4px; letter-spacing: 1px; }
+
+  /* PROGRESS */
+  .progress-wrap { margin-top: 20px; }
+  .progress-label { display: flex; justify-content: space-between; font-size: 10px; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
+  .progress-label .next-rank { font-weight: 600; color: rgba(255,255,255,0.6); }
+  .progress-bar { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 3px; transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); }
+  .drop .progress-fill     { background: linear-gradient(90deg, #4cc9f0, #60d0ff); }
+  .wave .progress-fill     { background: linear-gradient(90deg, #60d0ff, #7ab4ff); }
+  .lagoon .progress-fill   { background: linear-gradient(90deg, #7ab4ff, #a0b8ff); }
+  .crystal .progress-fill  { background: linear-gradient(90deg, #a0b8ff, #c0a8ff); }
+  .silica .progress-fill   { background: linear-gradient(90deg, #c0a8ff, #e8c870); }
+  .progress-message { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 8px; text-align: center; }
+  .progress-message strong { color: rgba(255,255,255,0.75); }
+
+  /* STATS ROW */
+  .stats-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 0 16px 16px; }
+  .stat-item { background: #0d1829; border: 1px solid rgba(76,201,240,0.1); border-radius: 12px; padding: 14px 10px; text-align: center; }
+  .stat-n { font-size: 22px; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 4px; }
+  .stat-l { font-size: 9px; letter-spacing: 1.5px; color: rgba(255,255,255,0.3); text-transform: uppercase; }
+
+  /* URL SELECTOR */
+  .url-section { margin: 0 16px 16px; }
+  .url-section-title { font-size: 10px; letter-spacing: 3px; color: rgba(76,201,240,0.6); text-transform: uppercase; margin-bottom: 12px; padding-left: 2px; }
+  .lp-cards { display: flex; flex-direction: column; gap: 10px; }
+  .lp-card { background: #0d1829; border: 1px solid rgba(76,201,240,0.12); border-radius: 16px; padding: 18px; }
+  .lp-card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .lp-card-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #fff; text-transform: uppercase; }
+  .lp-card-badge { font-size: 9px; letter-spacing: 1px; color: rgba(76,201,240,0.7); background: rgba(76,201,240,0.08); border: 1px solid rgba(76,201,240,0.2); border-radius: 20px; padding: 3px 9px; }
+  .lp-card-badge.lp2 { color: rgba(180,150,255,0.8); background: rgba(150,100,255,0.08); border-color: rgba(150,100,255,0.25); }
+  .lp-card-desc { font-size: 11px; color: rgba(255,255,255,0.35); margin-bottom: 12px; line-height: 1.5; }
+  .copy-btn { width: 100%; padding: 13px; background: #4cc9f0; color: #060b18; font-size: 12px; font-weight: 700; letter-spacing: 2.5px; border: none; border-radius: 10px; cursor: pointer; transition: all 0.2s; }
+  .copy-btn.lp2 { background: #a87fff; }
+  .copy-btn:active { transform: scale(0.98); }
+  .copy-btn.copied { background: #2ecc71; }
+  .url-preview { font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 9px; text-align: center; word-break: break-all; line-height: 1.5; }
+
+  /* MONTHLY */
+  .monthly-section { margin: 0 16px; }
+  .monthly-toggle { width: 100%; padding: 14px 18px; background: #0d1829; border: 1px solid rgba(76,201,240,0.1); border-radius: 12px; color: rgba(255,255,255,0.4); font-size: 11px; letter-spacing: 2px; cursor: pointer; text-align: left; display: flex; justify-content: space-between; align-items: center; transition: color 0.2s; }
+  .monthly-toggle:hover { color: rgba(255,255,255,0.6); }
+  .monthly-body { display: none; background: #0d1829; border: 1px solid rgba(76,201,240,0.1); border-top: none; border-radius: 0 0 12px 12px; overflow: hidden; }
+  .monthly-row { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1.2fr; padding: 11px 18px; border-bottom: 1px solid rgba(76,201,240,0.05); font-size: 12px; }
+  .monthly-row:last-child { border-bottom: none; }
+  .monthly-row.head { font-size: 9px; letter-spacing: 1.5px; color: rgba(255,255,255,0.2); text-transform: uppercase; background: rgba(0,0,0,0.2); padding: 8px 18px; }
+  .monthly-row .mc { color: rgba(255,255,255,0.55); }
+  .monthly-row .mn { color: rgba(255,255,255,0.4); text-align: right; }
+  .monthly-row .mp { color: #4cc9f0; font-weight: 600; text-align: right; }
+  .no-data { padding: 20px; text-align: center; font-size: 11px; color: rgba(255,255,255,0.25); }
+
+  /* TIER TABLE */
+  .tier-table { width: 100%; border-collapse: collapse; background: #0d1829; border: 1px solid rgba(76,201,240,0.1); border-radius: 12px; overflow: hidden; }
+  .tier-table th { font-size: 9px; letter-spacing: 2px; color: rgba(255,255,255,0.2); text-transform: uppercase; padding: 10px 16px; background: rgba(0,0,0,0.2); text-align: left; }
+  .tier-table th:last-child { text-align: right; }
+  .tier-table td { padding: 11px 16px; font-size: 12px; color: rgba(255,255,255,0.45); border-top: 1px solid rgba(76,201,240,0.05); }
+  .tier-table td:last-child { text-align: right; }
+  .tier-table tr.current td { color: #fff; background: rgba(76,201,240,0.06); }
+  .tier-table tr.current td:first-child { border-left: 2px solid #4cc9f0; }
+  .tier-table tr.current.platinum td { background: rgba(201,169,110,0.08); }
+  .tier-table tr.current.platinum td:first-child { border-left-color: #e8c870; }
+  .tier-section-label { font-size: 10px; letter-spacing: 3px; color: rgba(76,201,240,0.5); text-transform: uppercase; margin-bottom: 10px; padding-left: 2px; }
+
+  .updated { text-align: center; font-size: 10px; color: rgba(255,255,255,0.15); margin-top: 24px; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+
+<div class="loading-screen" id="loadingScreen">
+  <div class="loading-dots">
+    <div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div>
+  </div>
+</div>
+
+<div class="auth-error" id="authError">
+  <div class="logo">SILICA LAGOON</div>
+  <h2>URLが正しくありません</h2>
+  <p>このページはパートナー専用です。<br>担当者からお送りしたURLをご利用ください。</p>
+</div>
+
+<div class="main" id="main">
+  <div class="header">
+    <div class="brand">SILICA LAGOON</div>
+    <div class="user-name" id="userName">-</div>
+  </div>
+
+  <div class="rank-card drop" id="rankCard">
+    <div class="rank-glow"></div>
+    <div class="payout-label" id="payoutLabel">今月の入金予定額</div>
+    <div class="payout-amount"><span class="payout-yen">¥</span><span id="payoutNum">0</span></div>
+    <div class="payout-note" id="rateNote">現在のコミッション率 10%</div>
+    <div class="payout-period" id="payoutPeriod"></div>
+    <div class="progress-wrap" id="progressWrap">
+      <div class="progress-label">
+        <span id="progressLeft">0件</span>
+        <span class="next-rank" id="progressRight">WAVE まで 10件</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      <div class="progress-message" id="progressMsg"></div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-n" id="statOrders">0</div>
+      <div class="stat-l">購入件数</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n" id="statClicks">0</div>
+      <div class="stat-l">クリック数</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n" id="statConv">0%</div>
+      <div class="stat-l">転換率</div>
+    </div>
+  </div>
+
+  <div class="url-section">
+    <div class="url-section-title">紹介URLを選ぶ</div>
+    <div class="lp-cards">
+
+      <div class="lp-card">
+        <div class="lp-card-head">
+          <span class="lp-card-label">LP1 — メインLP</span>
+          <span class="lp-card-badge">世界観重視</span>
+        </div>
+        <div class="lp-card-desc">シリカラグーンの世界観を前面に出したスタンダードLP。幅広いフォロワーに。</div>
+        <button class="copy-btn" id="copyBtn1" onclick="copyLpUrl(1)">LP1のURLをコピー</button>
+        <div class="url-preview" id="urlPreview1"></div>
+      </div>
+
+      <div class="lp-card">
+        <div class="lp-card-head">
+          <span class="lp-card-label">LP2 — 美肌LP</span>
+          <span class="lp-card-badge lp2">美容特化</span>
+        </div>
+        <div class="lp-card-desc">「塗る→浸かる」美肌習慣に特化したLP。美容・スキンケア系フォロワーに。</div>
+        <button class="copy-btn lp2" id="copyBtn2" onclick="copyLpUrl(2)">LP2のURLをコピー</button>
+        <div class="url-preview" id="urlPreview2"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="monthly-section">
+    <button class="monthly-toggle" onclick="toggleMonthly()">
+      <span>月別実績</span><span id="toggleIcon">▶</span>
+    </button>
+    <div class="monthly-body" id="monthlyBody">
+      <div class="no-data" id="monthlyContent">データを読み込み中...</div>
+    </div>
+  </div>
+
+  <div class="tier-section" id="tierSection" style="margin:16px 16px 0;"></div>
+
+  <div class="updated" id="updatedAt"></div>
+</div>
+
+<script>
+  const SUPABASE_URL = 'https://mrcvwlaawmlfpoibxjec.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_nONkmADAMLoZ1wxUrZqwug_F_Fm08yO';
+
+  const TIERS = [
+    { name: 'DROP',     emoji: '🌊', rate: 10, min: 0,   max: 9,   cls: 'drop'    },
+    { name: 'WAVE',     emoji: '💧', rate: 12, min: 10,  max: 29,  cls: 'wave'    },
+    { name: 'LAGOON',   emoji: '🌊', rate: 15, min: 30,  max: 99,  cls: 'lagoon'  },
+    { name: 'CRYSTAL',  emoji: '💎', rate: 20, min: 100, max: 199, cls: 'crystal' },
+    { name: 'SILICA',   emoji: '✨', rate: 25, min: 200, max: 299, cls: 'silica'  },
+    { name: 'PLATINUM', emoji: '👑', rate: 30, min: 300, max: Infinity, cls: 'platinum' },
+  ];
+
+  function getTier(n) {
+    return TIERS.find(t => n >= t.min && n <= t.max) || TIERS[0];
+  }
+
+  function calcPayout(sortedOrders, startIdx) {
+    let payout = 0;
+    sortedOrders.forEach((o, i) => {
+      const tier = getTier(startIdx + i + 1);
+      payout += Math.floor((o.amount || 0) * tier.rate / 100);
+    });
+    return payout;
+  }
+
+  function getPaymentPeriod() {
+    const today = new Date();
+    const y = today.getFullYear(), m = today.getMonth(), d = today.getDate();
+    let start, end, payDay;
+    if (d <= 20) {
+      start  = new Date(m === 0 ? y - 1 : y, m === 0 ? 11 : m - 1, 21);
+      end    = new Date(y, m, 20, 23, 59, 59);
+      payDay = new Date(y, m + 1, 0);
+    } else {
+      start  = new Date(y, m, 21);
+      end    = new Date(y, m + 1, 20, 23, 59, 59);
+      payDay = new Date(y, m + 2, 0);
+    }
+    const fmt = dt => (dt.getMonth() + 1) + '/' + dt.getDate();
+    return { start, end, label: fmt(start) + ' 〜 ' + fmt(end), payDay: fmt(payDay) };
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const ref   = params.get('ref');
+  const token = params.get('token');
+
+  function sbFetch(path) {
+    return fetch(SUPABASE_URL + path, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    }).then(r => r.json());
+  }
+
+  async function loadData() {
+    if (!ref || !token) { showError(); return; }
+
+    try {
+      const affiliates = await sbFetch(
+        '/rest/v1/affiliates?ref=eq.' + encodeURIComponent(ref) +
+        '&token=eq.' + encodeURIComponent(token) + '&select=name'
+      );
+      if (!affiliates || affiliates.length === 0) { showError(); return; }
+
+      const name = affiliates[0].name;
+
+      const [clicks, orders] = await Promise.all([
+        sbFetch('/rest/v1/clicks?ref=eq.' + encodeURIComponent(ref) + '&select=created_at'),
+        sbFetch('/rest/v1/orders?ref=eq.' + encodeURIComponent(ref) + '&select=amount,created_at,status&order=created_at.asc')
+      ]);
+
+      const validOrders = (orders || []).filter(o => o.status === 'completed' || o.status === 'paid');
+      const totalClicks = (clicks || []).length;
+      const totalOrders = validOrders.length;
+      const tier        = getTier(totalOrders);
+      const nextTier    = TIERS[TIERS.indexOf(tier) + 1] || null;
+      const convRate    = totalClicks > 0 ? ((totalOrders / totalClicks) * 100).toFixed(1) : '0.0';
+
+      // 今月の支払対象（20日締め）
+      const period = getPaymentPeriod();
+      const periodOrders = validOrders.filter(o => {
+        const t = new Date(o.created_at);
+        return t >= period.start && t <= period.end;
+      });
+      const periodStartIdx = validOrders.indexOf(periodOrders[0]);
+      const periodPayout   = calcPayout(periodOrders, periodStartIdx < 0 ? totalOrders : periodStartIdx);
+
+      // ランクカード
+      const card = document.getElementById('rankCard');
+      card.className = 'rank-card ' + tier.cls;
+      document.getElementById('userName').textContent    = name + ' さん';
+      document.getElementById('payoutNum').textContent   = periodPayout.toLocaleString('ja-JP');
+      document.getElementById('rateNote').textContent    = '現在のコミッション率 ' + tier.rate + '%';
+      document.getElementById('payoutPeriod').textContent = '対象期間 ' + period.label + '　支払日 ' + period.payDay;
+
+      // プログレスバー
+      if (nextTier) {
+        const inTier    = totalOrders - tier.min;
+        const tierRange = nextTier.min - tier.min;
+        const pct       = Math.min(100, Math.round(inTier / tierRange * 100));
+        const remaining = nextTier.min - totalOrders;
+        document.getElementById('progressLeft').textContent  = totalOrders + '件達成';
+        document.getElementById('progressRight').textContent = nextTier.name + ' まで あと' + remaining + '件';
+        document.getElementById('progressFill').style.width  = pct + '%';
+        document.getElementById('progressMsg').innerHTML =
+          '<strong>あと' + remaining + '件</strong>で ' + nextTier.name + '（' + nextTier.rate + '%）に上がります';
+      } else {
+        document.getElementById('progressWrap').innerHTML =
+          '<div style="text-align:center;font-size:12px;color:rgba(232,200,112,0.8);margin-top:8px;">👑 最高ランク達成おめでとうございます</div>';
+      }
+
+      // 統計
+      document.getElementById('statOrders').textContent = totalOrders.toLocaleString('ja-JP');
+      document.getElementById('statClicks').textContent = totalClicks.toLocaleString('ja-JP');
+      document.getElementById('statConv').textContent   = convRate + '%';
+
+      // URL previews
+      const myUrl1 = 'https://silica-lagoon.company/?ref=' + encodeURIComponent(ref);
+      const myUrl2 = 'https://silica-lagoon.company/lp2?ref=' + encodeURIComponent(ref);
+      document.getElementById('urlPreview1').textContent = myUrl1;
+      document.getElementById('urlPreview2').textContent = myUrl2;
+
+      // 月別
+      const monthly = {};
+      (clicks || []).forEach(c => {
+        const m = (c.created_at || '').slice(0, 7); if (!m) return;
+        if (!monthly[m]) monthly[m] = { clicks: 0, orders: 0, payout: 0 };
+        monthly[m].clicks++;
+      });
+      validOrders.forEach((o, i) => {
+        const m = (o.created_at || '').slice(0, 7); if (!m) return;
+        if (!monthly[m]) monthly[m] = { clicks: 0, orders: 0, payout: 0 };
+        monthly[m].orders++;
+        monthly[m].payout += Math.floor((o.amount || 0) * getTier(i + 1).rate / 100);
+      });
+      const months = Object.keys(monthly).sort().reverse();
+      if (months.length === 0) {
+        document.getElementById('monthlyContent').textContent = 'まだデータがありません';
+      } else {
+        let html = '<div class="monthly-row head"><div>月</div><div class="mn">クリック</div><div class="mn">購入</div><div class="mp">入金予定</div></div>';
+        months.forEach(m => {
+          const d = monthly[m];
+          const label = m.replace('-', '年') + '月';
+          html += '<div class="monthly-row"><div class="mc">' + label + '</div><div class="mn">' + d.clicks + '</div><div class="mn">' + d.orders + '件</div><div class="mp">¥' + d.payout.toLocaleString('ja-JP') + '</div></div>';
+        });
+        document.getElementById('monthlyContent').outerHTML = html;
+      }
+
+      // ランク一覧テーブル
+      let tierHtml = '<div class="tier-section-label">ランク一覧</div><table class="tier-table"><thead><tr><th>ランク</th><th>達成件数</th><th>率</th></tr></thead><tbody>';
+      TIERS.forEach(t => {
+        const isCurrent = t.name === tier.name;
+        const range = t.min === 0 ? '1〜9件' :
+                      t.min === 300 ? '300件〜' :
+                      t.min + '件〜';
+        tierHtml += '<tr class="' + (isCurrent ? 'current ' + t.cls : '') + '">' +
+          '<td>' + t.emoji + ' ' + t.name + '</td>' +
+          '<td>' + range + '</td>' +
+          '<td>' + t.rate + '%</td></tr>';
+      });
+      tierHtml += '</tbody></table>';
+      document.getElementById('tierSection').innerHTML = tierHtml;
+
+      document.getElementById('updatedAt').textContent =
+        '最終更新: ' + new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
+
+      document.getElementById('loadingScreen').style.display = 'none';
+      document.getElementById('main').style.display = 'block';
+
+    } catch(e) { showError(); }
+  }
+
+  function showError() {
+    document.getElementById('loadingScreen').style.display = 'none';
+    document.getElementById('authError').style.display = 'flex';
+  }
+
+  function copyLpUrl(lp) {
+    const url = lp === 2
+      ? 'https://silica-lagoon.company/lp2?ref=' + encodeURIComponent(ref)
+      : 'https://silica-lagoon.company/?ref=' + encodeURIComponent(ref);
+    const btnId    = 'copyBtn' + lp;
+    const original = lp === 2 ? 'LP2のURLをコピー' : 'LP1のURLをコピー';
+    navigator.clipboard.writeText(url).then(function() {
+      const btn = document.getElementById(btnId);
+      btn.textContent = '✓ コピーしました';
+      btn.classList.add('copied');
+      setTimeout(function() { btn.textContent = original; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+
+  function toggleMonthly() {
+    const body = document.getElementById('monthlyBody');
+    const icon = document.getElementById('toggleIcon');
+    const open = body.style.display === 'block';
+    body.style.display = open ? 'none' : 'block';
+    icon.textContent   = open ? '▶' : '▼';
+  }
+
+  loadData();
+</script>
+</body>
+</html>

@@ -1,15 +1,28 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
 import styles from '../styles/lp2.module.css'
+
+// ?ref= パラメータを読み取り、決済リンクに引き継ぐ
+function useShopUrl() {
+  const [shopUrl, setShopUrl] = useState('https://silica-lagoon.company/')
+  useEffect(() => {
+    const ref = new URLSearchParams(window.location.search).get('ref')
+    if (ref) {
+      setShopUrl(`https://silica-lagoon.company/?ref=${encodeURIComponent(ref)}`)
+    }
+  }, [])
+  return shopUrl
+}
 
 // ============================================================
 // HEADER
 // ============================================================
-function LpHeader() {
+function LpHeader({ shopUrl }) {
   return (
     <header className={styles.lpHeader}>
       <span className={styles.lpLogo}>SILICA LAGOON</span>
-      <a href="https://silica-lagoon.company/" className={styles.headerCta}>
+      <a href={shopUrl} className={styles.headerCta}>
         今すぐ購入する
       </a>
     </header>
@@ -19,7 +32,7 @@ function LpHeader() {
 // ============================================================
 // HERO — 女性 × コピー × CTA のみ
 // ============================================================
-function HeroSection() {
+function HeroSection({ shopUrl }) {
   return (
     <section className={styles.hero}>
       {/* 背景画像 */}
@@ -54,7 +67,7 @@ function HeroSection() {
 
       {/* Hero底部CTA — 半透明ガラス */}
       <div className={styles.heroCtaWrap}>
-        <a href="https://silica-lagoon.company/" className={styles.heroCta}>
+        <a href={shopUrl} className={styles.heroCta}>
           今すぐ、うるおう体験をはじめる
           <span className={styles.heroCtaArrow}>›</span>
         </a>
@@ -65,7 +78,7 @@ function HeroSection() {
 }
 
 // ============================================================
-// TRUST STRIP — Hero下のバッジをここへ移動
+// TRUST STRIP
 // ============================================================
 function TrustStrip() {
   const items = [
@@ -127,24 +140,9 @@ function PainSection() {
 // ============================================================
 function BenefitSection() {
   const benefits = [
-    {
-      img: '/images/bath-surface.jpg',
-      alt: '水面',
-      label: 'しっとり続く',
-      strong: '潤い肌',
-    },
-    {
-      img: '/images/bath-texture.jpg',
-      alt: '入浴イメージ',
-      label: '化粧ノリが変わる',
-      strong: '朝の肌',
-    },
-    {
-      img: '/images/blue-bath.jpg',
-      alt: 'シリカのお湯',
-      label: '触りたくなる',
-      strong: '肌質感',
-    },
+    { img: '/images/bath-surface.jpg', alt: '水面',       label: 'しっとり続く',   strong: '潤い肌'  },
+    { img: '/images/bath-texture.jpg', alt: '入浴イメージ', label: '化粧ノリが変わる', strong: '朝の肌'  },
+    { img: '/images/blue-bath.jpg',    alt: 'シリカのお湯', label: '触りたくなる',   strong: '肌質感'  },
   ]
 
   return (
@@ -182,9 +180,7 @@ function QuoteSection() {
     <section className={styles.quoteSection}>
       <div className={styles.quoteInner}>
         <span className={styles.quoteMark}>"</span>
-        <p className={styles.quoteText}>
-          {`何を塗るかではなく、\nどう整えるか。`}
-        </p>
+        <p className={styles.quoteText}>{`何を塗るかではなく、\nどう整えるか。`}</p>
         <p className={styles.quoteSub}>SILICA LAGOON</p>
       </div>
     </section>
@@ -252,20 +248,17 @@ function ProductSection() {
 function ReviewSection() {
   const reviews = [
     {
-      name: 'M.K さん',
-      attr: '30代・乾燥肌',
+      name: 'M.K さん', attr: '30代・乾燥肌',
       title: 'お風呂上がりの\n肌が違います',
       text: '乾燥しやすい肌が、しっとり潤って驚きました。翌朝の化粧ノリも良くなりました。',
     },
     {
-      name: 'Y.T さん',
-      attr: '30代・敏感肌',
+      name: 'Y.T さん', attr: '30代・敏感肌',
       title: 'まるで美容液に\n浸かっているみたい',
       text: 'お湯がやわらかくて驚きます。使い続けるほどに肌の調子が変わってきた気がします。',
     },
     {
-      name: 'R.S さん',
-      attr: '20代・混合肌',
+      name: 'R.S さん', attr: '20代・混合肌',
       title: '透明感が出て、\nすっぴんに自信が持てる',
       text: 'くすみが抜けて、肌が明るくなった気がします。もう手放せません！',
     },
@@ -299,7 +292,7 @@ function ReviewSection() {
 // ============================================================
 // CTA — 最下部
 // ============================================================
-function CtaSection() {
+function CtaSection({ shopUrl }) {
   const trust = [
     { icon: '🚚', text: '迅速発送' },
     { icon: '↩️', text: '30日間返金保証' },
@@ -323,7 +316,7 @@ function CtaSection() {
           新しい美容習慣をはじめませんか？
         </h2>
 
-        <a href="https://silica-lagoon.company/" className={styles.ctaMainBtn}>
+        <a href={shopUrl} className={styles.ctaMainBtn}>
           今すぐ、うるおう体験をはじめる
           <span className={styles.ctaMainBtnArrow}>›</span>
         </a>
@@ -345,6 +338,8 @@ function CtaSection() {
 // PAGE
 // ============================================================
 export default function Lp2() {
+  const shopUrl = useShopUrl()
+
   return (
     <>
       <Head>
@@ -362,7 +357,6 @@ export default function Lp2() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://silica-lagoon.company/lp2" />
         <meta name="twitter:card" content="summary_large_image" />
-        {/* Noto Serif JP — 高級美容ブランド感 */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
@@ -371,17 +365,17 @@ export default function Lp2() {
         />
       </Head>
 
-      <LpHeader />
+      <LpHeader shopUrl={shopUrl} />
 
       <main>
-        <HeroSection />
+        <HeroSection shopUrl={shopUrl} />
         <TrustStrip />
         <PainSection />
         <BenefitSection />
         <QuoteSection />
         <ProductSection />
         <ReviewSection />
-        <CtaSection />
+        <CtaSection shopUrl={shopUrl} />
       </main>
 
       <footer className={styles.lpFooter}>
