@@ -321,6 +321,18 @@ img {
   opacity: 0.85;
 }
 
+/* Closing — 余韻で終わる静かな一文 */
+.sl-closing {
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  color: var(--text-dark);
+  text-align: center;
+  line-height: 2.5;
+  letter-spacing: 0.08em;
+  padding: 80px 24px 100px;
+  opacity: 0.52;
+}
+
 .sl-img-portrait {
   aspect-ratio: 4/5;
   max-height: 480px;

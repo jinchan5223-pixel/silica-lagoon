@@ -4,35 +4,49 @@ export default function DrySkinBathsalt() {
   return (
     <>
       <p className="sl-lead">
-        入浴剤を選ぶとき、<br />
-        何を基準にしていますか？
+        お風呂上がり、<br />
+        急いで保湿していませんか？
       </p>
-
-      <img src="/images/blue-bath.jpg" alt="乾燥肌に向いた入浴剤のお湯" className="sl-section-img" />
-
-      <QuoteBlock text={"乾燥肌の人ほど、\nお湯の質にこだわるべき。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        乾燥肌に悩む人が入浴剤を選ぶとき、<br />
-        最初に見るべきは"保湿成分"ではなく、<br />
-        お湯の性質そのものです。
+        肌が乾く前に、何かを塗る。<br />
+        そんな夜を、当たり前だと思っていました。
       </p>
 
-      <img src="/images/color-change.jpg" alt="バスソルトが溶け込む瞬間" className="sl-section-img" />
+      <img src="/images/hand-detail.png" alt="うるおいを感じる肌" className="sl-section-img" loading="lazy" />
 
-      <QuoteBlock text={"毎日触れるものを、\n丁寧に選ぶ。\nそれが肌を変える。"} sub="SILICA LAGOON" />
+      <QuoteBlock text={"「乾燥する」と決めていたのは、\nお湯のせいかもしれない。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        乾燥肌向けの入浴剤を選ぶ際に注目したいのは、<br />
-        シリカ（ケイ素）・ヒアルロン酸・スクワランなどの<br />
-        保湿サポート成分。<br />
-        お湯全体をやわらかくし、<br />
-        入浴中から肌を整えていく働きをします。
+        乾燥肌に悩む人の多くは、<br />
+        お風呂上がりのケアに全力を注いでいます。<br />
+        <br />
+        でも、先に変えるべきは<br />
+        お湯だったとしたら？
       </p>
 
-      <img src="/images/bath-surface.jpg" alt="やわらかなお湯の水面" className="sl-section-img" />
+      <img src="/images/after-bath-glow.png" alt="お風呂上がりの肌" className="sl-section-img" loading="lazy" />
 
-      <QuoteBlock text={"肌を変えたいなら、\nまずお湯を変えてみる。"} sub="SILICA LAGOON" />
+      <QuoteBlock text={"浸かるだけで、\nうるおいが続く夜がある。"} sub="SILICA LAGOON" />
+
+      <p className="sl-breath">
+        シリカ・ヒアルロン酸・スクワランが溶け込んだお湯は、<br />
+        入浴中からゆっくりと肌に届きます。<br />
+        <br />
+        急いで保湿しなくても、<br />
+        お湯を出たとき、すでに肌がやわらかい。
+      </p>
+
+      <img src="/images/after-bath-calm.png" alt="バスタイム後の静かな時間" className="sl-section-img" loading="lazy" />
+
+      <QuoteBlock text={"お風呂上がりを、\n急がなくなった。"} sub="SILICA LAGOON" />
+
+      <p className="sl-closing">
+        乾燥を気にする夜を、<br />
+        少しやさしく。<br />
+        <br />
+        今日のお風呂から、変えてみる。
+      </p>
     </>
   )
 }
