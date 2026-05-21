@@ -2,40 +2,41 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { articles } from '../../lib/articles'
 
-const categories = [
+// カテゴリ別テーマカラー（表示用）
+const CATEGORY_META = {
+  '乾燥肌ケア':       { eyebrow: 'DRY SKIN' },
+  'スキンケア':       { eyebrow: 'SKINCARE' },
+  'スキンケア理論':   { eyebrow: 'THEORY' },
+  '入浴剤':           { eyebrow: 'BATH SALT' },
+  '美肌':             { eyebrow: 'SKIN' },
+  '美容習慣':         { eyebrow: 'HABIT' },
+  'メイク':           { eyebrow: 'MAKEUP' },
+  '年齢肌':           { eyebrow: 'AGING CARE' },
+  '美容ライフスタイル':{ eyebrow: 'LIFESTYLE' },
+  'トレンド美容':     { eyebrow: 'TREND' },
+}
+
+// 表示グループ定義
+const groups = [
   {
     label: '乾燥・保湿ケア',
-    slugs: ['dry-skin-bath', 'dry-after-bath', 'bath-salt-guide'],
-    descs: {
-      'dry-skin-bath': '乾燥肌をさらに悪化させない入浴法。温度・時間・入浴剤の選び方まで。',
-      'dry-after-bath': '入浴後に肌が乾燥するのはなぜ？原因を知って正しいケアを。',
-      'bath-salt-guide': 'シリカ・ヒアルロン酸・コラーゲン配合の入浴剤、どう選ぶか。',
-    },
+    eyebrow: 'DRY & MOISTURE',
+    slugs: ['dry-skin-bath', 'dry-after-bath', 'bathsalt-for-dry', 'moisturizing-bathsalt', 'beyond-topical-care', 'dry-season-bath'],
   },
   {
-    label: '美肌・バスタイム',
-    slugs: ['change-your-water', 'bath-as-serum', 'bath-beauty-habit'],
-    descs: {
-      'change-your-water': 'スキンケアを変える前に、毎日触れる「お湯」を見直す。',
-      'bath-as-serum': '全身を美容液に浸す新しいスキンケア習慣とは。',
-      'bath-beauty-habit': '1週間・1ヶ月・3ヶ月のスパンで起こる肌変化を時系列で解説。',
-    },
+    label: '美肌・浸かる美容',
+    eyebrow: 'BATH BEAUTY',
+    slugs: ['bath-as-serum', 'start-bath-beauty', 'change-your-water', 'transparency-bath', 'effortless-beauty'],
   },
   {
     label: 'メイク・スキンケア理論',
-    slugs: ['makeup-bath', 'skincare-prep'],
-    descs: {
-      'makeup-bath': '翌朝の化粧ノリは前夜のお風呂で決まる。',
-      'skincare-prep': '化粧水・美容液の効果を最大化するには、塗る前の肌を整えること。',
-    },
+    eyebrow: 'SKIN & MAKEUP',
+    slugs: ['makeup-bath', 'skincare-prep', 'night-beauty-routine', 'morning-skin-bath'],
   },
   {
-    label: '年齢肌・ライフスタイル',
-    slugs: ['30s-moisturize', 'beauty-women-bath'],
-    descs: {
-      '30s-moisturize': '30代から始まる肌変化にはお風呂ケアで対応。',
-      'beauty-women-bath': '美容賢者がバスタイムにこだわる理由と実践習慣。',
-    },
+    label: '習慣・ライフスタイル',
+    eyebrow: 'LIFESTYLE',
+    slugs: ['bath-beauty-habit', 'why-bath-beauty-works', '30s-moisturize', 'beauty-women-bath', 'bath-salt-guide'],
   },
 ]
 
@@ -47,48 +48,63 @@ export default function BlogIndex() {
       <Head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>美容コラム | SILICA LAGOON</title>
-        <meta name="description" content="SILICA LAGOONの美容コラム。バスタイム・スキンケア・乾燥肌ケアの専門情報をお届け。" />
+        <title>美肌コラム | SILICA LAGOON</title>
+        <meta
+          name="description"
+          content="SILICA LAGOONの美肌コラム。乾燥肌ケア・保湿・化粧ノリ・透明感・浸かる美容など20記事。バスタイムで肌を整える新習慣。"
+        />
         <link rel="canonical" href="https://silica-lagoon.company/blog" />
+        <meta property="og:title" content="美肌コラム | SILICA LAGOON" />
+        <meta property="og:description" content="乾燥・保湿・透明感。浸かる美容で整う肌へ。" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://silica-lagoon.company/blog" />
       </Head>
 
+      {/* Header */}
       <header className="sl-header">
         <Link href="/" className="sl-header-logo">SILICA LAGOON</Link>
         <nav className="sl-header-nav">
-          <Link href="/">商品トップ</Link>
-          <Link href="/blog">美容コラム</Link>
+          <Link href="/lp2">商品を見る</Link>
+          <Link href="/blog">美肌コラム</Link>
         </nav>
       </header>
 
-      <nav className="sl-breadcrumb">
-        <Link href="/">TOP</Link>
-        <span>›</span>
-        <span>美容コラム</span>
-      </nav>
-
+      {/* Blog Hero */}
       <section className="sl-blog-hero">
         <span className="sl-blog-hero-eyebrow">Beauty Column</span>
-        <h1 className="sl-blog-hero-title">美容コラム</h1>
+        <h1 className="sl-blog-hero-title">美肌コラム</h1>
         <p className="sl-blog-hero-sub">
-          バスタイム・スキンケア・乾燥肌ケアに関する<br />
-          専門的な美容情報をお届けします
+          "浸かる美容"から始まる、<br />
+          肌を整える新しい習慣。
         </p>
       </section>
 
+      {/* Article Groups */}
       <div className="sl-blog-list-wrap">
-        {categories.map(cat => (
-          <section key={cat.label}>
-            <p className="sl-category-label">{cat.label}</p>
+        {groups.map(group => (
+          <section key={group.label} style={{ marginBottom: '64px' }}>
+            <div style={{ marginBottom: '28px', paddingBottom: '12px', borderBottom: '1px solid rgba(125,162,255,0.15)' }}>
+              <span style={{ fontSize: '9px', letterSpacing: '4px', color: '#7da2ff', display: 'block', marginBottom: '6px' }}>
+                {group.eyebrow}
+              </span>
+              <p style={{ fontSize: '15px', fontFamily: 'var(--font-serif)', color: '#0a0f1e', letterSpacing: '0.05em' }}>
+                {group.label}
+              </p>
+            </div>
+
             <div className="sl-article-list">
-              {cat.slugs.map(slug => {
+              {group.slugs.map(slug => {
                 const a = articleMap[slug]
                 if (!a) return null
+                const meta = CATEGORY_META[a.category] || { eyebrow: a.category }
                 return (
                   <Link key={slug} href={`/blog/${slug}`} className="sl-article-list-card">
-                    <span className="sl-article-list-cat">{a.category}</span>
-                    <div>
-                      <div className="sl-article-list-title">{a.title}</div>
-                      <div className="sl-article-list-desc">{cat.descs[slug]}</div>
+                    <span className="sl-article-list-cat">{meta.eyebrow}</span>
+                    <div className="sl-article-list-title" style={{ whiteSpace: 'pre-line' }}>
+                      {a.title}
+                    </div>
+                    <div className="sl-article-list-desc" style={{ marginTop: '6px', fontSize: '11.5px', color: '#aaa', letterSpacing: '0.02em', lineHeight: '1.7' }}>
+                      {a.catchphrase}
                     </div>
                   </Link>
                 )
@@ -97,38 +113,38 @@ export default function BlogIndex() {
           </section>
         ))}
 
-        {/* CTA Banner */}
+        {/* LP2 CTA Banner */}
         <div style={{
           marginTop: '80px',
-          background: 'linear-gradient(135deg, var(--primary-soft), white)',
-          border: '1px solid var(--border)',
+          background: 'linear-gradient(160deg, #f0f5ff 0%, white 100%)',
+          border: '1px solid rgba(125,162,255,0.15)',
           borderRadius: '20px',
-          padding: '48px 32px',
+          padding: '52px 28px',
           textAlign: 'center',
         }}>
-          <p style={{ fontSize: '10px', letterSpacing: '4px', color: 'var(--accent)', marginBottom: '12px', textTransform: 'uppercase' }}>
-            Recommended
-          </p>
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', fontWeight: 400, color: 'var(--text-dark)', marginBottom: '10px' }}>
+          <span style={{ fontSize: '9px', letterSpacing: '4px', color: '#7da2ff', display: 'block', marginBottom: '16px', textTransform: 'uppercase' }}>
             SILICA LAGOON BATH SALT
+          </span>
+          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 400, color: '#0a0f1e', lineHeight: 1.8, letterSpacing: '0.05em', marginBottom: '14px' }}>
+            美容液のようなお湯で、<br />
+            毎日整う。
           </h2>
-          <p style={{ fontSize: '13px', color: 'var(--text-muted)', lineHeight: '1.8', marginBottom: '28px' }}>
+          <p style={{ fontSize: '12.5px', color: '#888', lineHeight: '2', marginBottom: '32px', letterSpacing: '0.02em' }}>
             シリカ・ヒアルロン酸・コラーゲン・スクワラン配合<br />
-            お湯に入れるだけで、全身が美容液に包まれる入浴剤
+            浸かるだけで、全身の肌が応えはじめる。
           </p>
-          <a
-            href="https://silica-lagoon.company/"
-            className="sl-cta-btn"
-          >
-            今すぐ、自宅でスパ体験をはじめる
-          </a>
+          <Link href="/lp2" className="sl-cta-btn">
+            今すぐ、うるおう体験をはじめる
+          </Link>
         </div>
       </div>
 
       <footer className="sl-footer">
         <Link href="/">SILICA LAGOON</Link>
         &nbsp;|&nbsp;
-        <Link href="/blog">美容コラム</Link>
+        <Link href="/blog">美肌コラム</Link>
+        &nbsp;|&nbsp;
+        <Link href="/lp2">商品を見る</Link>
       </footer>
     </>
   )

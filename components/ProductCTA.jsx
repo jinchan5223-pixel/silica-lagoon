@@ -1,30 +1,28 @@
+import Link from 'next/link'
+
 export default function ProductCTA() {
   return (
     <div className="sl-cta">
+      <p className="sl-cta-eyebrow">SILICA LAGOON BATH SALT</p>
       <img
-        src="/images/product-spill.jpg"
+        src="/images/product-720g-front.jpg"
         alt="SILICA LAGOON BATH SALT"
         className="sl-cta-img"
+        loading="lazy"
       />
       <div className="sl-cta-body">
-        <p className="sl-cta-label">Recommended</p>
-        <h3 className="sl-cta-name">SILICA LAGOON BATH SALT</h3>
+        <h3 className="sl-cta-name">
+          美容液のようなお湯で、<br />
+          毎日整う。
+        </h3>
         <p className="sl-cta-benefit">
-          お湯に溶かすだけで、全身が美容液に包まれる。
+          シリカ・ヒアルロン酸・コラーゲン・スクワランが溶け込んだお湯。<br />
+          浸かるだけで、全身の肌が応えはじめる。
         </p>
-        <p className="sl-cta-ingredients">
-          シリカ · ヒアルロン酸 · コラーゲン · スクワラン
-        </p>
-        <p className="sl-cta-price">
-          ¥3,300<small>（税込・送料込）</small>
-        </p>
-        <a
-          href="https://silica-lagoon.company/"
-          className="sl-cta-btn"
-        >
-          今すぐ、自宅でスパ体験をはじめる
-        </a>
-        <p className="sl-cta-note">定期購入プランあり ／ 全国送料無料</p>
+        <Link href="/lp2" className="sl-cta-btn">
+          今すぐ、うるおう体験をはじめる
+        </Link>
+        <p className="sl-cta-note">30日間返金保証 ／ 全国送料無料</p>
       </div>
     </div>
   )
