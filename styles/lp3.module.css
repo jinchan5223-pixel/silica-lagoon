@@ -1,0 +1,502 @@
+/* ===================================================
+   SILICA LAGOON — LP3 Blue Lagoon 体験LP
+   White / Milky Blue / Deep Blue
+   Aesop × Blue Lagoon Iceland × AMAN
+   =================================================== */
+
+/* ===================================================
+   HEADER
+   =================================================== */
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(46, 58, 140, 0.07);
+}
+
+.headerLogo {
+  font-size: 9px;
+  letter-spacing: 5.5px;
+  color: #2E3A8C;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.headerBtn {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #2E3A8C;
+  border: 1px solid rgba(46, 58, 140, 0.28);
+  padding: 8px 18px;
+  border-radius: 20px;
+  background: transparent;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* ===================================================
+   HERO
+   =================================================== */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #08111e;
+  padding-top: 56px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  top: 56px;
+}
+
+.heroBg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  opacity: 0.8;
+}
+
+/* 下部から暗くする — テキスト可読性 */
+.heroGrad {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 17, 30, 0.00)  0%,
+    rgba(8, 17, 30, 0.00)  35%,
+    rgba(8, 17, 30, 0.55)  68%,
+    rgba(8, 17, 30, 0.88) 100%
+  );
+}
+
+.heroBody {
+  position: relative;
+  z-index: 2;
+  padding: 0 32px 80px;
+  width: 100%;
+  max-width: 430px;
+}
+
+.heroEye {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 4.5px;
+  color: rgba(221, 243, 255, 0.55);
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+.heroH1 {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: clamp(2rem, 9vw, 2.8rem);
+  font-weight: 300;
+  color: #ffffff;
+  line-height: 1.75;
+  letter-spacing: 0.06em;
+  margin-bottom: 22px;
+}
+
+.heroSub {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: rgba(221, 243, 255, 0.75);
+  line-height: 2.0;
+  letter-spacing: 0.06em;
+  margin-bottom: 44px;
+}
+
+/* ガラスCTAボタン */
+.heroBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  padding: 15px 30px;
+  border-radius: 40px;
+}
+
+.heroBtnArrow {
+  font-size: 16px;
+  opacity: 0.6;
+}
+
+/* ===================================================
+   EXPERIENCE
+   =================================================== */
+.experience {
+  background: #ffffff;
+  padding: 128px 0 112px;
+}
+
+.expInner {
+  padding: 0 36px;
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+.expEye {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 4px;
+  color: #5B7CFA;
+  text-transform: uppercase;
+  margin-bottom: 52px;
+}
+
+.expH2 {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: clamp(1.5rem, 6vw, 2rem);
+  font-weight: 300;
+  color: #2E3A8C;
+  line-height: 2.1;
+  letter-spacing: 0.07em;
+  margin-bottom: 52px;
+}
+
+.expBody {
+  font-size: 0.84rem;
+  color: #777;
+  line-height: 2.1;
+  letter-spacing: 0.04em;
+  margin-bottom: 18px;
+}
+
+/* ===================================================
+   WATER VISUAL — 全幅
+   =================================================== */
+.waterVisual {
+  width: 100%;
+  height: 64vw;
+  max-height: 380px;
+  overflow: hidden;
+}
+
+.waterVisual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* ===================================================
+   QUOTE
+   =================================================== */
+.quote {
+  background: #DDF3FF;
+  padding: 120px 0;
+}
+
+.quoteInner {
+  text-align: center;
+  padding: 0 40px;
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+.quoteMark {
+  font-family: 'Georgia', serif;
+  font-size: 4.5rem;
+  color: #5B7CFA;
+  opacity: 0.22;
+  line-height: 0.5;
+  display: block;
+  margin-bottom: 40px;
+}
+
+.quoteText {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: clamp(1.7rem, 7.5vw, 2.3rem);
+  font-weight: 300;
+  color: #2E3A8C;
+  line-height: 2.0;
+  letter-spacing: 0.09em;
+  margin-bottom: 44px;
+}
+
+.quoteLine {
+  width: 28px;
+  height: 1px;
+  background: #5B7CFA;
+  opacity: 0.35;
+  margin: 0 auto 22px;
+}
+
+.quoteSub {
+  font-size: 8px;
+  letter-spacing: 4.5px;
+  color: #5B7CFA;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+/* ===================================================
+   LUXURY — ただ浸かる贅沢
+   =================================================== */
+.luxury {
+  background: #ffffff;
+  padding: 120px 0;
+}
+
+.luxInner {
+  padding: 0 36px;
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+.luxEye {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 4px;
+  color: #5B7CFA;
+  text-transform: uppercase;
+  margin-bottom: 52px;
+}
+
+.luxH2 {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: clamp(1.45rem, 5.5vw, 1.85rem);
+  font-weight: 300;
+  color: #2E3A8C;
+  line-height: 2.1;
+  letter-spacing: 0.07em;
+  margin-bottom: 72px;
+}
+
+.luxItems {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.luxItem {
+  border-top: 1px solid rgba(91, 124, 250, 0.14);
+  padding-top: 36px;
+}
+
+.luxNum {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #5B7CFA;
+  opacity: 0.45;
+  margin-bottom: 14px;
+}
+
+.luxTitle {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: #2E3A8C;
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+}
+
+.luxDesc {
+  font-size: 0.81rem;
+  color: #999;
+  line-height: 2.1;
+  letter-spacing: 0.04em;
+}
+
+/* ===================================================
+   NIGHT — 非日常バスタイム
+   =================================================== */
+.night {
+  position: relative;
+  height: 72vw;
+  max-height: 480px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nightImgWrap {
+  position: absolute;
+  inset: 0;
+}
+
+.nightImgWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.nightOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 17, 50, 0.30) 0%,
+    rgba(8, 17, 50, 0.58) 100%
+  );
+}
+
+.nightCopy {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 40px;
+}
+
+.nightText {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: clamp(1.4rem, 6vw, 1.9rem);
+  font-weight: 300;
+  color: #ffffff;
+  line-height: 2.1;
+  letter-spacing: 0.09em;
+  margin-bottom: 16px;
+}
+
+.nightSub {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: rgba(221, 243, 255, 0.6);
+}
+
+/* ===================================================
+   CTA
+   =================================================== */
+.cta {
+  background: #f4faff;
+  padding: 128px 0 112px;
+}
+
+.ctaInner {
+  padding: 0 36px;
+  max-width: 430px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ctaEye {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 4px;
+  color: #5B7CFA;
+  text-transform: uppercase;
+  margin-bottom: 36px;
+}
+
+.ctaH2 {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: clamp(1.3rem, 5.5vw, 1.7rem);
+  font-weight: 300;
+  color: #2E3A8C;
+  line-height: 2.1;
+  letter-spacing: 0.07em;
+  margin-bottom: 56px;
+}
+
+.ctaVisual {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 28px;
+  border: 1px solid rgba(191, 231, 255, 0.7);
+}
+
+.ctaVisual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.ctaName {
+  font-size: 8.5px;
+  letter-spacing: 4px;
+  color: #5B7CFA;
+  opacity: 0.55;
+  text-transform: uppercase;
+  margin-bottom: 44px;
+}
+
+.ctaBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 21px 32px;
+  background: #2E3A8C;
+  color: #ffffff;
+  font-size: 10.5px;
+  letter-spacing: 2px;
+  border-radius: 3px;
+  font-weight: 300;
+  margin-bottom: 28px;
+  transition: opacity 0.2s;
+}
+
+.ctaBtn:active { opacity: 0.85; }
+
+.ctaBtnArrow {
+  font-size: 18px;
+  opacity: 0.65;
+}
+
+.ctaTrust {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  font-size: 10px;
+  color: rgba(46, 58, 140, 0.35);
+  letter-spacing: 0.3px;
+  flex-wrap: wrap;
+}
+
+/* ===================================================
+   FOOTER
+   =================================================== */
+.footer {
+  background: #2E3A8C;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.footerLogo {
+  font-size: 9px;
+  letter-spacing: 5.5px;
+  color: rgba(255, 255, 255, 0.38);
+  text-transform: uppercase;
+}
+
+.footerNav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.footerNav a {
+  color: rgba(255, 255, 255, 0.28);
+  letter-spacing: 0.3px;
+}
