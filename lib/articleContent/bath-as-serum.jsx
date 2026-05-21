@@ -4,11 +4,10 @@ export default function BathAsSerum() {
   return (
     <>
       <p className="sl-lead">
-        美容液は、顔に塗るもの——<br />
-        "浸かる美容液"という発想が、それを変える。
+        美容液は、顔に塗るもの。"浸かる美容液"という発想が、それを変える。
       </p>
 
-      <img src="/images/color-change.jpg" alt="バスソルトがお湯に溶け込む瞬間" className="sl-section-img" />
+      <img src="/images/hands.png" alt="バスソルトを手にする" className="sl-section-img" />
 
       <QuoteBlock text={'"塗る"から"浸かる"へ。\nスキンケアが、変わる。'} sub="SILICA LAGOON" />
 
@@ -43,13 +42,12 @@ export default function BathAsSerum() {
         </div>
       </div>
 
-      <img src="/images/blue-bath.jpg" alt="SILICA LAGOONの青いお湯" className="sl-section-img" />
+      <img src="/images/dissolving.png" alt="バスソルトがお湯に溶け込む瞬間" className="sl-section-img" />
 
       <QuoteBlock text={"全身が美容液に包まれる、\nその20分が肌を変える。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        背中・ひじ・かかと・太もも——<br />
-        塗るケアでは届かない場所まで、まるごと浸る。
+        背中・ひじ・かかと・太もも。塗るケアでは届かない場所まで、まるごと浸る。
       </p>
 
       <QuoteBlock text={"浸るほどに、\n肌は透明感を取り戻す。"} sub="SILICA LAGOON" />

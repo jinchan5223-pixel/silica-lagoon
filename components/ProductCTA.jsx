@@ -11,7 +11,7 @@ export default function ProductCTA({ lp = 'lp2' }) {
     <div className="sl-cta">
       <p className="sl-cta-eyebrow">SILICA LAGOON BATH SALT</p>
       <img
-        src="/images/product-720g-front.jpg"
+        src={isLp1 ? "/images/bath-salt-crystal.png" : "/images/product-720g-front.jpg"}
         alt="SILICA LAGOON BATH SALT"
         className="sl-cta-img"
         loading="lazy"

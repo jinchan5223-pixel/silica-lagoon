@@ -4,12 +4,9 @@ export default function BathBeautyHabit() {
   return (
     <>
       <p className="sl-lead">
-        習慣は、積み重なる。<br />
-        毎日のお風呂を整えるだけで、<br />
-        肌は少しずつ変わっていく。
+        習慣は、積み重なる。
+        毎日のお風呂を整えるだけで、肌は少しずつ変わっていく。
       </p>
-
-      <img src="/images/blue-bath.jpg" alt="SILICA LAGOONの青いお湯" className="sl-section-img" />
 
       <QuoteBlock text={"お風呂時間を、\n整う美容時間へ。"} sub="SILICA LAGOON" />
 
@@ -40,13 +37,12 @@ export default function BathBeautyHabit() {
         </div>
       </div>
 
-      <img src="/images/bath-surface.jpg" alt="静かな水面" className="sl-section-img" />
+      <img src="/images/bath-scene-2.png" alt="入浴シーン" className="sl-section-img" />
 
       <QuoteBlock text={"非日常は、\n自宅の浴室にある。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        特別なことはいらない。<br />
-        毎晩のお風呂に、バスソルトを溶かすだけ。
+        特別なことはいらない。毎晩のお風呂に、バスソルトを溶かすだけ。
       </p>
 
       <QuoteBlock text={"毎晩続けられることが、\n最強の美容習慣。"} sub="SILICA LAGOON" />
