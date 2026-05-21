@@ -10,6 +10,7 @@ export default function ArticleLayout({
   category,
   tags = [],
   slug,
+  lp = 'lp2',
   relatedArticles = [],
   children,
 }) {
@@ -74,7 +75,7 @@ export default function ArticleLayout({
           {children}
         </article>
 
-        <ProductCTA />
+        <ProductCTA lp={lp} />
 
         {/* Related Articles */}
         {relatedArticles.length > 0 && (
