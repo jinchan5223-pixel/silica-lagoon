@@ -94,9 +94,10 @@ function ExperienceSection() {
           その静けさを、今日の浴室へ。
         </p>
         <p className={styles.expStory}>
-          SILICA LAGOONは、<br />
-          "旅するように浸かる"<br />
-          バスソルトとして生まれました。
+          ミルキーブルーのお湯が広がる瞬間、<br />
+          遠い旅先の静けさが戻ってくる。<br />
+          <br />
+          それが、SILICA LAGOON。
         </p>
       </div>
     </section>
@@ -104,7 +105,7 @@ function ExperienceSection() {
 }
 
 // ============================================================
-// VISUAL 1 — 溶ける瞬間
+// VISUAL 1 — 全画面インパクト・溶ける瞬間
 // ============================================================
 function DissolvingVisual() {
   return (
@@ -114,6 +115,7 @@ function DissolvingVisual() {
         alt="バスソルトがお湯に溶け込む"
         loading="lazy"
       />
+      <div className={styles.fullVisualOverlay} />
     </div>
   )
 }
@@ -225,8 +227,8 @@ function CtaSection({ shopUrl }) {
       <div className={styles.ctaInner}>
         <span className={styles.ctaEye}>START YOUR EXPERIENCE</span>
         <h2 className={styles.ctaH2}>
-          今日のお風呂を、<br />
-          少し遠くへ。
+          いつもの浴室を、<br />
+          少し遠い場所へ。
         </h2>
 
         <div className={styles.ctaVisual}>

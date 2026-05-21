@@ -136,7 +136,7 @@
    =================================================== */
 .experience {
   background: #ffffff;
-  padding: 136px 0 120px;
+  padding: 168px 0 152px;
 }
 
 .expInner {
@@ -184,20 +184,36 @@
 }
 
 /* ===================================================
-   FULL VISUAL — 全幅画像
+   FULL VISUAL — 全画面インパクトビジュアル
    =================================================== */
 .fullVisual {
   width: 100%;
-  height: 64vw;
-  max-height: 380px;
+  min-height: 100svh;
   overflow: hidden;
+  position: relative;
 }
 
 .fullVisual img {
   width: 100%;
   height: 100%;
+  min-height: 100svh;
   object-fit: cover;
   object-position: center center;
+  display: block;
+}
+
+/* 四隅を暗くして没入感を上げる */
+.fullVisualOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 15, 30, 0.18) 0%,
+    rgba(6, 15, 30, 0.00) 35%,
+    rgba(6, 15, 30, 0.00) 65%,
+    rgba(6, 15, 30, 0.28) 100%
+  );
+  pointer-events: none;
 }
 
 /* ===================================================
@@ -205,7 +221,7 @@
    =================================================== */
 .journey {
   background: #060f1e;
-  padding: 100px 40px;
+  padding: 120px 40px;
   text-align: center;
 }
 
@@ -223,7 +239,7 @@
    =================================================== */
 .quote {
   background: #DDF3FF;
-  padding: 128px 0;
+  padding: 152px 0;
 }
 
 .quoteInner {
@@ -274,7 +290,7 @@
    =================================================== */
 .luxury {
   background: #ffffff;
-  padding: 128px 0;
+  padding: 152px 0 160px;
 }
 
 .luxInner {
@@ -299,13 +315,13 @@
   color: #2E3A8C;
   line-height: 2.1;
   letter-spacing: 0.07em;
-  margin-bottom: 80px;
+  margin-bottom: 96px;
 }
 
 .luxItems {
   display: flex;
   flex-direction: column;
-  gap: 64px;
+  gap: 80px;
 }
 
 .luxItem {
@@ -402,7 +418,7 @@
    =================================================== */
 .cta {
   background: #060f1e;
-  padding: 136px 0 120px;
+  padding: 152px 0 136px;
 }
 
 .ctaInner {
@@ -431,14 +447,16 @@
   margin-bottom: 64px;
 }
 
+/* 高級オブジェとして — 小さく・光を感じる */
 .ctaVisual {
-  width: 160px;
-  height: 160px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 0 auto 32px;
-  border: 1px solid rgba(191, 231, 255, 0.15);
-  opacity: 0.72;
+  margin: 0 auto 28px;
+  border: 1px solid rgba(191, 231, 255, 0.12);
+  opacity: 0.48;
+  filter: brightness(1.1) saturate(0.9);
 }
 
 .ctaVisual img {
