@@ -1,203 +1,113 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import QuoteBlock from '../components/QuoteBlock'
 import styles from '../styles/lp2.module.css'
 
 // ============================================================
-// Hero Section — FV
+// HEADER
+// ============================================================
+function LpHeader() {
+  return (
+    <header className={styles.lpHeader}>
+      <span className={styles.lpLogo}>SILICA LAGOON</span>
+      <a href="https://silica-lagoon.company/" className={styles.headerCta}>
+        今すぐ購入する 🛒
+      </a>
+    </header>
+  )
+}
+
+// ============================================================
+// HERO
 // ============================================================
 function HeroSection() {
   return (
     <section className={styles.hero}>
+      {/* 背景画像 */}
       <div className={styles.heroBg}>
         <img
-          src="/images/bath-surface.jpg"
-          alt=""
-          aria-hidden="true"
+          src="/images/hero-bath.png"
+          alt="シリカラグーン 入浴シーン"
           loading="eager"
           fetchPriority="high"
         />
         <div className={styles.heroOverlay} />
       </div>
 
+      {/* テキストコンテンツ */}
       <div className={styles.heroContent}>
-        <p className={styles.heroEyebrow}>SILICA LAGOON BATH SALT</p>
+        <span className={styles.heroEyebrow}>SILICA LAGOON BATH SALT</span>
 
+        <p className={styles.heroLeadSmall}>お風呂上がり、</p>
         <h1 className={styles.heroHeadline}>
-          何も塗らなくても、<br />
-          潤う肌へ。
+          何も塗らなくても<br />
+          <em>潤う</em>肌へ。
         </h1>
 
+        <div className={styles.heroDivider} />
+        <p className={styles.heroSubCopy}>"塗る"から"浸かる"へ。</p>
+
         <p className={styles.heroSub}>
-          お湯に溶かすだけ。<br />
-          入浴10分が、全身トリートメントに変わる。
+          美容液のようなお湯で、<br />
+          肌を整える新習慣。
         </p>
 
+        {/* 信頼バッジ */}
         <div className={styles.heroBadges}>
-          <span>シリカ配合</span>
-          <span>天然成分100%</span>
-          <span>全国送料無料</span>
+          {[
+            { icon: '💎', text: '日本初*\nシリカ×\n温泉発想' },
+            { icon: '✨', text: '美容成分\n配合' },
+            { icon: '♨️', text: '温泉\n発想' },
+          ].map((b) => (
+            <div key={b.text} className={styles.heroBadge}>
+              <span className={styles.badgeIcon}>{b.icon}</span>
+              <span className={styles.badgeText} style={{ whiteSpace: 'pre-line' }}>{b.text}</span>
+            </div>
+          ))}
         </div>
+      </div>
 
-        <a
-          href="https://silica-lagoon.company/"
-          className={styles.ctaBtn}
-        >
-          今すぐ試してみる
-          <small>定期購入プランあり</small>
+      {/* Hero底部CTA */}
+      <div className={styles.heroCtaWrap}>
+        <a href="https://silica-lagoon.company/" className={styles.heroCta}>
+          今すぐ、うるおう体験をはじめる
+          <span className={styles.heroCtaArrow}>›</span>
         </a>
+        <p className={styles.heroNote}>* 自社調べ（シリカを配合した入浴剤として）</p>
       </div>
     </section>
   )
 }
 
 // ============================================================
-// Pain Section — 悩み
+// PAIN — 悩み共感
 // ============================================================
 function PainSection() {
   const pains = [
-    { icon: '💧', text: '冬になると、いくら保湿しても乾く' },
-    { icon: '🪞', text: 'ファンデが粉浮きして、化粧ノリが悪い' },
-    { icon: '😮‍💨', text: 'スキンケアを重ねても、なんとなく肌が暗い' },
-    { icon: '😴', text: '毎晩コスメを塗るのが、正直しんどい' },
+    { icon: '😮‍💨', text: 'お風呂上がりに\nすぐ乾燥して\nしまう' },
+    { icon: '💧', text: 'スキンケアを\nしても\n追いつかない' },
+    { icon: '🪞', text: '化粧ノリが悪く\nメイクが\n決まらない' },
+    { icon: '🌫️', text: '透明感がなく\nくすみが\n気になる' },
   ]
 
   return (
-    <section className={styles.pain}>
-      <div className={styles.inner}>
-        <span className={styles.sectionLabel}>SKIN TROUBLE</span>
+    <section className={styles.painSection}>
+      <div className={styles.sectionInner}>
+        <span className={styles.sectionEyebrow}>SKIN TROUBLE</span>
+        <h2 className={styles.sectionTitle}>こんなお悩み<br />ありませんか？</h2>
+        <div className={styles.sectionDivider} />
 
-        <h2 className={styles.painHeadline}>
-          その悩み、<br />
-          お風呂時間で変わります。
-        </h2>
-
-        <ul className={styles.painList}>
+        <div className={styles.painGrid}>
           {pains.map((p) => (
-            <li key={p.text} className={styles.painItem}>
-              <span className={styles.painIcon}>{p.icon}</span>
-              <span>{p.text}</span>
-            </li>
-          ))}
-        </ul>
-
-        <p className={styles.painResolve}>
-          それ、<br />
-          お湯の中で解決できます。
-        </p>
-      </div>
-    </section>
-  )
-}
-
-// ============================================================
-// Benefit Section — ベネフィット
-// ============================================================
-function BenefitSection() {
-  const benefits = [
-    '入浴中に、全身の角質が柔らかくなる',
-    '翌朝、スキンケアが肌にすっと入るようになる',
-    '重ねなくてもいい、本当に潤った肌になる',
-  ]
-
-  return (
-    <section className={styles.benefit}>
-      <div className={styles.inner}>
-        <span className={styles.sectionLabel}>WHY IT WORKS</span>
-
-        <h2 className={styles.benefitHeadline}>
-          浸かるだけで、<br />
-          肌が変わる理由。
-        </h2>
-
-        <ul className={`sl-check-list ${styles.benefitCheckList}`}>
-          {benefits.map((b) => (
-            <li key={b}>{b}</li>
-          ))}
-        </ul>
-
-        <QuoteBlock
-          text={"美容液を塗るより、\nお湯ごと美容液にする。"}
-          sub="SILICA LAGOON の考え方"
-        />
-      </div>
-    </section>
-  )
-}
-
-// ============================================================
-// World Section — 世界観・ブランドストーリー
-// ============================================================
-function WorldSection() {
-  return (
-    <section className={styles.world}>
-      <div className={styles.worldImgWrap}>
-        <img
-          src="/images/blue-bath.jpg"
-          alt="青く輝くシリカバスのお湯"
-          loading="lazy"
-        />
-      </div>
-
-      <div className={styles.worldText}>
-        <p className={styles.worldLead}>
-          バタフライピーが溶けた瞬間、<br />
-          お湯は深い青に変わる。
-        </p>
-        <p className={styles.worldBody}>
-          SILICA LAGOON は「毎晩のお風呂を、美容の時間に変えたい」という
-          シンプルな想いから生まれました。<br /><br />
-          忙しい日常の中で、スキンケアに費やす時間を減らしながら、
-          肌の状態は上げていく。<br /><br />
-          その答えが、入浴剤ではなく、<br />
-          "浸かる美容液" でした。
-        </p>
-      </div>
-    </section>
-  )
-}
-
-// ============================================================
-// Onsen Section — 温泉発想・成分訴求
-// ============================================================
-function OnsenSection() {
-  const ingredients = [
-    {
-      img: '/images/color-change.jpg',
-      alt: 'バスソルトが溶ける瞬間',
-      name: 'Silica / メタケイ酸',
-      desc: '温泉地で「美肌の湯」と呼ばれる水質に共通して含まれる成分。角質を柔らかくし、肌のきめを整える作用があるとされています。',
-    },
-    {
-      img: '/images/butterfly-pea.jpg',
-      alt: 'バタフライピーの花',
-      name: 'Butterfly Pea / バタフライピー',
-      desc: 'タイ原産のハーブ由来の青色色素。抗酸化作用のあるアントシアニンを含み、お湯を鮮やかな青に変える。使うたびに、非日常。',
-    },
-  ]
-
-  return (
-    <section className={styles.onsen}>
-      <div className={styles.inner}>
-        <span className={styles.onsenLabel}>THE SCIENCE</span>
-
-        <h2 className={styles.onsenHeadline}>
-          美肌の湯に、<br />
-          科学的な根拠がある。
-        </h2>
-
-        <div className={styles.onsenGrid}>
-          {ingredients.map((item) => (
-            <div key={item.name} className={styles.onsenCard}>
-              <img src={item.img} alt={item.alt} loading="lazy" />
-              <h3>{item.name}</h3>
-              <p>{item.desc}</p>
+            <div key={p.text} className={styles.painCard}>
+              <span className={styles.painCardIcon}>{p.icon}</span>
+              <p className={styles.painCardText} style={{ whiteSpace: 'pre-line' }}>{p.text}</p>
             </div>
           ))}
         </div>
 
-        <p className={styles.onsenNote}>
-          シリカ · ヒアルロン酸 · コラーゲン · スクワラン — 4つの美容成分
+        <p className={styles.painResolve}>
+          そのお悩み、<br />
+          <em>お風呂時間で変わります。</em>
         </p>
       </div>
     </section>
@@ -205,65 +115,180 @@ function OnsenSection() {
 }
 
 // ============================================================
-// CTA Mid — CTA②
+// BENEFIT — ベネフィット
 // ============================================================
-function CtaMid() {
+function BenefitSection() {
+  const benefits = [
+    {
+      img: '/images/bath-surface.jpg',
+      alt: '水面',
+      label: 'しっとり続く',
+      strong: '潤い肌',
+    },
+    {
+      img: '/images/bath-texture.jpg',
+      alt: '入浴イメージ',
+      label: '化粧ノリが変わる',
+      strong: '朝の肌',
+    },
+    {
+      img: '/images/blue-bath.jpg',
+      alt: 'シリカのお湯',
+      label: '触りたくなる',
+      strong: '肌質感',
+    },
+  ]
+
   return (
-    <section className={styles.ctaMid}>
-      <div className={styles.ctaMidInner}>
-        <img
-          src="/images/product-720g-front.jpg"
-          alt="SILICA LAGOON BATH SALT 720g"
-          className={styles.ctaMidImg}
-          loading="lazy"
-        />
-        <p className={styles.ctaMidName}>SILICA LAGOON BATH SALT</p>
-        <p className={styles.ctaMidPrice}>
-          ¥3,300<small>（税込・送料込）</small>
-        </p>
-        <a
-          href="https://silica-lagoon.company/"
-          className={styles.ctaBtn}
-        >
-          自宅で、美肌の湯をはじめる
-          <small>30日間使用量・全国送料無料</small>
-        </a>
+    <section className={styles.benefitSection}>
+      <div className={styles.sectionInner}>
+        <span className={styles.sectionEyebrow}>BEAUTY CHANGE</span>
+        <h2 className={styles.benefitLead}>
+          浸かるだけで、<br />うれしい変化を。
+        </h2>
+        <p className={styles.benefitSub}>毎日10分のバスタイムで、肌が応えはじめる。</p>
+
+        <div className={styles.benefitGrid}>
+          {benefits.map((b) => (
+            <div key={b.strong} className={styles.benefitItem}>
+              <div className={styles.benefitCircle}>
+                <img src={b.img} alt={b.alt} loading="lazy" />
+              </div>
+              <div className={styles.benefitLabel}>
+                {b.label}
+                <strong className={styles.benefitLabelStrong}>{b.strong}</strong>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
 }
 
 // ============================================================
-// Review Section — 口コミ
+// QUOTE
+// ============================================================
+function QuoteSection() {
+  return (
+    <section className={styles.quoteSection}>
+      <div className={styles.quoteInner}>
+        <span className={styles.quoteMark}>"</span>
+        <p className={styles.quoteText}>
+          {`何を塗るかではなく、\nどう整えるか。`}
+        </p>
+        <p className={styles.quoteSub}>SILICA LAGOON</p>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================
+// PRODUCT — 美容液のようなお湯
+// ============================================================
+function ProductSection() {
+  const forWhom = [
+    '乾燥が気になる方',
+    '透明感のある肌を目指したい方',
+    'スキンケアの効果を高めたい方',
+    '肌にやさしいケアを求める方',
+  ]
+
+  return (
+    <section className={styles.productSection}>
+      {/* 画像 */}
+      <div className={styles.productImgWrap}>
+        <img src="/images/color-change.jpg" alt="バスソルトが溶ける瞬間" loading="lazy" />
+        <div className={styles.productImgOverlay} />
+      </div>
+
+      <div className={styles.productCopy}>
+        <span className={styles.sectionEyebrow}>THE SCIENCE</span>
+        <h2 className={styles.productHeadline}>
+          美容液のようなお湯で、<br />
+          肌をやさしく整える。
+        </h2>
+        <p className={styles.productBody}>
+          メタケイ酸（温泉法基準の美肌成分）に着想。<br />
+          "美肌の湯"と呼ばれる温泉の<br />
+          成分基準をヒントに設計しました。
+        </p>
+
+        <div className={styles.ingredientBadges}>
+          {['メタケイ酸\n(温泉法基準美肌成分)', 'シリカ\n(保湿サポート)', '厳選した\n美容成分'].map((b) => (
+            <span key={b} className={styles.ingredientBadge} style={{ whiteSpace: 'pre-line', textAlign: 'center', lineHeight: 1.4, fontSize: '10px' }}>
+              {b}
+            </span>
+          ))}
+        </div>
+
+        <span className={styles.forWhomTitle}>こんな方に選ばれています</span>
+        <ul className={styles.forWhomList}>
+          {forWhom.map((item) => (
+            <li key={item} className={styles.forWhomItem}>
+              <span className={styles.forWhomCheck}>✓</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <p className={styles.forWhomNote}>
+          ※個人の感想であり、効果を保証するものではありません。
+        </p>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================
+// REVIEW — 口コミ
 // ============================================================
 function ReviewSection() {
   const reviews = [
     {
-      attr: '30代 / 乾燥肌',
-      text: '冬は腕がガサガサで諦めていたんですが、1週間でしっとりしてきました。お風呂上がりに何も塗らなくていい日が出てきた。',
+      emoji: '🧖‍♀️',
+      name: 'M.K さん',
+      attr: '30代・乾燥肌',
+      title: 'お風呂上がりの肌が違います！',
+      text: '乾燥しやすい肌が、しっとり潤って驚きました。翌朝の化粧ノリも良くなりました。',
     },
     {
-      attr: '28歳 / 混合肌',
-      text: 'ファンデの粉浮きが気になっていたのが、使い始めて2週間くらいからなくなってきた気がします。朝の化粧ノリが全然違う。',
+      emoji: '🛁',
+      name: 'Y.T さん',
+      attr: '30代・敏感肌',
+      title: 'まるで美容液に\n浸かっているみたい',
+      text: 'お湯がやわらかくて驚きます。使い続けるほどに肌の調子が変わってきた気がします。',
     },
     {
-      attr: '35歳 / 敏感肌',
-      text: 'においも刺激もなくて敏感肌でも安心して使えました。お風呂が青くなるのが毎日の楽しみになっています。',
+      emoji: '💆‍♀️',
+      name: 'R.S さん',
+      attr: '20代・混合肌',
+      title: '透明感が出て、\nすっぴんに自信が持てる',
+      text: 'くすみが抜けて、肌が明るくなった気がします。もう手放せません！',
     },
   ]
 
   return (
-    <section className={styles.review}>
-      <div className={styles.inner}>
-        <span className={styles.sectionLabel}>CUSTOMER VOICE</span>
-
-        <h2 className={styles.reviewHeadline}>使った人の声</h2>
+    <section className={styles.reviewSection}>
+      <div className={styles.sectionInner}>
+        <span className={styles.sectionEyebrow}>CUSTOMER VOICE</span>
+        <h2 className={styles.sectionTitle}>お客様の声</h2>
+        <div className={styles.sectionDivider} />
 
         <div className={styles.reviewGrid}>
           {reviews.map((r) => (
-            <div key={r.attr} className={styles.reviewCard}>
-              <p className={styles.reviewText}>「{r.text}」</p>
-              <p className={styles.reviewAttr}>{r.attr}</p>
+            <div key={r.name} className={styles.reviewCard}>
+              <div className={styles.reviewHeader}>
+                <div className={styles.reviewAvatar}>
+                  <span style={{ fontSize: 24 }}>{r.emoji}</span>
+                </div>
+                <div className={styles.reviewMeta}>
+                  <div className={styles.reviewStars}>★★★★★</div>
+                  <div className={styles.reviewName}>{r.name}</div>
+                  <div className={styles.reviewAttr}>{r.attr}</div>
+                </div>
+              </div>
+              <p className={styles.reviewTitle} style={{ whiteSpace: 'pre-line' }}>{r.title}</p>
+              <p className={styles.reviewText}>{r.text}</p>
             </div>
           ))}
         </div>
@@ -273,55 +298,52 @@ function ReviewSection() {
 }
 
 // ============================================================
-// CTA Bottom — CTA③
+// CTA — 最下部
 // ============================================================
-function CtaBottom() {
-  return (
-    <section className={styles.ctaBottom}>
-      <div className={styles.ctaBottomInner}>
-        <p className={styles.ctaBottomEyebrow}>SILICA LAGOON</p>
+function CtaSection() {
+  const trust = [
+    { icon: '🚚', text: '迅速製商' },
+    { icon: '↩️', text: '30日間返金保証' },
+    { icon: '🇯🇵', text: '安心の国内製造' },
+  ]
 
-        <h2 className={styles.ctaBottomHeadline}>
-          今夜から、お風呂が<br />
-          スキンケアになる。
+  return (
+    <section className={styles.ctaSection}>
+      <div className={styles.ctaInner}>
+        <span className={styles.ctaEyebrow}>今日のお風呂から、肌は変えられる。</span>
+
+        <img
+          src="/images/product-720g-front.jpg"
+          alt="SILICA LAGOON BATH SALT"
+          className={styles.ctaProductImg}
+          loading="lazy"
+        />
+
+        <h2 className={styles.ctaHeadline}>
+          自宅で、うるおい整う<br />
+          新しい美容習慣をはじめませんか？
         </h2>
 
-        <p className={styles.ctaBottomSub}>
-          毎日10分。それだけで、<br />
-          肌の手触りが変わっていく。
-        </p>
-
-        <div className={styles.ctaBottomImgRow}>
-          <img
-            src="/images/product-720g-front.jpg"
-            alt="SILICA LAGOON BATH SALT"
-            loading="lazy"
-          />
-          <img
-            src="/images/product-spill.jpg"
-            alt="バスソルトのテクスチャー"
-            loading="lazy"
-          />
-        </div>
-
-        <p className={styles.ctaBottomPrice}>
-          ¥3,300<small>（税込・送料込）</small>
-        </p>
-
-        <a
-          href="https://silica-lagoon.company/"
-          className={styles.ctaBtnWhite}
-        >
-          今すぐ購入する
-          <small>定期購入プランあり / 全国送料無料</small>
+        <a href="https://silica-lagoon.company/" className={styles.ctaMainBtn}>
+          今すぐ、うるおう体験をはじめる
+          <span className={styles.ctaMainBtnArrow}>›</span>
         </a>
+
+        <div className={styles.ctaTrustRow}>
+          {trust.map((t) => (
+            <div key={t.text} className={styles.ctaTrustItem}>
+              <span className={styles.ctaTrustIcon}>{t.icon}</span>
+              <span>{t.text}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
 }
 
 // ============================================================
-// Page — Lp2
+// PAGE — Lp2
 // ============================================================
 export default function Lp2() {
   return (
@@ -329,40 +351,34 @@ export default function Lp2() {
       <Head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>浸かる美容液 — SILICA LAGOON BATH SALT</title>
+        <title>何も塗らなくても潤う肌へ — SILICA LAGOON BATH SALT</title>
         <meta
           name="description"
-          content="乾燥・化粧ノリ・肌くすみ。お風呂の10分が、全身美容液になる。シリカ・ヒアルロン酸・コラーゲン配合バスソルト。"
+          content="乾燥・化粧ノリ・くすみ。美容液のようなお湯に浸かるだけで、全身の肌が整う。シリカ・ヒアルロン酸・コラーゲン配合バスソルト。"
         />
         <link rel="canonical" href="https://silica-lagoon.company/lp2" />
-        <meta property="og:title" content="浸かる美容液 — SILICA LAGOON BATH SALT" />
-        <meta property="og:description" content="何も塗らなくても、潤う肌へ。" />
-        <meta
-          property="og:image"
-          content="https://silica-lagoon.company/images/ogp.jpg"
-        />
+        <meta property="og:title" content="何も塗らなくても潤う肌へ — SILICA LAGOON BATH SALT" />
+        <meta property="og:description" content=""塗る"から"浸かる"へ。美容液のようなお湯で肌を整える新習慣。" />
+        <meta property="og:image" content="https://silica-lagoon.company/images/hero-bath.png" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://silica-lagoon.company/lp2" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      {/* Header — ロゴのみ（LP離脱防止） */}
-      <header className={styles.lpHeader}>
-        <span className={styles.lpLogo}>SILICA LAGOON</span>
-      </header>
+      <LpHeader />
 
       <main>
         <HeroSection />
         <PainSection />
         <BenefitSection />
-        <WorldSection />
-        <OnsenSection />
-        <CtaMid />
+        <QuoteSection />
+        <ProductSection />
         <ReviewSection />
-        <CtaBottom />
+        <CtaSection />
       </main>
 
-      {/* Footer — 法的リンクのみ */}
       <footer className={styles.lpFooter}>
+        <span className={styles.lpFooterLogo}>SILICA LAGOON</span>
         <Link href="/privacy">プライバシーポリシー</Link>
         &nbsp;|&nbsp;
         <Link href="/tokushoho">特定商取引法に基づく表記</Link>

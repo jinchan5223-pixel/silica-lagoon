@@ -1,125 +1,65 @@
 /* ===================================================
-   SILICA LAGOON — LP2 美肌特化
-   Module: lp2.module.css
+   SILICA LAGOON — LP2 美肌特化（美容感重視 v2）
    =================================================== */
+
+/* === RESET & BASE === */
+.wrap * {
+  box-sizing: border-box;
+}
 
 /* === LP HEADER === */
 .lpHeader {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
-  height: 52px;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  height: 56px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: rgba(249, 250, 255, 0.95);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  justify-content: space-between;
+  padding: 0 20px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .lpLogo {
   font-size: 10px;
-  letter-spacing: 6px;
+  letter-spacing: 5px;
   color: var(--dark);
   font-weight: 600;
   text-transform: uppercase;
 }
 
-/* === INNER WRAPPER === */
-.inner {
-  max-width: 480px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-/* === SECTION LABEL === */
-.sectionLabel {
-  font-size: 9px;
-  letter-spacing: 5px;
-  color: var(--accent);
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  display: block;
-}
-
-/* === CTA BUTTON — 濃色背景用 === */
-.ctaBtn {
+.headerCta {
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 6px;
-  background: linear-gradient(135deg, var(--accent), var(--dark));
+  background: var(--dark);
   color: white;
-  padding: 18px 40px;
-  border-radius: 50px;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  width: 100%;
-  max-width: 360px;
-  margin: 0 auto;
-  transition: opacity 0.2s, transform 0.2s;
-  text-align: center;
-}
-
-.ctaBtn small {
   font-size: 11px;
-  font-weight: 400;
-  opacity: 0.75;
-  letter-spacing: 0.08em;
+  letter-spacing: 1px;
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-weight: 500;
 }
 
-.ctaBtn:hover {
-  opacity: 0.88;
-  transform: translateY(-2px);
-}
-
-/* === CTA BUTTON — 白（CtaBottom用）=== */
-.ctaBtnWhite {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  background: white;
-  color: var(--dark);
-  padding: 18px 40px;
-  border-radius: 50px;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  width: 100%;
-  max-width: 360px;
-  margin: 0 auto;
-  transition: opacity 0.2s, transform 0.2s;
-  text-align: center;
-}
-
-.ctaBtnWhite small {
-  font-size: 11px;
-  font-weight: 400;
-  opacity: 0.6;
-  letter-spacing: 0.08em;
-}
-
-.ctaBtnWhite:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-}
-
-/* ===== HERO ===== */
+/* ===================================================
+   HERO
+   =================================================== */
 .hero {
   position: relative;
-  min-height: 90svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  min-height: 100svh;
   overflow: hidden;
-  background: var(--primary-soft);
+  background: linear-gradient(160deg, #e8f0ff 0%, #f0f6ff 40%, #ffffff 100%);
+  padding-top: 56px;
 }
 
 .heroBg {
   position: absolute;
   inset: 0;
+  top: 56px;
 }
 
 .heroBg img {
@@ -133,397 +73,671 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    180deg,
-    rgba(46, 58, 140, 0.08) 0%,
-    rgba(214, 228, 255, 0.22) 45%,
-    rgba(249, 250, 255, 0.97) 100%
+    110deg,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(238, 244, 255, 0.75) 40%,
+    rgba(214, 228, 255, 0.10) 100%
   );
 }
 
 .heroContent {
   position: relative;
-  z-index: 1;
-  padding: 0 28px 64px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+  z-index: 2;
+  padding: 52px 28px 200px;
+  max-width: 480px;
 }
 
 .heroEyebrow {
-  font-size: 9px;
-  letter-spacing: 5px;
+  font-size: 10px;
+  letter-spacing: 4px;
   color: var(--accent);
   text-transform: uppercase;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.heroLeadSmall {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--text-body);
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+  margin-bottom: 6px;
 }
 
 .heroHeadline {
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 8vw, 2.8rem);
+  font-size: clamp(2.1rem, 9vw, 3rem);
   font-weight: 400;
   color: var(--dark);
-  line-height: 1.65;
-  letter-spacing: 0.06em;
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+  margin-bottom: 28px;
+}
+
+.heroHeadline em {
+  font-style: normal;
+  color: var(--accent);
 }
 
 .heroSub {
-  font-size: 13px;
+  font-size: 12.5px;
   color: var(--text-body);
-  line-height: 1.9;
+  line-height: 1.95;
   letter-spacing: 0.03em;
+  margin-bottom: 40px;
+  max-width: 260px;
 }
 
-.heroBadges {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: center;
+.heroDivider {
+  width: 32px;
+  height: 1px;
+  background: var(--accent);
+  margin-bottom: 16px;
+  opacity: 0.6;
 }
 
-.heroBadges span {
-  font-size: 10px;
-  letter-spacing: 1px;
-  color: var(--dark);
-  border: 1px solid var(--border);
-  background: rgba(214, 228, 255, 0.45);
-  border-radius: 20px;
-  padding: 5px 14px;
-}
-
-/* ===== PAIN ===== */
-.pain {
-  padding: 88px 0;
-  background: var(--background);
-}
-
-.painHeadline {
+.heroSubCopy {
   font-family: var(--font-serif);
-  font-size: clamp(1.35rem, 5vw, 1.8rem);
-  font-weight: 400;
-  color: var(--dark);
-  line-height: 1.7;
+  font-size: 13px;
+  color: var(--text-muted);
   letter-spacing: 0.04em;
   margin-bottom: 36px;
+  font-style: italic;
 }
 
-.painList {
-  list-style: none;
-  padding: 0;
-  display: grid;
+/* Trust badges */
+.heroBadges {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.heroBadge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(125, 162, 255, 0.22);
+  border-radius: 50%;
+  width: 68px;
+  height: 68px;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(125, 162, 255, 0.12);
+}
+
+.heroBadge .badgeIcon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.heroBadge .badgeText {
+  font-size: 8.5px;
+  color: var(--dark);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+/* Hero bottom CTA */
+.heroCtaWrap {
+  position: absolute;
+  bottom: 48px;
+  left: 0;
+  right: 0;
+  padding: 0 28px;
+  z-index: 2;
+}
+
+.heroCta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
+  background: linear-gradient(135deg, var(--accent), var(--dark));
+  color: white;
+  padding: 18px 32px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(46, 58, 140, 0.25);
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.heroCtaArrow {
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+.heroNote {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 10px;
+  letter-spacing: 0.5px;
+}
+
+/* ===================================================
+   SECTION COMMONS
+   =================================================== */
+.section {
+  padding: 88px 0;
+}
+
+.sectionInner {
+  padding: 0 24px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.sectionEyebrow {
+  font-size: 9px;
+  letter-spacing: 5px;
+  color: var(--accent);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 5vw, 1.7rem);
+  font-weight: 400;
+  color: var(--text-dark);
+  line-height: 1.65;
+  letter-spacing: 0.04em;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.sectionDivider {
+  width: 32px;
+  height: 1px;
+  background: var(--accent);
+  margin: 0 auto 48px;
+  opacity: 0.5;
+}
+
+/* ===================================================
+   PAIN SECTION
+   =================================================== */
+.painSection {
+  padding: 88px 0;
+  background: white;
+}
+
+.painGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
   margin-bottom: 48px;
 }
 
-.painItem {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 18px;
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  font-size: 14px;
-  color: var(--text-dark);
-  box-shadow: var(--shadow-card);
-  line-height: 1.6;
+.painCard {
+  background: var(--primary-soft);
+  border: 1px solid rgba(125, 162, 255, 0.14);
+  border-radius: 16px;
+  padding: 22px 16px 20px;
+  text-align: center;
 }
 
-.painIcon {
-  font-size: 20px;
-  flex-shrink: 0;
+.painCardIcon {
+  font-size: 28px;
+  display: block;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.painCardText {
+  font-size: 12px;
+  color: var(--text-dark);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
 }
 
 .painResolve {
   font-family: var(--font-serif);
-  font-size: clamp(1.05rem, 3.5vw, 1.2rem);
-  color: var(--dark);
-  text-align: center;
-  line-height: 1.9;
-  letter-spacing: 0.06em;
-  padding-top: 8px;
-}
-
-/* ===== BENEFIT ===== */
-.benefit {
-  padding: 88px 0;
-  background: var(--primary-soft);
-}
-
-.benefitHeadline {
-  font-family: var(--font-serif);
-  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  font-size: clamp(1.1rem, 4.5vw, 1.35rem);
   color: var(--text-dark);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  margin-bottom: 36px;
-  line-height: 1.7;
+  text-align: center;
+  line-height: 1.8;
+  letter-spacing: 0.05em;
 }
 
-/* globals.css の .sl-check-list を流用するためここでは余白調整のみ */
-.benefitCheckList {
-  margin-bottom: 56px;
+.painResolve em {
+  font-style: normal;
+  color: var(--accent);
+  font-size: 1.05em;
 }
 
-/* ===== WORLD ===== */
-.world {
+/* ===================================================
+   BENEFIT SECTION
+   =================================================== */
+.benefitSection {
+  padding: 88px 0;
   background: var(--background);
 }
 
-.worldImgWrap {
-  aspect-ratio: 3/2;
-  overflow: hidden;
+.benefitLead {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 5vw, 1.55rem);
+  font-weight: 400;
+  color: var(--text-dark);
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  text-align: center;
+  margin-bottom: 8px;
 }
 
-.worldImgWrap img {
+.benefitSub {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 48px;
+  letter-spacing: 0.03em;
+}
+
+.benefitGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+.benefitItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.benefitCircle {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(125, 162, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.benefitCircle img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.worldText {
-  padding: 52px 28px 88px;
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-.worldLead {
-  font-family: var(--font-serif);
-  font-size: clamp(1.15rem, 4vw, 1.55rem);
-  color: var(--dark);
-  line-height: 1.85;
-  letter-spacing: 0.06em;
-  margin-bottom: 28px;
-}
-
-.worldBody {
-  font-size: 14px;
-  line-height: 2.1;
-  color: var(--text-body);
+.benefitLabel {
+  font-size: 11px;
+  color: var(--text-dark);
+  text-align: center;
+  line-height: 1.6;
   letter-spacing: 0.02em;
 }
 
-/* ===== ONSEN — 濃紺背景 ===== */
-.onsen {
-  padding: 88px 0;
-  background: var(--dark);
+.benefitLabelStrong {
+  display: block;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--dark);
+  margin-top: 2px;
 }
 
-.onsenLabel {
-  font-size: 9px;
-  letter-spacing: 5px;
-  color: var(--gold-light);
+/* ===================================================
+   QUOTE SECTION
+   =================================================== */
+.quoteSection {
+  padding: 80px 24px;
+  background: linear-gradient(160deg, var(--primary-soft) 0%, white 100%);
+  text-align: center;
+}
+
+.quoteInner {
+  max-width: 400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.quoteMark {
+  font-size: 60px;
+  line-height: 0.6;
+  color: var(--accent);
+  opacity: 0.2;
+  font-family: Georgia, serif;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.quoteText {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+  color: var(--dark);
+  line-height: 1.9;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+  white-space: pre-line;
+  margin-bottom: 20px;
+}
+
+.quoteSub {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* ===================================================
+   PRODUCT / ONSEN SECTION
+   =================================================== */
+.productSection {
+  padding: 88px 0;
+  background: white;
+}
+
+.productLayout {
+  display: grid;
+  gap: 0;
+}
+
+.productImgWrap {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 0;
+  margin: 0 24px 40px;
+  border-radius: 20px;
+}
+
+.productImgWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.productImgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(238, 244, 255, 0.5) 100%);
+}
+
+.productCopy {
+  padding: 0 24px;
+}
+
+.productHeadline {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 4.5vw, 1.55rem);
+  font-weight: 400;
+  color: var(--text-dark);
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+
+.productBody {
+  font-size: 13px;
+  line-height: 2.0;
+  color: var(--text-body);
+  letter-spacing: 0.02em;
+  margin-bottom: 32px;
+}
+
+.ingredientBadges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.ingredientBadge {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--dark);
+  border: 1px solid rgba(125, 162, 255, 0.3);
+  background: var(--primary-soft);
+  border-radius: 20px;
+  padding: 6px 14px;
+}
+
+/* こんな方に選ばれています */
+.forWhomTitle {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--accent);
   text-transform: uppercase;
   margin-bottom: 16px;
   display: block;
 }
 
-.onsenHeadline {
-  font-family: var(--font-serif);
-  font-size: clamp(1.2rem, 4vw, 1.5rem);
-  font-weight: 400;
-  color: white;
-  letter-spacing: 0.05em;
-  margin-bottom: 48px;
-  line-height: 1.7;
-}
-
-.onsenGrid {
+.forWhomList {
+  list-style: none;
+  padding: 0;
   display: grid;
-  gap: 32px;
+  gap: 10px;
+  margin-bottom: 8px;
 }
 
-.onsenCard img {
-  width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  border-radius: var(--radius-md);
-  margin-bottom: 18px;
-}
-
-.onsenCard h3 {
-  font-size: 10px;
-  letter-spacing: 4px;
-  color: var(--gold-light);
-  margin-bottom: 12px;
-  text-transform: uppercase;
-  font-weight: 400;
-}
-
-.onsenCard p {
-  font-size: 13px;
-  line-height: 1.95;
-  color: rgba(255, 255, 255, 0.65);
-}
-
-.onsenNote {
-  margin-top: 52px;
-  font-size: 11px;
-  letter-spacing: 2px;
-  color: rgba(125, 162, 255, 0.75);
-  text-align: center;
-}
-
-/* ===== CTA MID ===== */
-.ctaMid {
-  padding: 88px 24px;
-  background: var(--primary-soft);
-  text-align: center;
-}
-
-.ctaMidInner {
-  max-width: 360px;
-  margin: 0 auto;
+.forWhomItem {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-.ctaMidImg {
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-soft);
-}
-
-.ctaMidName {
-  font-size: 10px;
-  letter-spacing: 4px;
-  color: var(--accent);
-  text-transform: uppercase;
-}
-
-.ctaMidPrice {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--dark);
-  letter-spacing: -0.02em;
-}
-
-.ctaMidPrice small {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--text-muted);
-  margin-left: 4px;
-  letter-spacing: 0;
-}
-
-/* ===== REVIEW ===== */
-.review {
-  padding: 88px 0;
-  background: white;
-}
-
-.reviewHeadline {
-  font-family: var(--font-serif);
-  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
   color: var(--text-dark);
-  font-weight: 400;
-  margin-bottom: 36px;
-  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+
+.forWhomCheck {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, var(--accent), var(--dark));
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 9px;
+}
+
+.forWhomNote {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  margin-top: 16px;
+}
+
+/* ===================================================
+   REVIEW SECTION
+   =================================================== */
+.reviewSection {
+  padding: 88px 0;
+  background: var(--primary-soft);
 }
 
 .reviewGrid {
   display: grid;
-  gap: 14px;
+  gap: 16px;
 }
 
 .reviewCard {
+  background: white;
+  border-radius: 16px;
   padding: 24px 22px;
-  background: var(--primary-soft);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  box-shadow: 0 2px 16px rgba(46, 58, 140, 0.06);
 }
 
-.reviewText {
+.reviewHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.reviewAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.reviewAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reviewMeta {
+  flex: 1;
+}
+
+.reviewStars {
+  color: #F6C343;
   font-size: 13px;
-  line-height: 2;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+.reviewName {
+  font-size: 12px;
+  font-weight: 700;
   color: var(--text-dark);
-  margin-bottom: 16px;
+  margin-bottom: 1px;
 }
 
 .reviewAttr {
-  font-size: 11px;
-  letter-spacing: 1px;
+  font-size: 10px;
   color: var(--text-muted);
+  letter-spacing: 0.5px;
 }
 
-/* ===== CTA BOTTOM ===== */
-.ctaBottom {
-  padding: 88px 0 120px;
-  background: linear-gradient(180deg, #1a2340 0%, #0f172a 100%);
-  text-align: center;
-}
-
-.ctaBottomInner {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-.ctaBottomEyebrow {
-  font-size: 9px;
-  letter-spacing: 6px;
-  color: var(--accent);
-  text-transform: uppercase;
-}
-
-.ctaBottomHeadline {
-  font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 6vw, 2rem);
-  font-weight: 400;
-  color: white;
-  line-height: 1.7;
-  letter-spacing: 0.06em;
-}
-
-.ctaBottomSub {
+.reviewTitle {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.58);
-  line-height: 1.85;
-}
-
-.ctaBottomImgRow {
-  display: flex;
-  gap: 12px;
-  width: 100%;
-}
-
-.ctaBottomImgRow img {
-  flex: 1;
-  aspect-ratio: 1;
-  object-fit: cover;
-  border-radius: var(--radius-md);
-}
-
-.ctaBottomPrice {
-  font-size: 2rem;
   font-weight: 700;
-  color: white;
-  letter-spacing: -0.02em;
+  color: var(--dark);
+  margin-bottom: 8px;
+  line-height: 1.5;
 }
 
-.ctaBottomPrice small {
-  font-size: 12px;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.45);
-  margin-left: 4px;
-  letter-spacing: 0;
+.reviewText {
+  font-size: 12.5px;
+  line-height: 1.9;
+  color: var(--text-body);
 }
 
-/* ===== LP FOOTER ===== */
-.lpFooter {
-  padding: 40px 24px;
-  background: #07091a;
+/* ===================================================
+   CTA SECTION
+   =================================================== */
+.ctaSection {
+  padding: 80px 0 100px;
+  background: linear-gradient(180deg, #EEF4FF 0%, white 100%);
+}
+
+.ctaInner {
+  padding: 0 24px;
+  max-width: 440px;
+  margin: 0 auto;
   text-align: center;
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.28);
+}
+
+.ctaEyebrow {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.ctaProductImg {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  margin: 0 auto 28px;
+  display: block;
+  filter: drop-shadow(0 12px 32px rgba(125, 162, 255, 0.18));
+}
+
+.ctaHeadline {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 5vw, 1.5rem);
+  font-weight: 400;
+  color: var(--text-dark);
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  margin-bottom: 36px;
+}
+
+.ctaMainBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #7DA2FF, #2E3A8C);
+  color: white;
+  padding: 20px 32px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 10px 40px rgba(46, 58, 140, 0.22);
+  width: 100%;
+  transition: opacity 0.2s, transform 0.2s;
+  margin-bottom: 20px;
+}
+
+.ctaMainBtn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.ctaMainBtnArrow {
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+.ctaTrustRow {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.ctaTrustItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.ctaTrustIcon {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* ===================================================
+   LP FOOTER
+   =================================================== */
+.lpFooter {
+  padding: 32px 24px;
+  background: #0a0f1e;
+  text-align: center;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.3);
   letter-spacing: 1px;
 }
 
@@ -531,22 +745,37 @@
   color: rgba(255, 255, 255, 0.38);
 }
 
-/* ===== RESPONSIVE ===== */
-@media (min-width: 640px) {
-  .inner {
-    max-width: 680px;
+.lpFooterLogo {
+  font-size: 9px;
+  letter-spacing: 6px;
+  color: rgba(255, 255, 255, 0.25);
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* ===================================================
+   RESPONSIVE
+   =================================================== */
+@media (min-width: 480px) {
+  .heroContent {
+    padding: 60px 40px 220px;
   }
 
-  .onsenGrid {
+  .reviewGrid {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 640px) {
+  .painGrid {
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .reviewGrid {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .ctaMidImg {
-    width: 220px;
-    height: 220px;
+  .sectionInner {
+    max-width: 680px;
   }
 }
