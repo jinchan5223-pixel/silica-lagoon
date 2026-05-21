@@ -7,7 +7,6 @@ const STRIPE_URL = 'https://buy.stripe.com/4gMaEQ5l313Wfmg6n58k801'
 const SUP_URL = 'https://mrcvwlaawmlfpoibxjec.supabase.co'
 const SUP_KEY = 'sb_publishable_nONkmADAMLoZ1wxUrZqwug_F_Fm08yO'
 
-// ?ref= を読み取り、クリック記録 + Stripe に引き継ぐ
 function useShopUrl() {
   const [shopUrl, setShopUrl] = useState(STRIPE_URL)
   useEffect(() => {
@@ -40,7 +39,7 @@ function Lp3Header({ shopUrl }) {
 }
 
 // ============================================================
-// HERO
+// HERO — 水中・没入感・余白
 // ============================================================
 function HeroSection({ shopUrl }) {
   return (
@@ -48,9 +47,8 @@ function HeroSection({ shopUrl }) {
       <div className={styles.heroBg}>
         <img
           src="/images/blue-bath.jpg"
-          alt="Blue Lagoon体験"
+          alt="ミルキーブルーの水面"
           loading="eager"
-          fetchPriority="high"
         />
         <div className={styles.heroGrad} />
       </div>
@@ -62,8 +60,8 @@ function HeroSection({ shopUrl }) {
           Blue Lagoon体験。
         </h1>
         <p className={styles.heroSub}>
-          ミルキーブルーのお湯に、<br />
-          ただ浸かるだけ。
+          遠い旅先で出会うような静けさを、<br />
+          今日のお風呂に。
         </p>
         <a href={shopUrl} className={styles.heroBtn}>
           体験をはじめる
@@ -75,7 +73,7 @@ function HeroSection({ shopUrl }) {
 }
 
 // ============================================================
-// EXPERIENCE — Blue Lagoon体験とは
+// EXPERIENCE — 物語化
 // ============================================================
 function ExperienceSection() {
   return (
@@ -83,16 +81,21 @@ function ExperienceSection() {
       <div className={styles.expInner}>
         <span className={styles.expEye}>BLUE LAGOON EXPERIENCE</span>
         <h2 className={styles.expH2}>
-          白い湯気、<br />
-          ミルキーブルーのお湯。<br />
-          その静けさを、<br />
-          自宅へ。
+          白く青い、<br />
+          静かな温泉体験。
         </h2>
         <p className={styles.expBody}>
-          アイスランドのBlue Lagoonが<br />インスピレーション。
+          アイスランドで出会った、<br />
+          白く青い、静かな温泉体験。
         </p>
         <p className={styles.expBody}>
-          遠い場所にあった体験を、<br />毎晩のお風呂に。
+          その非日常を、<br />
+          日本の浴室でも楽しめるように。
+        </p>
+        <p className={styles.expStory}>
+          SILICA LAGOONは、<br />
+          "旅するように浸かる"<br />
+          バスソルトとして生まれました。
         </p>
       </div>
     </section>
@@ -100,11 +103,11 @@ function ExperienceSection() {
 }
 
 // ============================================================
-// WATER VISUAL — 水中・拡散
+// VISUAL 1 — 溶ける瞬間
 // ============================================================
-function WaterVisual() {
+function DissolvingVisual() {
   return (
-    <div className={styles.waterVisual}>
+    <div className={styles.fullVisual}>
       <img
         src="/images/dissolving.png"
         alt="バスソルトがお湯に溶け込む"
@@ -134,24 +137,24 @@ function QuoteSection() {
 }
 
 // ============================================================
-// LUXURY — ただ浸かる贅沢
+// LUXURY — 体験の3項目
 // ============================================================
 function LuxurySection() {
   const items = [
     {
       num: '01',
-      title: 'ただ、浸かるだけ。',
-      desc: '余計なことは何もいらない。\nバスソルトをひとさじ、溶かすだけ。',
+      title: '青に包まれる',
+      desc: '視界に広がる、やわらかなミルキーブルー。',
     },
     {
       num: '02',
-      title: 'ミルキーブルーのお湯。',
-      desc: '視覚から、非日常が始まる。\n色が変わる瞬間の、あの感覚。',
+      title: '音が消える',
+      desc: '湯気と光だけが残る、静かな浴室。',
     },
     {
       num: '03',
-      title: '静かな20分。',
-      desc: '何も考えなくていい時間。\nそれだけで、整う。',
+      title: '旅の余韻に浸る',
+      desc: '遠くへ行かなくても、心だけ旅に出る。',
     },
   ]
 
@@ -168,7 +171,7 @@ function LuxurySection() {
             <div key={item.num} className={styles.luxItem}>
               <span className={styles.luxNum}>{item.num}</span>
               <h3 className={styles.luxTitle}>{item.title}</h3>
-              <p className={styles.luxDesc} style={{ whiteSpace: 'pre-line' }}>{item.desc}</p>
+              <p className={styles.luxDesc}>{item.desc}</p>
             </div>
           ))}
         </div>
@@ -178,28 +181,28 @@ function LuxurySection() {
 }
 
 // ============================================================
-// NIGHT — 非日常バスタイム
+// VISUAL 2 — 後ろ姿・青いお湯
 // ============================================================
-function NightSection() {
+function ImmersionVisual() {
   return (
-    <section className={styles.night}>
-      <div className={styles.nightImgWrap}>
-        <img src="/images/water-surface.png" alt="静かな水面" loading="lazy" />
-        <div className={styles.nightOverlay} />
+    <section className={styles.immersion}>
+      <div className={styles.immersionImgWrap}>
+        <img src="/images/back-figure.png" alt="青いお湯に浸かる" loading="lazy" />
+        <div className={styles.immersionOverlay} />
       </div>
-      <div className={styles.nightCopy}>
-        <p className={styles.nightText}>
+      <div className={styles.immersionCopy}>
+        <p className={styles.immersionText}>
           青に包まれる、<br />
           静かな時間。
         </p>
-        <p className={styles.nightSub}>毎晩を、特別にする。</p>
+        <p className={styles.immersionSub}>毎晩を、特別にする。</p>
       </div>
     </section>
   )
 }
 
 // ============================================================
-// CTA
+// CTA — 体験導線
 // ============================================================
 function CtaSection({ shopUrl }) {
   return (
@@ -207,8 +210,8 @@ function CtaSection({ shopUrl }) {
       <div className={styles.ctaInner}>
         <span className={styles.ctaEye}>START YOUR EXPERIENCE</span>
         <h2 className={styles.ctaH2}>
-          今日のお風呂から、<br />
-          非日常をはじめる。
+          今日のお風呂を、<br />
+          Blue Lagoonのような時間へ。
         </h2>
 
         <div className={styles.ctaVisual}>
@@ -222,7 +225,7 @@ function CtaSection({ shopUrl }) {
         <p className={styles.ctaName}>SILICA LAGOON BATH SALT</p>
 
         <a href={shopUrl} className={styles.ctaBtn}>
-          今すぐ、Blue Lagoon体験をはじめる
+          自宅で体験をはじめる
           <span className={styles.ctaBtnArrow}>›</span>
         </a>
 
@@ -250,11 +253,11 @@ export default function Lp3() {
         <title>自宅で、Blue Lagoon体験。— SILICA LAGOON BATH SALT</title>
         <meta
           name="description"
-          content="ミルキーブルーのお湯に、ただ浸かるだけ。アイスランドのBlue Lagoonにインスパイアされたバスソルトで、自宅が非日常の空間へ。"
+          content="遠い旅先で出会うような静けさを、今日のお風呂に。ミルキーブルーのお湯に包まれる、静かな20分。SILICA LAGOON BATH SALT。"
         />
         <link rel="canonical" href="https://silica-lagoon.company/lp3" />
         <meta property="og:title" content="自宅で、Blue Lagoon体験。— SILICA LAGOON BATH SALT" />
-        <meta property="og:description" content="ミルキーブルーのお湯に、ただ浸かるだけ。" />
+        <meta property="og:description" content="遠い旅先で出会うような静けさを、今日のお風呂に。" />
         <meta property="og:image" content="https://silica-lagoon.company/images/blue-bath.jpg" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://silica-lagoon.company/lp3" />
@@ -272,10 +275,10 @@ export default function Lp3() {
       <main>
         <HeroSection shopUrl={shopUrl} />
         <ExperienceSection />
-        <WaterVisual />
+        <DissolvingVisual />
         <QuoteSection />
         <LuxurySection />
-        <NightSection />
+        <ImmersionVisual />
         <CtaSection shopUrl={shopUrl} />
       </main>
 

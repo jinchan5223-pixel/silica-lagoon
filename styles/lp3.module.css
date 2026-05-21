@@ -180,17 +180,29 @@
   margin-bottom: 18px;
 }
 
+.expStory {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: #2E3A8C;
+  line-height: 2.3;
+  letter-spacing: 0.07em;
+  margin-top: 44px;
+  padding-top: 44px;
+  border-top: 1px solid rgba(91, 124, 250, 0.12);
+}
+
 /* ===================================================
-   WATER VISUAL — 全幅
+   FULL VISUAL — 全幅画像
    =================================================== */
-.waterVisual {
+.fullVisual {
   width: 100%;
   height: 64vw;
   max-height: 380px;
   overflow: hidden;
 }
 
-.waterVisual img {
+.fullVisual img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -319,48 +331,48 @@
 }
 
 /* ===================================================
-   NIGHT — 非日常バスタイム
+   IMMERSION — 後ろ姿・青いお湯
    =================================================== */
-.night {
+.immersion {
   position: relative;
-  height: 72vw;
-  max-height: 480px;
+  height: 80vw;
+  max-height: 520px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.nightImgWrap {
+.immersionImgWrap {
   position: absolute;
   inset: 0;
 }
 
-.nightImgWrap img {
+.immersionImgWrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center center;
 }
 
-.nightOverlay {
+.immersionOverlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(8, 17, 50, 0.30) 0%,
-    rgba(8, 17, 50, 0.58) 100%
+    rgba(8, 17, 50, 0.15) 0%,
+    rgba(8, 17, 50, 0.52) 100%
   );
 }
 
-.nightCopy {
+.immersionCopy {
   position: relative;
   z-index: 2;
   text-align: center;
   padding: 0 40px;
 }
 
-.nightText {
+.immersionText {
   font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
   font-size: clamp(1.4rem, 6vw, 1.9rem);
   font-weight: 300;
@@ -370,10 +382,10 @@
   margin-bottom: 16px;
 }
 
-.nightSub {
+.immersionSub {
   font-size: 10px;
   letter-spacing: 3px;
-  color: rgba(221, 243, 255, 0.6);
+  color: rgba(221, 243, 255, 0.65);
 }
 
 /* ===================================================
