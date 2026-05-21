@@ -3,13 +3,15 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import styles from '../styles/lp2.module.css'
 
-// ?ref= パラメータを読み取り、決済リンクに引き継ぐ
+const STRIPE_URL = 'https://buy.stripe.com/4gMaEQ5l313Wfmg6n58k801'
+
+// ?ref= パラメータを読み取り、Stripeのclient_reference_idに引き継ぐ
 function useShopUrl() {
-  const [shopUrl, setShopUrl] = useState('https://silica-lagoon.company/')
+  const [shopUrl, setShopUrl] = useState(STRIPE_URL)
   useEffect(() => {
     const ref = new URLSearchParams(window.location.search).get('ref')
     if (ref) {
-      setShopUrl(`https://silica-lagoon.company/?ref=${encodeURIComponent(ref)}`)
+      setShopUrl(`${STRIPE_URL}?client_reference_id=${encodeURIComponent(ref)}`)
     }
   }, [])
   return shopUrl
