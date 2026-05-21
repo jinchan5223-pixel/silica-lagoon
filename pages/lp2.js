@@ -10,14 +10,14 @@ function LpHeader() {
     <header className={styles.lpHeader}>
       <span className={styles.lpLogo}>SILICA LAGOON</span>
       <a href="https://silica-lagoon.company/" className={styles.headerCta}>
-        今すぐ購入する 🛒
+        今すぐ購入する
       </a>
     </header>
   )
 }
 
 // ============================================================
-// HERO
+// HERO — 女性 × コピー × CTA のみ
 // ============================================================
 function HeroSection() {
   return (
@@ -33,7 +33,7 @@ function HeroSection() {
         <div className={styles.heroOverlay} />
       </div>
 
-      {/* テキストコンテンツ */}
+      {/* コピーのみ */}
       <div className={styles.heroContent}>
         <span className={styles.heroEyebrow}>SILICA LAGOON BATH SALT</span>
 
@@ -50,23 +50,9 @@ function HeroSection() {
           美容液のようなお湯で、<br />
           肌を整える新習慣。
         </p>
-
-        {/* 信頼バッジ */}
-        <div className={styles.heroBadges}>
-          {[
-            { icon: '💎', text: '日本初*\nシリカ×\n温泉発想' },
-            { icon: '✨', text: '美容成分\n配合' },
-            { icon: '♨️', text: '温泉\n発想' },
-          ].map((b) => (
-            <div key={b.text} className={styles.heroBadge}>
-              <span className={styles.badgeIcon}>{b.icon}</span>
-              <span className={styles.badgeText} style={{ whiteSpace: 'pre-line' }}>{b.text}</span>
-            </div>
-          ))}
-        </div>
       </div>
 
-      {/* Hero底部CTA */}
+      {/* Hero底部CTA — 半透明ガラス */}
       <div className={styles.heroCtaWrap}>
         <a href="https://silica-lagoon.company/" className={styles.heroCta}>
           今すぐ、うるおう体験をはじめる
@@ -75,6 +61,28 @@ function HeroSection() {
         <p className={styles.heroNote}>* 自社調べ（シリカを配合した入浴剤として）</p>
       </div>
     </section>
+  )
+}
+
+// ============================================================
+// TRUST STRIP — Hero下のバッジをここへ移動
+// ============================================================
+function TrustStrip() {
+  const items = [
+    { icon: '💎', label: '日本初*', note: 'シリカ×温泉発想' },
+    { icon: '✨', label: '美容成分', note: '贅沢配合' },
+    { icon: '♨️', label: '温泉発想', note: '美肌の湯' },
+  ]
+  return (
+    <div className={styles.trustStrip}>
+      {items.map((i) => (
+        <div key={i.label} className={styles.trustItem}>
+          <span className={styles.trustIcon}>{i.icon}</span>
+          <span className={styles.trustLabel}>{i.label}</span>
+          <span className={styles.trustNote}>{i.note}</span>
+        </div>
+      ))}
+    </div>
   )
 }
 
@@ -115,7 +123,7 @@ function PainSection() {
 }
 
 // ============================================================
-// BENEFIT — ベネフィット
+// BENEFIT
 // ============================================================
 function BenefitSection() {
   const benefits = [
@@ -196,7 +204,6 @@ function ProductSection() {
 
   return (
     <section className={styles.productSection}>
-      {/* 画像 */}
       <div className={styles.productImgWrap}>
         <img src="/images/color-change.jpg" alt="バスソルトが溶ける瞬間" loading="lazy" />
         <div className={styles.productImgOverlay} />
@@ -216,13 +223,13 @@ function ProductSection() {
 
         <div className={styles.ingredientBadges}>
           {['メタケイ酸\n(温泉法基準美肌成分)', 'シリカ\n(保湿サポート)', '厳選した\n美容成分'].map((b) => (
-            <span key={b} className={styles.ingredientBadge} style={{ whiteSpace: 'pre-line', textAlign: 'center', lineHeight: 1.4, fontSize: '10px' }}>
+            <span key={b} className={styles.ingredientBadge} style={{ whiteSpace: 'pre-line', textAlign: 'center', lineHeight: 1.5 }}>
               {b}
             </span>
           ))}
         </div>
 
-        <span className={styles.forWhomTitle}>こんな方に選ばれています</span>
+        <span className={styles.forWhomTitle}>FOR WHOM</span>
         <ul className={styles.forWhomList}>
           {forWhom.map((item) => (
             <li key={item} className={styles.forWhomItem}>
@@ -240,26 +247,23 @@ function ProductSection() {
 }
 
 // ============================================================
-// REVIEW — 口コミ
+// REVIEW — 美容誌スタイル
 // ============================================================
 function ReviewSection() {
   const reviews = [
     {
-      emoji: '🧖‍♀️',
       name: 'M.K さん',
       attr: '30代・乾燥肌',
-      title: 'お風呂上がりの肌が違います！',
+      title: 'お風呂上がりの\n肌が違います',
       text: '乾燥しやすい肌が、しっとり潤って驚きました。翌朝の化粧ノリも良くなりました。',
     },
     {
-      emoji: '🛁',
       name: 'Y.T さん',
       attr: '30代・敏感肌',
       title: 'まるで美容液に\n浸かっているみたい',
       text: 'お湯がやわらかくて驚きます。使い続けるほどに肌の調子が変わってきた気がします。',
     },
     {
-      emoji: '💆‍♀️',
       name: 'R.S さん',
       attr: '20代・混合肌',
       title: '透明感が出て、\nすっぴんに自信が持てる',
@@ -277,18 +281,13 @@ function ReviewSection() {
         <div className={styles.reviewGrid}>
           {reviews.map((r) => (
             <div key={r.name} className={styles.reviewCard}>
-              <div className={styles.reviewHeader}>
-                <div className={styles.reviewAvatar}>
-                  <span style={{ fontSize: 24 }}>{r.emoji}</span>
-                </div>
-                <div className={styles.reviewMeta}>
-                  <div className={styles.reviewStars}>★★★★★</div>
-                  <div className={styles.reviewName}>{r.name}</div>
-                  <div className={styles.reviewAttr}>{r.attr}</div>
-                </div>
-              </div>
-              <p className={styles.reviewTitle} style={{ whiteSpace: 'pre-line' }}>{r.title}</p>
+              <div className={styles.reviewStars}>★★★★★</div>
+              <p className={styles.reviewTitle}>{r.title}</p>
               <p className={styles.reviewText}>{r.text}</p>
+              <div className={styles.reviewByline}>
+                <span className={styles.reviewName}>{r.name}</span>
+                <span className={styles.reviewAttr}>{r.attr}</span>
+              </div>
             </div>
           ))}
         </div>
@@ -302,9 +301,9 @@ function ReviewSection() {
 // ============================================================
 function CtaSection() {
   const trust = [
-    { icon: '🚚', text: '迅速製商' },
+    { icon: '🚚', text: '迅速発送' },
     { icon: '↩️', text: '30日間返金保証' },
-    { icon: '🇯🇵', text: '安心の国内製造' },
+    { icon: '🇯🇵', text: '国内製造' },
   ]
 
   return (
@@ -343,7 +342,7 @@ function CtaSection() {
 }
 
 // ============================================================
-// PAGE — Lp2
+// PAGE
 // ============================================================
 export default function Lp2() {
   return (
@@ -363,12 +362,20 @@ export default function Lp2() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://silica-lagoon.company/lp2" />
         <meta name="twitter:card" content="summary_large_image" />
+        {/* Noto Serif JP — 高級美容ブランド感 */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&display=swap"
+          rel="stylesheet"
+        />
       </Head>
 
       <LpHeader />
 
       <main>
         <HeroSection />
+        <TrustStrip />
         <PainSection />
         <BenefitSection />
         <QuoteSection />
