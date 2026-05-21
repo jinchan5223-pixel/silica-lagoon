@@ -358,7 +358,7 @@ export default function Lp2() {
         />
         <link rel="canonical" href="https://silica-lagoon.company/lp2" />
         <meta property="og:title" content="何も塗らなくても潤う肌へ — SILICA LAGOON BATH SALT" />
-        <meta property="og:description" content=""塗る"から"浸かる"へ。美容液のようなお湯で肌を整える新習慣。" />
+        <meta property="og:description" content="&ldquo;塗る&rdquo;から&ldquo;浸かる&rdquo;へ。美容液のようなお湯で肌を整える新習慣。" />
         <meta property="og:image" content="https://silica-lagoon.company/images/hero-bath.png" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://silica-lagoon.company/lp2" />
