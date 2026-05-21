@@ -1,6 +1,6 @@
 import QuoteBlock from '../../components/QuoteBlock'
 
-export default function WhyBathBeautyWorks() {
+export default function BenefitsOfBathBeauty() {
   return (
     <>
       <p className="sl-lead">

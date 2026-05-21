@@ -1,6 +1,6 @@
 import QuoteBlock from '../../components/QuoteBlock'
 
-export default function BathsaltForDry() {
+export default function DrySkinBathsalt() {
   return (
     <>
       <p className="sl-lead">

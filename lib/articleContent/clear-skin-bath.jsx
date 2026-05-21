@@ -1,6 +1,6 @@
 import QuoteBlock from '../../components/QuoteBlock'
 
-export default function TransparencyBath() {
+export default function ClearSkinBath() {
   return (
     <>
       <p className="sl-lead">

@@ -1,6 +1,6 @@
 import QuoteBlock from '../../components/QuoteBlock'
 
-export default function EffortlessBeauty() {
+export default function EffortlessBathBeauty() {
   return (
     <>
       <p className="sl-lead">

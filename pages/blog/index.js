@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { articles } from '../../lib/articles'
 
-// カテゴリ別テーマカラー（表示用）
 const CATEGORY_META = {
   '乾燥肌ケア':       { eyebrow: 'DRY SKIN' },
   'スキンケア':       { eyebrow: 'SKINCARE' },
@@ -16,17 +15,16 @@ const CATEGORY_META = {
   'トレンド美容':     { eyebrow: 'TREND' },
 }
 
-// 表示グループ定義
 const groups = [
   {
     label: '乾燥・保湿ケア',
     eyebrow: 'DRY & MOISTURE',
-    slugs: ['dry-skin-bath', 'dry-after-bath', 'bathsalt-for-dry', 'moisturizing-bathsalt', 'beyond-topical-care', 'dry-season-bath'],
+    slugs: ['dry-skin-bath', 'dry-after-bath', 'dry-skin-bathsalt', 'moisturizing-bathsalt', 'bath-vs-topical-skincare', 'dry-season-bath'],
   },
   {
     label: '美肌・浸かる美容',
     eyebrow: 'BATH BEAUTY',
-    slugs: ['bath-as-serum', 'start-bath-beauty', 'change-your-water', 'transparency-bath', 'effortless-beauty'],
+    slugs: ['bath-as-serum', 'bath-beauty-for-skin', 'change-your-water', 'clear-skin-bath', 'effortless-bath-beauty'],
   },
   {
     label: 'メイク・スキンケア理論',
@@ -36,7 +34,7 @@ const groups = [
   {
     label: '習慣・ライフスタイル',
     eyebrow: 'LIFESTYLE',
-    slugs: ['bath-beauty-habit', 'why-bath-beauty-works', '30s-moisturize', 'beauty-women-bath', 'bath-salt-guide'],
+    slugs: ['bath-beauty-habit', 'benefits-of-bath-beauty', '30s-moisturize', 'beauty-women-bath', 'bath-salt-guide'],
   },
 ]
 
@@ -60,7 +58,6 @@ export default function BlogIndex() {
         <meta property="og:url" content="https://silica-lagoon.company/blog" />
       </Head>
 
-      {/* Header */}
       <header className="sl-header">
         <Link href="/" className="sl-header-logo">SILICA LAGOON</Link>
         <nav className="sl-header-nav">
@@ -69,7 +66,6 @@ export default function BlogIndex() {
         </nav>
       </header>
 
-      {/* Blog Hero */}
       <section className="sl-blog-hero">
         <span className="sl-blog-hero-eyebrow">Beauty Column</span>
         <h1 className="sl-blog-hero-title">美肌コラム</h1>
@@ -79,7 +75,6 @@ export default function BlogIndex() {
         </p>
       </section>
 
-      {/* Article Groups */}
       <div className="sl-blog-list-wrap">
         {groups.map(group => (
           <section key={group.label} style={{ marginBottom: '64px' }}>
@@ -103,7 +98,7 @@ export default function BlogIndex() {
                     <div className="sl-article-list-title" style={{ whiteSpace: 'pre-line' }}>
                       {a.title}
                     </div>
-                    <div className="sl-article-list-desc" style={{ marginTop: '6px', fontSize: '11.5px', color: '#aaa', letterSpacing: '0.02em', lineHeight: '1.7' }}>
+                    <div style={{ marginTop: '6px', fontSize: '11.5px', color: '#aaa', letterSpacing: '0.02em', lineHeight: '1.7', whiteSpace: 'pre-line' }}>
                       {a.catchphrase}
                     </div>
                   </Link>
@@ -113,7 +108,7 @@ export default function BlogIndex() {
           </section>
         ))}
 
-        {/* LP2 CTA Banner */}
+        {/* LP2 CTA */}
         <div style={{
           marginTop: '80px',
           background: 'linear-gradient(160deg, #f0f5ff 0%, white 100%)',

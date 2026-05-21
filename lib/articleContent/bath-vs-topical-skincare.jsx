@@ -1,6 +1,6 @@
 import QuoteBlock from '../../components/QuoteBlock'
 
-export default function BeyondTopicalCare() {
+export default function BathVsTopicalSkincare() {
   return (
     <>
       <p className="sl-lead">
