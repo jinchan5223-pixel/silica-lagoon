@@ -4,35 +4,57 @@ export default function EffortlessBathBeauty() {
   return (
     <>
       <p className="sl-lead">
-        美容に、もっと頑張らなくていい。<br />
-        そう思い始めた夜のこと。
+        気づけば、<br />
+        「ちゃんと美容<br />
+        しなきゃ」に<br />
+        追われていた。
       </p>
-
-      <img src="/images/blue-bath.jpg" alt="静かなお湯" className="sl-section-img" />
-
-      <QuoteBlock text={"頑張らなくていい美容を。\nお風呂の時間が、それを叶える。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        毎晩のスキンケアが、義務に感じる夜がある。<br />
-        でも、お風呂に入ることは止めない。<br />
-        だったら、お湯そのものを変えてしまえばいい。<br />
-        浸かるだけで、整う。<br />
-        それだけでいい。
+        美容を頑張る日より、<br />
+        ちゃんと休めた日の<br />
+        ほうが、<br />
+        肌の調子がいい気がする。<br />
+        <br />
+        そんな夜から、<br />
+        順番を変えた。
       </p>
 
-      <img src="/images/bath-surface.jpg" alt="やわらかな水面" className="sl-section-img" />
+      <img src="/images/effortless-beauty.png" alt="白い空間でやわらかに過ごす朝" className="sl-section-img" loading="lazy" />
 
-      <QuoteBlock text={"自分をもっと、\nラクにしてあげていい。"} sub="SILICA LAGOON" />
+      <QuoteBlock text={"頑張るより、\n整える。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        頑張らない美容ほど、続く。<br />
-        続くほど、肌が変わる。<br />
-        シリカラグーンは、<br />
-        「浸かるだけのスキンケア」という<br />
-        新しい選択肢を提案しています。
+        シリカが溶けた<br />
+        お湯に浸かるだけで、<br />
+        <br />
+        肌が自然に<br />
+        整っていく。
       </p>
 
-      <QuoteBlock text={"何もしなくていい。\nただ、浸かるだけ。"} sub="SILICA LAGOON" />
+      <img src="/images/effortless-beauty-2.png" alt="自然体の朝の肌" className="sl-section-img" loading="lazy" />
+
+      <QuoteBlock text={"美容に追われない、\n夜へ。"} sub="SILICA LAGOON" />
+
+      <p className="sl-breath">
+        何もしなくていい。<br />
+        <br />
+        ただ、<br />
+        浸かるだけでいい。<br />
+        <br />
+        肌がラクだと、<br />
+        気持ちもラク。
+      </p>
+
+      <img src="/images/elegant-morning.png" alt="余裕ある静かな朝の時間" className="sl-section-img" loading="lazy" />
+
+      <QuoteBlock text={"何もしない時間が、\n美容になる。"} sub="SILICA LAGOON" />
+
+      <p className="sl-closing">
+        頑張らなくても、<br />
+        整っていける夜が<br />
+        ある。
+      </p>
     </>
   )
 }
