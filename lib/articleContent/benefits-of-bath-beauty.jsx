@@ -4,36 +4,54 @@ export default function BenefitsOfBathBeauty() {
   return (
     <>
       <p className="sl-lead">
-        お風呂美容が続く人と<br />
-        続かない人の、たった一つの違い。
+        お風呂上がり、<br />
+        肌だけじゃなく<br />
+        気持ちまで軽くなる<br />
+        日がある。
       </p>
-
-      <img src="/images/blue-bath.jpg" alt="毎日続くお風呂美容" className="sl-section-img" />
-
-      <QuoteBlock text={"続く美容は、\n「頑張らない」ことから始まる。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        スキンケアが続かない理由のほとんどは、<br />
-        「ステップが多すぎる」こと。<br />
-        でもお風呂美容は違います。<br />
-        毎日必ず入るお風呂に、<br />
-        ひとさじ加えるだけでいい。<br />
-        ゼロを1にする必要がないから、続きます。
+        うまく説明できないけれど、<br />
+        なんか調子いい。<br />
+        <br />
+        その感覚が、<br />
+        続く理由だった。
       </p>
 
-      <img src="/images/color-change.jpg" alt="バスソルトが溶け込む瞬間" className="sl-section-img" />
+      <img src="/images/totonou-woman.png" alt="お風呂上がりの静かな朝" className="sl-section-img" loading="lazy" />
 
-      <QuoteBlock text={"お湯を変えるだけで、\n全身のスキンケアが完成する。"} sub="SILICA LAGOON" />
+      <QuoteBlock text={"肌だけじゃなく、\n気持ちまで整っていく。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        お風呂美容が続きやすい理由はもうひとつ。<br />
-        結果を全身で実感できること。<br />
-        顔だけでなく、腕・背中・かかとまで<br />
-        「変わった」を感じると、<br />
-        習慣はもっと強固になります。
+        シリカが溶けた<br />
+        お湯に浸かると、<br />
+        <br />
+        入浴中から<br />
+        肌が静かに整う。
       </p>
 
-      <QuoteBlock text={"毎日続くから、\n肌が変わる。\nお風呂は最強の習慣。"} sub="SILICA LAGOON" />
+      <img src="/images/totonou-woman-2.png" alt="バスルームで自然体の朝" className="sl-section-img" loading="lazy" />
+
+      <QuoteBlock text={"お風呂時間が、\n毎日の余白になる。"} sub="SILICA LAGOON" />
+
+      <p className="sl-breath">
+        お風呂時間が変わると、<br />
+        夜の過ごし方まで<br />
+        変わっていく。<br />
+        <br />
+        深呼吸したくなる<br />
+        お風呂時間へ。
+      </p>
+
+      <img src="/images/bath-lifestyle.png" alt="整う生活の静かな時間" className="sl-section-img" loading="lazy" />
+
+      <QuoteBlock text={"整う時間は、\n夜につくられる。"} sub="SILICA LAGOON" />
+
+      <p className="sl-closing">
+        肌が整う夜は、<br />
+        気持ちまで<br />
+        少し軽くなる。
+      </p>
     </>
   )
 }
