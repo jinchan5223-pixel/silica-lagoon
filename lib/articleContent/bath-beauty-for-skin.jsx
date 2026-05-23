@@ -4,36 +4,55 @@ export default function BathBeautyForSkin() {
   return (
     <>
       <p className="sl-lead">
-        「お風呂美容、始めたい」<br />
-        でも何から変えればいいか、わからない。
+        今日は、<br />
+        肌がちゃんと静か。<br />
+        <br />
+        そんな日がある。
       </p>
-
-      <img src="/images/bath-texture.jpg" alt="お風呂のテクスチャー" className="sl-section-img" />
-
-      <QuoteBlock text={"一番変わるのは、\nいつも一番身近なもの。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        お風呂美容を始めるとき、<br />
-        最初に変えるべきはシャンプーでも<br />
-        ボディソープでもありません。<br />
-        変えるべきは、"お湯"そのものです。
+        うまく説明できないけれど、<br />
+        肌がラクな日は<br />
+        気持ちまでラクな気がする。<br />
+        <br />
+        その感覚が、<br />
+        昨夜のお風呂から<br />
+        来ていた。
       </p>
 
-      <img src="/images/color-change.jpg" alt="バスソルトが溶け込む瞬間" className="sl-section-img" />
+      <img src="/images/calm-time.png" alt="白い光の中で静かに過ごす朝" className="sl-section-img" loading="lazy" />
 
-      <QuoteBlock text={"お湯を変えると、\nすべてのお風呂時間が変わる。"} sub="SILICA LAGOON" />
+      <QuoteBlock text={"肌が整うと、\n気持ちまで静かになる。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        入浴剤をひとつ加えるだけで、<br />
-        20分間全身が美容成分に包まれます。<br />
-        顔だけでなく、背中・ひじ・かかとまで。<br />
-        「塗るケア」では届かない場所へも、<br />
-        お湯は確実に届いていきます。
+        シリカが溶けた<br />
+        お湯に浸かると、<br />
+        <br />
+        入浴中から<br />
+        肌が静かに落ち着いていく。
       </p>
 
-      <img src="/images/blue-bath.jpg" alt="乳青色のお湯" className="sl-section-img" />
+      <img src="/images/calm-time-2.png" alt="肌に触れる穏やかな朝" className="sl-section-img" loading="lazy" />
 
-      <QuoteBlock text={"小さく始めて、\n毎日続く美容へ。"} sub="SILICA LAGOON" />
+      <QuoteBlock text={"お風呂時間が、\n肌を静かに整える。"} sub="SILICA LAGOON" />
+
+      <p className="sl-breath">
+        肌がラクな夜は、<br />
+        気持ちもラク。<br />
+        <br />
+        深呼吸したくなる<br />
+        そんなお風呂時間へ。
+      </p>
+
+      <img src="/images/calm-time-3.png" alt="窓光の中でくつろぐ静かな朝" className="sl-section-img" loading="lazy" />
+
+      <QuoteBlock text={"今日は、\n肌がちゃんとラク。"} sub="SILICA LAGOON" />
+
+      <p className="sl-closing">
+        お風呂時間が、<br />
+        肌を静かに<br />
+        整えていく。
+      </p>
     </>
   )
 }
