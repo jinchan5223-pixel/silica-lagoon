@@ -4,29 +4,55 @@ export default function MakeupBath() {
   return (
     <>
       <p className="sl-lead">
-        化粧ノリが悪い日の原因は、<br />
-        その朝ではなく、前の夜にある。
+        朝、鏡を見て<br />
+        ため息をついた<br />
+        ことがありますか？
       </p>
-
-      <img src="/images/bath-texture.jpg" alt="乳青色の水面テクスチャー" className="sl-section-img" />
-
-      <QuoteBlock text={"翌朝の肌は、\n昨夜のバスタイムでできている。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        肌の水分量、キメ、毛穴の状態——<br />
-        これらはすべて、入浴中に整えられる。
+        肌がくすんでいる。<br />
+        ファンデが<br />
+        のりにくい。<br />
+        <br />
+        その原因は、<br />
+        昨夜のお風呂に<br />
+        あるかもしれない。
       </p>
 
-      <img src="/images/blue-bath.jpg" alt="SILICA LAGOONの青いお湯" className="sl-section-img" />
+      <img src="/images/makeup-bath.png" alt="バスタイムと朝の肌の関係" className="sl-section-img" loading="lazy" />
+
+      <QuoteBlock text={"翌朝の肌は、\n昨夜のバスタイムで\nできている。"} sub="SILICA LAGOON" />
+
+      <p className="sl-breath">
+        シリカとヒアルロン酸が<br />
+        溶け込んだお湯に浸かると、<br />
+        <br />
+        肌のキメが整い、<br />
+        翌朝の素肌が<br />
+        少し変わる。
+      </p>
+
+      <img src="/images/makeup.png" alt="素肌感のあるメイクアップ" className="sl-section-img" loading="lazy" />
 
       <QuoteBlock text={"浸かるほどに、\n肌が静かに整っていく。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        シリカ・ヒアルロン酸が溶け込んだお湯に浸かると、<br />
-        入浴後の肌のもちもち感が、明らかに違う。
+        ファンデを薄くしても、<br />
+        自信が持てる朝へ。<br />
+        <br />
+        スキンケアの前に、<br />
+        まずお湯を変える。
       </p>
 
-      <QuoteBlock text={"今夜のバスタイムが、\n明日の顔をつくる。"} sub="SILICA LAGOON" />
+      <img src="/images/morning-glow.png" alt="朝の柔らかな光の中の肌" className="sl-section-img" loading="lazy" />
+
+      <QuoteBlock text={"メイク前の肌が、\n少し好きになる。"} sub="SILICA LAGOON" />
+
+      <p className="sl-closing">
+        今夜のバスタイムを、<br />
+        明日の顔への<br />
+        投資にする。
+      </p>
     </>
   )
 }
