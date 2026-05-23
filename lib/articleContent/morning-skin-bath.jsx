@@ -19,7 +19,7 @@ export default function MorningSkinBath() {
         残っていた。
       </p>
 
-      <img src="/images/morning-bath.png" alt="朝の柔らかな光の中の肌" className="sl-section-img" loading="lazy" />
+      <img src="/images/makeup-before.png" alt="朝の窓際で肌に触れる" className="sl-section-img" loading="lazy" />
 
       <QuoteBlock text={"昨夜のお風呂が、\n今朝の肌になっている。"} sub="SILICA LAGOON" />
 
@@ -31,7 +31,7 @@ export default function MorningSkinBath() {
         肌が静かに整い続ける。
       </p>
 
-      <img src="/images/morning-glow.png" alt="朝の素肌のやわらかな光" className="sl-section-img" loading="lazy" />
+      <img src="/images/skin-check.png" alt="朝の光の中で肌を確かめる" className="sl-section-img" loading="lazy" />
 
       <QuoteBlock text={"眠っている間も、\n肌は整い続ける。"} sub="SILICA LAGOON" />
 
@@ -44,7 +44,7 @@ export default function MorningSkinBath() {
         好きになれる。
       </p>
 
-      <img src="/images/makeup.png" alt="メイク前の素肌" className="sl-section-img" loading="lazy" />
+      <img src="/images/skin-check-2.png" alt="朝の素肌、やわらかな手触り" className="sl-section-img" loading="lazy" />
 
       <QuoteBlock text={"朝の肌が、\n少し好きになる。"} sub="SILICA LAGOON" />
 
