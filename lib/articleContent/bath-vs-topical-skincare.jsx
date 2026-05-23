@@ -4,36 +4,55 @@ export default function BathVsTopicalSkincare() {
   return (
     <>
       <p className="sl-lead">
-        何を塗っても、<br />
-        乾燥が追いつかない夜がある。
+        お風呂上がり、<br />
+        肌が乾く前に<br />
+        急いで塗っていた。
       </p>
-
-      <img src="/images/bath-surface.jpg" alt="静かな水面" className="sl-section-img" />
-
-      <QuoteBlock text={"塗るだけでは、\n届かない場所がある。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        化粧水・乳液・クリーム。<br />
-        丁寧にスキンケアをしていても、<br />
-        翌朝の乾燥が気になる方は多いもの。<br />
-        その理由は、「塗るケア」が届くのは<br />
-        肌表面の数層だけだから。
+        それが普通だと<br />
+        思っていた。<br />
+        <br />
+        でも、<br />
+        お湯が変わった夜から<br />
+        急がなくなった。
       </p>
 
-      <img src="/images/blue-bath.jpg" alt="乳青色のお湯に浸かる" className="sl-section-img" />
+      <img src="/images/after-bath-towel.png" alt="お風呂上がりの静かな時間" className="sl-section-img" loading="lazy" />
 
-      <QuoteBlock text={"浸かる美容は、\n全身の肌に届く。\n塗るケアでは届かない場所まで。"} sub="SILICA LAGOON" />
+      <QuoteBlock text={"スキンケアは、\nお風呂から始まっている。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        入浴中、お湯に浸かることで<br />
-        角質層は水分を十分に含んだ状態になります。<br />
-        そこにシリカやヒアルロン酸が溶け込んだお湯があれば、<br />
-        保湿成分が全身へと届いていきます。<br />
-        塗るケアの"前に"、整える。<br />
-        それが浸かる美容の本質です。
+        シリカとヒアルロン酸が<br />
+        溶けたお湯に浸かると、<br />
+        <br />
+        塗る前から<br />
+        肌の土台が<br />
+        静かに整う。
       </p>
 
-      <QuoteBlock text={"頑張った夜ほど、\nお風呂に答えがある。"} sub="SILICA LAGOON" />
+      <img src="/images/before-skincare.png" alt="塗る前に整った肌" className="sl-section-img" loading="lazy" />
+
+      <QuoteBlock text={"塗る前に、\n肌を整える。"} sub="SILICA LAGOON" />
+
+      <p className="sl-breath">
+        順番が変わると、<br />
+        スキンケアが<br />
+        ラクになる。<br />
+        <br />
+        肌がラクだと、<br />
+        夜が静かになる。
+      </p>
+
+      <img src="/images/good-morning.png" alt="整った肌で迎える穏やかな朝" className="sl-section-img" loading="lazy" />
+
+      <QuoteBlock text={"肌の土台が、\n変わる時間。"} sub="SILICA LAGOON" />
+
+      <p className="sl-closing">
+        肌を整える時間は、<br />
+        塗る前から<br />
+        始まっている。
+      </p>
     </>
   )
 }
