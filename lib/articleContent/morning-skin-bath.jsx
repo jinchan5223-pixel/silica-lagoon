@@ -4,34 +4,55 @@ export default function MorningSkinBath() {
   return (
     <>
       <p className="sl-lead">
-        翌朝、鏡を見るのが<br />
-        少し楽しみになった。
+        カーテンの隙間から<br />
+        光が差し込む朝。<br />
+        <br />
+        起き上がる前に、<br />
+        ふと頬に触れてみた。
       </p>
 
-      <img src="/images/bath-texture.jpg" alt="やわらかいお湯のテクスチャー" className="sl-section-img" />
+      <p className="sl-breath">
+        やわらかい。<br />
+        <br />
+        昨夜のお風呂が、<br />
+        朝の肌に<br />
+        残っていた。
+      </p>
+
+      <img src="/images/morning-bath.png" alt="朝の柔らかな光の中の肌" className="sl-section-img" loading="lazy" />
 
       <QuoteBlock text={"昨夜のお風呂が、\n今朝の肌になっている。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        朝起きて、手が頬に触れる瞬間。<br />
-        「あ、今日は違う」<br />
-        その感覚を知ってしまうと、<br />
-        お風呂時間の意味が変わります。
+        シリカとヒアルロン酸が<br />
+        溶けたお湯に浸かると、<br />
+        <br />
+        眠っている間も、<br />
+        肌が静かに整い続ける。
       </p>
 
-      <img src="/images/blue-bath.jpg" alt="乳青色のお湯" className="sl-section-img" />
+      <img src="/images/morning-glow.png" alt="朝の素肌のやわらかな光" className="sl-section-img" loading="lazy" />
 
-      <QuoteBlock text={"夜の20分が、\n翌朝の素肌をつくる。"} sub="SILICA LAGOON" />
+      <QuoteBlock text={"眠っている間も、\n肌は整い続ける。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        入浴後から眠るまでの間、<br />
-        肌は整った状態で修復を続けます。<br />
-        シリカやヒアルロン酸が溶け込んだお湯で温まった肌は、<br />
-        水分をより多く抱え込みやすくなります。<br />
-        翌朝の潤いは、昨夜のお風呂で決まっています。
+        鏡を見るのが、<br />
+        少し楽しみになった。<br />
+        <br />
+        朝の光の中で、<br />
+        自分の肌が<br />
+        好きになれる。
       </p>
 
-      <QuoteBlock text={"今夜のお風呂を、\n明日の自分への準備に。"} sub="SILICA LAGOON" />
+      <img src="/images/makeup.png" alt="メイク前の素肌" className="sl-section-img" loading="lazy" />
+
+      <QuoteBlock text={"朝の肌が、\n少し好きになる。"} sub="SILICA LAGOON" />
+
+      <p className="sl-closing">
+        今夜のお風呂を、<br />
+        明日の朝への<br />
+        贈りものにする。
+      </p>
     </>
   )
 }
