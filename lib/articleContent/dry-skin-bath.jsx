@@ -4,29 +4,55 @@ export default function DrySkinBath() {
   return (
     <>
       <p className="sl-lead">
-        お風呂は、洗う場所だと思っていた。<br />
-        でも今夜から、整える場所になる。
+        お風呂後、<br />
+        肌がちゃんと<br />
+        落ち着いてる。<br />
+        <br />
+        そんな夜がある。
       </p>
-
-      <img src="/images/blue-bath.jpg" alt="乳青色のお湯" className="sl-section-img" />
-
-      <QuoteBlock text={"乾燥肌に必要なのは、\nもっと塗ることではなく、\n浸かることだった。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        バスソルトが溶け込んだお湯に、ただ浸かる。<br />
-        それだけで、肌の感触が変わっていく。
+        乾燥してない夜は、<br />
+        肌のことが<br />
+        気にならない。<br />
+        <br />
+        気にならない分だけ、<br />
+        気持ちまでラク。
       </p>
 
-      <img src="/images/color-change.jpg" alt="バスソルトが溶け込む瞬間" className="sl-section-img" />
+      <img src="/images/stress-free.png" alt="お風呂上がりの静かな安心感" className="sl-section-img" loading="lazy" />
 
-      <QuoteBlock text={"整う、という感覚を\n肌で知っている。"} sub="SILICA LAGOON" />
+      <QuoteBlock text={"乾燥しない夜は、\n気持ちまで少し静か。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        シリカ・ヒアルロン酸・スクワランが溶け込んだお湯。<br />
-        入浴中から、全身の肌に成分が届きはじめる。
+        シリカが溶けた<br />
+        お湯に浸かると、<br />
+        <br />
+        お風呂後の肌が<br />
+        少し呼吸しやすい。
       </p>
 
-      <QuoteBlock text={"頑張らなくていい美容を。\nお風呂の時間が、それを叶える。"} sub="SILICA LAGOON" />
+      <img src="/images/dry-zero-skin.png" alt="肌がちゃんとラクな夜" className="sl-section-img" loading="lazy" />
+
+      <QuoteBlock text={"お風呂後、\n肌がちゃんとラク。"} sub="SILICA LAGOON" />
+
+      <p className="sl-breath">
+        つっぱらない肌で<br />
+        眠れる夜は、<br />
+        <br />
+        眠りまで<br />
+        やさしい気がする。
+      </p>
+
+      <img src="/images/stress-free-night.png" alt="乾燥ストレスのない静かな夜" className="sl-section-img" loading="lazy" />
+
+      <QuoteBlock text={"肌がラクな夜は、\n眠りまでやさしい。"} sub="SILICA LAGOON" />
+
+      <p className="sl-closing">
+        乾燥しない夜は、<br />
+        眠る時間まで<br />
+        少しやさしい。
+      </p>
     </>
   )
 }
