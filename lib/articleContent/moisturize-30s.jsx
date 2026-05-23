@@ -4,30 +4,57 @@ export default function Moisturize30s() {
   return (
     <>
       <p className="sl-lead">
-        20代と同じケアでは、もう足りない。<br />
-        30代の肌は、浸かる保湿を求めている。
+        今日は、<br />
+        肌がちゃんと<br />
+        落ち着いてる。<br />
+        <br />
+        そんな日がある。
       </p>
-
-      <img src="/images/blue-bath.jpg" alt="SILICA LAGOONの青いお湯" className="sl-section-img" />
-
-      <QuoteBlock text={"30代の肌変化に、\nお風呂という答え。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        背中、ひじ、かかと——<br />
-        塗るケアでは届かない場所も、<br />
-        浸かることで、まるごとケアできる。
+        潤ってる日は、<br />
+        肌のことが<br />
+        気にならない。<br />
+        <br />
+        気にならない分だけ、<br />
+        気持ちまでラク。
       </p>
 
-      <img src="/images/butterfly-pea.jpg" alt="バタフライピーの花" className="sl-section-img" />
+      <img src="/images/stress-zero.png" alt="白い光の中で静かに過ごす朝" className="sl-section-img" loading="lazy" />
 
-      <QuoteBlock text={"透明感のある肌は、\nお風呂の中でつくられる。"} sub="SILICA LAGOON" />
+      <QuoteBlock text={"潤ってる日は、\n肌がちゃんと静か。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        シリカ・コラーゲン・ヒアルロン酸が溶け込んだお湯。<br />
-        30代のスキンケアは、そこから始まる。
+        シリカとヒアルロン酸が<br />
+        溶けたお湯に浸かると、<br />
+        <br />
+        翌朝まで<br />
+        肌が乾燥しづらい<br />
+        状態が続く。
       </p>
 
-      <QuoteBlock text={"毎晩のバスタイムが、\n30代の肌への投資になる。"} sub="SILICA LAGOON" />
+      <img src="/images/dry-zero-skin.png" alt="やわらかく整った肌" className="sl-section-img" loading="lazy" />
+
+      <QuoteBlock text={"乾燥しない夜は、\n気持ちまで少し軽い。"} sub="SILICA LAGOON" />
+
+      <p className="sl-breath">
+        塗るより先に、<br />
+        お湯で整える。<br />
+        <br />
+        その順番が、<br />
+        肌をラクに<br />
+        してくれる。
+      </p>
+
+      <img src="/images/dry-zero-2.png" alt="余裕ある生活の静かな朝" className="sl-section-img" loading="lazy" />
+
+      <QuoteBlock text={"お風呂時間が、\n肌を守ってくれる。"} sub="SILICA LAGOON" />
+
+      <p className="sl-closing">
+        潤ってる肌は、<br />
+        毎日を<br />
+        少しラクにする。
+      </p>
     </>
   )
 }
