@@ -5,15 +5,13 @@ export default function EffortlessBathBeauty() {
     <>
       <p className="sl-lead">
         気づけば、<br />
-        「ちゃんと美容<br />
-        しなきゃ」に<br />
+        「ちゃんと美容しなきゃ」に<br />
         追われていた。
       </p>
 
       <p className="sl-breath">
         美容を頑張る日より、<br />
-        ちゃんと休めた日の<br />
-        ほうが、<br />
+        ちゃんと休めた日のほうが、<br />
         肌の調子がいい気がする。<br />
         <br />
         そんな夜から、<br />
