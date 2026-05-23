@@ -4,35 +4,54 @@ export default function DrySeasonBath() {
   return (
     <>
       <p className="sl-lead">
-        空気が乾燥しはじめると、<br />
-        肌のざらつきが気になりだす。
+        冷えた夜、<br />
+        お風呂の湯気を見るだけで<br />
+        少し安心する。
       </p>
-
-      <img src="/images/bath-surface.jpg" alt="しっとりとした水面" className="sl-section-img" />
-
-      <QuoteBlock text={"乾燥の季節こそ、\nお風呂の使い方を変える。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        秋冬の乾燥は、外気だけの問題ではありません。<br />
-        お風呂の入り方、お湯の温度、<br />
-        浸かる時間の長さ——<br />
-        これらが肌の水分量に直接影響します。<br />
-        乾燥する季節ほど、お風呂時間が武器になります。
+        寒い季節のお風呂は、<br />
+        ただ温まる場所じゃない。<br />
+        <br />
+        乾燥した肌が、<br />
+        やっとゆるむ時間。
       </p>
 
-      <img src="/images/blue-bath.jpg" alt="保湿成分が溶けたお湯" className="sl-section-img" />
+      <img src="/images/winter-bath.png" alt="冬の夜のお風呂" className="sl-section-img" loading="lazy" />
 
-      <QuoteBlock text={"季節が乾燥するほど、\nお湯がやさしくなる必要がある。"} sub="SILICA LAGOON" />
+      <QuoteBlock text={"寒い夜に、\n肌までほどける。"} sub="SILICA LAGOON" />
 
       <p className="sl-breath">
-        乾燥シーズンにおすすめしたいのは、<br />
-        38〜40℃のぬるめのお湯に10〜20分浸かること。<br />
-        熱すぎるお湯は皮脂を奪い、乾燥を悪化させます。<br />
-        シリカ配合の入浴剤でお湯を整えれば、<br />
-        入浴後のかさつきが変わります。
+        お湯にシリカが溶けていると、<br />
+        入浴中から肌が整う。<br />
+        <br />
+        冬の乾燥を、<br />
+        お湯で先回りする。
       </p>
 
-      <QuoteBlock text={"冬の乾燥肌に、\nお風呂という答えがある。"} sub="SILICA LAGOON" />
+      <img src="/images/winter-bath-hand.png" alt="冬のお風呂に浸かる手" className="sl-section-img" loading="lazy" />
+
+      <QuoteBlock text={"乾燥する季節の、\n避難場所。"} sub="SILICA LAGOON" />
+
+      <p className="sl-breath">
+        急がなくていい。<br />
+        ゆっくり浸かるだけで、<br />
+        <br />
+        翌朝の肌が<br />
+        少し違う。
+      </p>
+
+      <img src="/images/winter-after-bath.png" alt="冬のお風呂上がりの静かな時間" className="sl-section-img" loading="lazy" />
+
+      <QuoteBlock text={"深呼吸するように、\n冬の夜を過ごす。"} sub="SILICA LAGOON" />
+
+      <p className="sl-closing">
+        寒い季節の夜を、<br />
+        少しやさしく。<br />
+        <br />
+        今日のお風呂から、<br />
+        冬が変わる。
+      </p>
     </>
   )
 }
