@@ -7,7 +7,6 @@ const STRIPE_URL = 'https://buy.stripe.com/4gMaEQ5l313Wfmg6n58k801'
 const SUP_URL = 'https://mrcvwlaawmlfpoibxjec.supabase.co'
 const SUP_KEY = 'sb_publishable_nONkmADAMLoZ1wxUrZqwug_F_Fm08yO'
 
-// ?ref= パラメータを読み取り、クリック記録 + Stripeのclient_reference_idに引き継ぐ
 function useShopUrl() {
   const [shopUrl, setShopUrl] = useState(STRIPE_URL)
   useEffect(() => {
@@ -42,11 +41,41 @@ function LpHeader({ shopUrl }) {
 }
 
 // ============================================================
-// HERO — 価値を一瞬で伝える
+// STICKY BAR — スマホ固定CTA（スクロール後に出現）
+// ============================================================
+function StickyBar({ shopUrl }) {
+  const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => {
+      setShow(window.scrollY > window.innerHeight * 0.85)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  return (
+    <div className={`${styles.stickyBar} ${show ? styles.stickyBarShow : ''}`}>
+      <div className={styles.stickyInner}>
+        <div className={styles.stickyInfo}>
+          <span className={styles.stickyInfoTop}>720g　約12回分</span>
+          <span className={styles.stickyInfoBot}>送料無料　¥3,300（税込）</span>
+        </div>
+        <a href={shopUrl} className={styles.stickyBtn}>
+          青のスパ体験を始める
+          <span className={styles.stickyBtnArrow}>›</span>
+        </a>
+      </div>
+    </div>
+  )
+}
+
+// ============================================================
+// HERO — ガラスモーフィズム価格カード
 // ============================================================
 function HeroSection({ shopUrl }) {
   return (
-    <section className={styles.hero}>
+    <section className={styles.hero} id="hero-top">
       <div className={styles.heroBg}>
         <img
           src="/images/hero-bath.png"
@@ -87,11 +116,36 @@ function HeroSection({ shopUrl }) {
           自宅で青のスパ体験を始める
           <span className={styles.heroCtaArrow}>›</span>
         </a>
-        <p className={styles.heroPriceTag}>
-          720g・約12回分　¥3,300（税込）　送料無料
-        </p>
+
+        {/* ガラスモーフィズム価格カード */}
+        <div className={styles.heroPriceCard}>
+          <p className={styles.heroPriceMain}>720g（約12回分）　送料無料</p>
+          <p className={styles.heroPriceAmt}>
+            ¥3,300<span className={styles.heroPriceTax}>&nbsp;税込</span>
+          </p>
+          <p className={styles.heroPricePer}>1回あたり約275円</p>
+        </div>
+
         <p className={styles.heroNote}>* 自社調べ（シリカを配合した入浴剤として）</p>
       </div>
+    </section>
+  )
+}
+
+// ============================================================
+// QUICK BENEFIT — FV直後の超短文ベネフィット
+// ============================================================
+function QuickBenefit() {
+  return (
+    <section className={styles.quickBenefit}>
+      <p className={styles.quickBenefitMain}>
+        自宅のお風呂が、<br />
+        青のラグジュアリースパへ。
+      </p>
+      <p className={styles.quickBenefitSub}>
+        美容成分を溶け込ませた、<br />
+        乳青色のバスタイム。
+      </p>
     </section>
   )
 }
@@ -119,7 +173,7 @@ function TrustStrip() {
 }
 
 // ============================================================
-// INLINE CTA — ガラス感・高級ホテルUI（5箇所配置）
+// INLINE CTA — ガラス感・高級ホテルUI
 // ============================================================
 function InlineCta({ shopUrl, text }) {
   return (
@@ -224,6 +278,37 @@ function QuoteSection() {
 }
 
 // ============================================================
+// TRANSFORM — 青く変化する瞬間の演出
+// ============================================================
+function TransformSection() {
+  return (
+    <section className={styles.transformSection}>
+      <div className={styles.transformImgWrap}>
+        <img
+          src="/images/dissolving.png"
+          alt="乳青色に変わる瞬間"
+          className={styles.transformImg}
+          loading="lazy"
+        />
+        <div className={styles.transformGrad} />
+        <div className={styles.transformRipple} />
+      </div>
+      <div className={styles.transformCopy}>
+        <span className={styles.transformEye}>THE MOMENT</span>
+        <p className={styles.transformText}>
+          粉が溶ける瞬間、<br />
+          お湯が青く染まる。
+        </p>
+        <p className={styles.transformSub}>
+          視界が変わると、<br />
+          気持ちまで変わる。
+        </p>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================
 // ATMOSPHERE — 乳青色のお湯ビジュアル
 // ============================================================
 function AtmosphereSection() {
@@ -245,7 +330,7 @@ function AtmosphereSection() {
 }
 
 // ============================================================
-// PRODUCT — 美容液のようなお湯
+// PRODUCT — 体験言語で伝える
 // ============================================================
 function ProductSection() {
   const forWhom = [
@@ -269,13 +354,14 @@ function ProductSection() {
           肌をやさしく整える。
         </h2>
         <p className={styles.productBody}>
-          メタケイ酸（温泉法基準の美肌成分）に着想。<br />
-          "美肌の湯"と呼ばれる温泉の<br />
-          成分基準をヒントに設計しました。
+          包み込まれるような湯あたり。<br />
+          しっとりと続く、湯上がりの感触。<br />
+          "美肌の湯"と呼ばれる温泉から、<br />
+          ヒントを得て設計しました。
         </p>
 
         <div className={styles.ingredientBadges}>
-          {['メタケイ酸\n(温泉法基準美肌成分)', 'シリカ\n(保湿サポート)', '厳選した\n美容成分'].map((b) => (
+          {['湯上がり\nしっとり感', '乾燥しにくい\n柔らかい湯', '深呼吸したくなる\n温泉発想'].map((b) => (
             <span key={b} className={styles.ingredientBadge} style={{ whiteSpace: 'pre-line', textAlign: 'center', lineHeight: 1.5 }}>
               {b}
             </span>
@@ -336,22 +422,31 @@ function ValueSection() {
 }
 
 // ============================================================
-// REVIEW — 美容誌スタイル
+// REVIEW — Instagram カード風（写真付き）
 // ============================================================
 function ReviewSection() {
   const reviews = [
     {
-      name: 'M.K さん', attr: '30代・乾燥肌',
+      name: 'M.K',
+      attr: '30代・乾燥肌',
+      img: '/images/calm-time.png',
+      tag: '#乾燥肌改善',
       title: 'お風呂上がりの\n肌が違います',
-      text: '乾燥しやすい肌が、しっとり潤って驚きました。翌朝の化粧ノリも良くなりました。',
+      text: '乾燥しやすい肌が、しっとり潤って驚きました。翌朝の化粧ノリも変わりました。',
     },
     {
-      name: 'Y.T さん', attr: '30代・敏感肌',
+      name: 'Y.T',
+      attr: '30代・敏感肌',
+      img: '/images/quiet-bath-2.png',
+      tag: '#美容液みたい',
       title: 'まるで美容液に\n浸かっているみたい',
       text: 'お湯がやわらかくて驚きます。使い続けるほどに肌の調子が変わってきた気がします。',
     },
     {
-      name: 'R.S さん', attr: '20代・混合肌',
+      name: 'R.S',
+      attr: '20代・混合肌',
+      img: '/images/clear-skin-morning.png',
+      tag: '#透明感UP',
       title: '透明感が出て、\nすっぴんに自信が持てる',
       text: 'くすみが抜けて、肌が明るくなった気がします。もう手放せません！',
     },
@@ -366,13 +461,20 @@ function ReviewSection() {
 
         <div className={styles.reviewGrid}>
           {reviews.map((r) => (
-            <div key={r.name} className={styles.reviewCard}>
-              <div className={styles.reviewStars}>★★★★★</div>
-              <p className={styles.reviewTitle}>{r.title}</p>
-              <p className={styles.reviewText}>{r.text}</p>
-              <div className={styles.reviewByline}>
-                <span className={styles.reviewName}>{r.name}</span>
-                <span className={styles.reviewAttr}>{r.attr}</span>
+            <div key={r.name} className={styles.reviewPostCard}>
+              <div className={styles.reviewPostImg}>
+                <img src={r.img} alt="" loading="lazy" />
+                <div className={styles.reviewPostImgGrad} />
+                <span className={styles.reviewPostTag}>{r.tag}</span>
+              </div>
+              <div className={styles.reviewPostBody}>
+                <div className={styles.reviewStars}>★★★★★</div>
+                <p className={styles.reviewTitle} style={{ whiteSpace: 'pre-line' }}>{r.title}</p>
+                <p className={styles.reviewText}>{r.text}</p>
+                <div className={styles.reviewByline}>
+                  <span className={styles.reviewName}>{r.name}</span>
+                  <span className={styles.reviewAttr}>{r.attr}</span>
+                </div>
               </div>
             </div>
           ))}
@@ -463,12 +565,16 @@ export default function Lp2() {
       </Head>
 
       <LpHeader shopUrl={shopUrl} />
+      <StickyBar shopUrl={shopUrl} />
 
       <main>
         {/* FV */}
         <HeroSection shopUrl={shopUrl} />
 
-        {/* 価格・内容量・送料 一覧 */}
+        {/* 何が凄いか一瞬で伝える */}
+        <QuickBenefit />
+
+        {/* 価格・内容量・送料 */}
         <TrustStrip />
 
         {/* CTA ① — FV直後：世界観で刺さった人向け */}
@@ -479,13 +585,16 @@ export default function Lp2() {
         <BenefitSection />
         <QuoteSection />
 
+        {/* 青く変化する瞬間 — 最重要演出 */}
+        <TransformSection />
+
         {/* 乳青色ビジュアル */}
         <AtmosphereSection />
 
         {/* CTA ② — 視覚で欲しくなった人向け */}
         <InlineCta shopUrl={shopUrl} text="乳青色のバスタイムを体験する" />
 
-        {/* 保湿成分・設計思想 */}
+        {/* 体験言語で伝える成分説明 */}
         <ProductSection />
 
         {/* CTA ③ — 美容目的ユーザー向け */}
@@ -497,7 +606,7 @@ export default function Lp2() {
         {/* CTA ④ — コスパ納得層向け */}
         <InlineCta shopUrl={shopUrl} text="送料無料で試してみる" />
 
-        {/* 口コミ */}
+        {/* Instagram風レビュー */}
         <ReviewSection />
 
         {/* CTA ⑤ — 信頼で購入する人向け */}
