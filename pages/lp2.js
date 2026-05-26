@@ -152,9 +152,9 @@ function PainSection() {
 // ============================================================
 function BenefitSection() {
   const benefits = [
-    { img: '/images/bath-surface.jpg', alt: '水面',       label: 'しっとり続く',   strong: '潤い肌'  },
-    { img: '/images/bath-texture.jpg', alt: '入浴イメージ', label: '化粧ノリが変わる', strong: '朝の肌'  },
-    { img: '/images/blue-bath.jpg',    alt: 'シリカのお湯', label: '触りたくなる',   strong: '肌質感'  },
+    { img: '/images/neck-skin.png',        alt: 'お湯の中のうるおい肌',   label: 'しっとり続く',   strong: '潤い肌'  },
+    { img: '/images/after-bath-towel.png', alt: 'お風呂上がりの肌',      label: '化粧ノリが変わる', strong: '朝の肌'  },
+    { img: '/images/calm-time-2.png',      alt: '目を閉じて肌を確かめる', label: '触りたくなる',   strong: '肌質感'  },
   ]
 
   return (
@@ -200,6 +200,27 @@ function QuoteSection() {
 }
 
 // ============================================================
+// ATMOSPHERE
+// ============================================================
+function AtmosphereSection() {
+  return (
+    <section className={styles.atmosphereSection}>
+      <div className={styles.atmosphereBg}>
+        <img src="/images/quiet-bath.png" alt="キャンドルの光の中で静かに浸かる" loading="lazy" />
+        <div className={styles.atmosphereOverlay} />
+      </div>
+      <div className={styles.atmosphereText}>
+        <p className={styles.atmosphereCopy}>
+          毎日のお風呂が、<br />
+          整う時間になる。
+        </p>
+        <span className={styles.atmosphereSub}>SILICA LAGOON</span>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================
 // PRODUCT — 美容液のようなお湯
 // ============================================================
 function ProductSection() {
@@ -213,7 +234,7 @@ function ProductSection() {
   return (
     <section className={styles.productSection}>
       <div className={styles.productImgWrap}>
-        <img src="/images/color-change.jpg" alt="バスソルトが溶ける瞬間" loading="lazy" />
+        <img src="/images/dissolving.png" alt="シリカが水中で溶け広がる瞬間" loading="lazy" />
         <div className={styles.productImgOverlay} />
       </div>
 
@@ -385,6 +406,7 @@ export default function Lp2() {
         <PainSection />
         <BenefitSection />
         <QuoteSection />
+        <AtmosphereSection />
         <ProductSection />
         <ReviewSection />
         <CtaSection shopUrl={shopUrl} />
