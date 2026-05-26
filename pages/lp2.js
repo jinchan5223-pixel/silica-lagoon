@@ -42,12 +42,11 @@ function LpHeader({ shopUrl }) {
 }
 
 // ============================================================
-// HERO — 女性 × コピー × CTA のみ
+// HERO — 価値を一瞬で伝える
 // ============================================================
 function HeroSection({ shopUrl }) {
   return (
     <section className={styles.hero}>
-      {/* 背景画像 */}
       <div className={styles.heroBg}>
         <img
           src="/images/hero-bath.png"
@@ -58,7 +57,6 @@ function HeroSection({ shopUrl }) {
         <div className={styles.heroOverlay} />
       </div>
 
-      {/* コピーのみ */}
       <div className={styles.heroContent}>
         <span className={styles.heroEyebrow}>SILICA LAGOON BATH SALT</span>
 
@@ -72,17 +70,26 @@ function HeroSection({ shopUrl }) {
         <p className={styles.heroSubCopy}>"塗る"から"浸かる"へ。</p>
 
         <p className={styles.heroSub}>
-          美容液のようなお湯で、<br />
-          肌を整える新習慣。
+          自宅でスパ体験。<br />
+          乳青色のお湯が、<br />
+          肌をやさしく整える。
         </p>
+
+        <ul className={styles.heroBullets}>
+          <li>シリカ・保湿成分配合</li>
+          <li>乳青色に変わる非日常感</li>
+          <li>720g・約12回分</li>
+        </ul>
       </div>
 
-      {/* Hero底部CTA — 半透明ガラス */}
       <div className={styles.heroCtaWrap}>
         <a href={shopUrl} className={styles.heroCta}>
-          今すぐ、うるおう体験をはじめる
+          自宅で青のスパ体験を始める
           <span className={styles.heroCtaArrow}>›</span>
         </a>
+        <p className={styles.heroPriceTag}>
+          720g・約12回分　¥3,300（税込）　送料無料
+        </p>
         <p className={styles.heroNote}>* 自社調べ（シリカを配合した入浴剤として）</p>
       </div>
     </section>
@@ -90,13 +97,13 @@ function HeroSection({ shopUrl }) {
 }
 
 // ============================================================
-// TRUST STRIP
+// TRUST STRIP — 価格・内容量・送料
 // ============================================================
 function TrustStrip() {
   const items = [
-    { icon: '💎', label: '日本初*', note: 'シリカ×温泉発想' },
-    { icon: '✨', label: '美容成分', note: '贅沢配合' },
-    { icon: '♨️', label: '温泉発想', note: '美肌の湯' },
+    { icon: '💙', label: '約12回分', note: '720g入り' },
+    { icon: '💎', label: '¥3,300', note: '税込・送料無料' },
+    { icon: '🇯🇵', label: '国内製造', note: '品質安心' },
   ]
   return (
     <div className={styles.trustStrip}>
@@ -107,6 +114,23 @@ function TrustStrip() {
           <span className={styles.trustNote}>{i.note}</span>
         </div>
       ))}
+    </div>
+  )
+}
+
+// ============================================================
+// INLINE CTA — ガラス感・高級ホテルUI（5箇所配置）
+// ============================================================
+function InlineCta({ shopUrl, text }) {
+  return (
+    <div className={styles.inlineCtaWrap}>
+      <a href={shopUrl} className={styles.inlineCtaBtn}>
+        {text}
+        <span className={styles.inlineCtaArrow}>›</span>
+      </a>
+      <p className={styles.inlineCtaPrice}>
+        720g・約12回分　¥3,300（税込）　送料無料
+      </p>
     </div>
   )
 }
@@ -153,8 +177,8 @@ function PainSection() {
 function BenefitSection() {
   const benefits = [
     { img: '/images/neck-skin.png',        alt: 'お湯の中のうるおい肌',   label: 'お風呂上がりの',   strong: 'しっとりが続く'  },
-    { img: '/images/after-bath-towel.png', alt: 'お風呂上がりの肌',      label: '翌朝になって', strong: '肌の違いに気づく'  },
-    { img: '/images/calm-time-2.png',      alt: '目を閉じて肌を確かめる', label: 'つい触りたくなる',   strong: '肌の感触'  },
+    { img: '/images/after-bath-towel.png', alt: 'お風呂上がりの肌',       label: '翌朝になって',    strong: '肌の違いに気づく' },
+    { img: '/images/calm-time-2.png',      alt: '目を閉じて肌を確かめる', label: 'つい触りたくなる', strong: '肌の感触'         },
   ]
 
   return (
@@ -200,7 +224,7 @@ function QuoteSection() {
 }
 
 // ============================================================
-// ATMOSPHERE
+// ATMOSPHERE — 乳青色のお湯ビジュアル
 // ============================================================
 function AtmosphereSection() {
   return (
@@ -276,6 +300,42 @@ function ProductSection() {
 }
 
 // ============================================================
+// VALUE — 720g / 約12回分 / 価格説明
+// ============================================================
+function ValueSection() {
+  return (
+    <section className={styles.valueSection}>
+      <div className={styles.valueInner}>
+        <span className={styles.sectionEyebrow}>THE VALUE</span>
+
+        <div className={styles.valueItems}>
+          <div className={styles.valueItem}>
+            <span className={styles.valueNum}>720g</span>
+            <span className={styles.valueSub}>内容量</span>
+          </div>
+          <div className={styles.valueDivider} />
+          <div className={styles.valueItem}>
+            <span className={styles.valueNum}>約12回分</span>
+            <span className={styles.valueSub}>1回60g目安</span>
+          </div>
+          <div className={styles.valueDivider} />
+          <div className={styles.valueItem}>
+            <span className={styles.valueNum}>¥3,300</span>
+            <span className={styles.valueSub}>税込・送料無料</span>
+          </div>
+        </div>
+
+        <p className={styles.valueNote}>
+          1回あたり約275円。<br />
+          毎日のお風呂が、<br />
+          少し特別になる。
+        </p>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================
 // REVIEW — 美容誌スタイル
 // ============================================================
 function ReviewSection() {
@@ -323,7 +383,7 @@ function ReviewSection() {
 }
 
 // ============================================================
-// CTA — 最下部
+// CTA — 最下部・大型
 // ============================================================
 function CtaSection({ shopUrl }) {
   const trust = [
@@ -351,6 +411,7 @@ function CtaSection({ shopUrl }) {
         <p className={styles.ctaPrice}>
           ¥3,300<span className={styles.ctaPriceSub}>（税込・送料無料）</span>
         </p>
+        <p className={styles.ctaPriceDetail}>720g・約12回分</p>
 
         <a href={shopUrl} className={styles.ctaMainBtn}>
           今すぐ、うるおう体験をはじめる
@@ -404,14 +465,45 @@ export default function Lp2() {
       <LpHeader shopUrl={shopUrl} />
 
       <main>
+        {/* FV */}
         <HeroSection shopUrl={shopUrl} />
+
+        {/* 価格・内容量・送料 一覧 */}
         <TrustStrip />
+
+        {/* CTA ① — FV直後：世界観で刺さった人向け */}
+        <InlineCta shopUrl={shopUrl} text="自宅で青のスパ体験を始める" />
+
+        {/* 悩み共感 → 変化の提示 */}
         <PainSection />
         <BenefitSection />
         <QuoteSection />
+
+        {/* 乳青色ビジュアル */}
         <AtmosphereSection />
+
+        {/* CTA ② — 視覚で欲しくなった人向け */}
+        <InlineCta shopUrl={shopUrl} text="乳青色のバスタイムを体験する" />
+
+        {/* 保湿成分・設計思想 */}
         <ProductSection />
+
+        {/* CTA ③ — 美容目的ユーザー向け */}
+        <InlineCta shopUrl={shopUrl} text="湯上がりのしっとり感を体験する" />
+
+        {/* 価格・内容量の丁寧な説明 */}
+        <ValueSection />
+
+        {/* CTA ④ — コスパ納得層向け */}
+        <InlineCta shopUrl={shopUrl} text="送料無料で試してみる" />
+
+        {/* 口コミ */}
         <ReviewSection />
+
+        {/* CTA ⑤ — 信頼で購入する人向け */}
+        <InlineCta shopUrl={shopUrl} text="自分へのご褒美時間を始める" />
+
+        {/* 最終CTA */}
         <CtaSection shopUrl={shopUrl} />
       </main>
 
