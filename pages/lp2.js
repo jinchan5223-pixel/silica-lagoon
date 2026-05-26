@@ -60,11 +60,11 @@ function StickyBar({ shopUrl }) {
     <div className={styles.stickyBar}>
       <div className={styles.stickyInner}>
         <div className={styles.stickyInfo}>
-          <span className={styles.stickyInfoTop}>720g　約12回分</span>
-          <span className={styles.stickyInfoBot}>送料無料　¥3,300（税込）</span>
+          <span className={styles.stickyInfoPrice}>¥3,300</span>
+          <span className={styles.stickyInfoSub}>720g・約12回分　送料無料</span>
         </div>
         <a href={shopUrl} className={styles.stickyBtn}>
-          青のスパ体験を始める
+          購入する
           <span className={styles.stickyBtnArrow}>›</span>
         </a>
       </div>
@@ -105,12 +105,6 @@ function HeroSection({ shopUrl }) {
           乳青色のお湯が、<br />
           肌をやさしく整える。
         </p>
-
-        <ul className={styles.heroBullets}>
-          <li>シリカ・保湿成分配合</li>
-          <li>乳青色に変わる非日常感</li>
-          <li>720g・約12回分</li>
-        </ul>
       </div>
 
       <div className={styles.heroCtaWrap}>
@@ -545,7 +539,7 @@ export default function Lp2() {
     <>
       <Head>
         <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
         <title>何も塗らなくても潤う肌へ — SILICA LAGOON BATH SALT</title>
         <meta
           name="description"
