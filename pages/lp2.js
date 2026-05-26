@@ -126,7 +126,7 @@ function PainSection() {
     <section className={styles.painSection}>
       <div className={styles.sectionInner}>
         <span className={styles.sectionEyebrow}>SKIN TROUBLE</span>
-        <h2 className={styles.sectionTitle}>こんなお悩み<br />ありませんか？</h2>
+        <h2 className={styles.sectionTitle}>こんな夜、<br />ありませんか。</h2>
         <div className={styles.sectionDivider} />
 
         <div className={styles.painGrid}>
@@ -139,8 +139,8 @@ function PainSection() {
         </div>
 
         <p className={styles.painResolve}>
-          そのお悩み、<br />
-          <em>お風呂時間で変わります。</em>
+          その悩み、<br />
+          <em>お湯から変えられる。</em>
         </p>
       </div>
     </section>
@@ -152,9 +152,9 @@ function PainSection() {
 // ============================================================
 function BenefitSection() {
   const benefits = [
-    { img: '/images/neck-skin.png',        alt: 'お湯の中のうるおい肌',   label: 'しっとり続く',   strong: '潤い肌'  },
-    { img: '/images/after-bath-towel.png', alt: 'お風呂上がりの肌',      label: '化粧ノリが変わる', strong: '朝の肌'  },
-    { img: '/images/calm-time-2.png',      alt: '目を閉じて肌を確かめる', label: '触りたくなる',   strong: '肌質感'  },
+    { img: '/images/neck-skin.png',        alt: 'お湯の中のうるおい肌',   label: 'お風呂上がりの',   strong: 'しっとりが続く'  },
+    { img: '/images/after-bath-towel.png', alt: 'お風呂上がりの肌',      label: '翌朝になって', strong: '肌の違いに気づく'  },
+    { img: '/images/calm-time-2.png',      alt: '目を閉じて肌を確かめる', label: 'つい触りたくなる',   strong: '肌の感触'  },
   ]
 
   return (
@@ -162,9 +162,9 @@ function BenefitSection() {
       <div className={styles.sectionInner}>
         <span className={styles.sectionEyebrow}>BEAUTY CHANGE</span>
         <h2 className={styles.benefitLead}>
-          浸かるだけで、<br />うれしい変化を。
+          浸かるだけで、<br />肌が変わる。
         </h2>
-        <p className={styles.benefitSub}>毎日10分のバスタイムで、肌が応えはじめる。</p>
+        <p className={styles.benefitSub}>毎晩のお湯が、肌の返事を変える。</p>
 
         <div className={styles.benefitGrid}>
           {benefits.map((b) => (
@@ -344,9 +344,13 @@ function CtaSection({ shopUrl }) {
         />
 
         <h2 className={styles.ctaHeadline}>
-          自宅で、うるおい整う<br />
-          新しい美容習慣をはじめませんか？
+          今日のお風呂から、<br />
+          肌を変えてみる。
         </h2>
+
+        <p className={styles.ctaPrice}>
+          ¥3,300<span className={styles.ctaPriceSub}>（税込・送料無料）</span>
+        </p>
 
         <a href={shopUrl} className={styles.ctaMainBtn}>
           今すぐ、うるおう体験をはじめる
