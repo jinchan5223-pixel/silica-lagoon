@@ -54,8 +54,10 @@ function StickyBar({ shopUrl }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  if (!show) return null
+
   return (
-    <div className={`${styles.stickyBar} ${show ? styles.stickyBarShow : ''}`}>
+    <div className={styles.stickyBar}>
       <div className={styles.stickyInner}>
         <div className={styles.stickyInfo}>
           <span className={styles.stickyInfoTop}>720g　約12回分</span>
