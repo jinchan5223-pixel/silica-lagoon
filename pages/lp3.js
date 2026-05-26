@@ -248,7 +248,6 @@ function CtaSection({ shopUrl }) {
 
         <div className={styles.ctaTrust}>
           <span>迅速発送</span>
-          <span>30日間返金保証</span>
           <span>国内製造</span>
         </div>
       </div>

@@ -328,7 +328,6 @@ function ReviewSection() {
 function CtaSection({ shopUrl }) {
   const trust = [
     { icon: '🚚', text: '迅速発送' },
-    { icon: '↩️', text: '30日間返金保証' },
     { icon: '🇯🇵', text: '国内製造' },
   ]
 
