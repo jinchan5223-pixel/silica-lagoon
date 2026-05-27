@@ -41,7 +41,7 @@ function LpHeader({ shopUrl }) {
 }
 
 // ============================================================
-// STICKY BAR — スマホ固定CTA（スクロール後に出現）
+// STICKY BAR
 // ============================================================
 function StickyBar({ shopUrl }) {
   const [show, setShow] = useState(false)
@@ -73,7 +73,7 @@ function StickyBar({ shopUrl }) {
 }
 
 // ============================================================
-// HERO — ガラスモーフィズム価格カード
+// HERO — ① 余白改善 + 水面光 + 浮遊粒子 + 禁止表現修正
 // ============================================================
 function HeroSection({ shopUrl }) {
   return (
@@ -81,29 +81,38 @@ function HeroSection({ shopUrl }) {
       <div className={styles.heroBg}>
         <img
           src="/images/hero-bath.png"
-          alt="シリカラグーン 入浴シーン"
+          alt="乳青色のお湯が静かに広がる"
           loading="eager"
           fetchPriority="high"
         />
         <div className={styles.heroOverlay} />
+        {/* ② 水面光の反射 */}
+        <div className={styles.heroWaterShimmer} aria-hidden="true" />
+      </div>
+
+      {/* ③ 浮遊する光の粒子 */}
+      <div className={styles.heroParticles} aria-hidden="true">
+        <div className={styles.heroParticle} style={{ width: '3px', height: '3px', left: '14%', bottom: '40%', animationDuration: '8s', animationDelay: '0s' }} />
+        <div className={styles.heroParticle} style={{ width: '2px', height: '2px', left: '36%', bottom: '55%', animationDuration: '11s', animationDelay: '2.5s' }} />
+        <div className={styles.heroParticle} style={{ width: '4px', height: '4px', left: '60%', bottom: '30%', animationDuration: '7s', animationDelay: '4s' }} />
+        <div className={styles.heroParticle} style={{ width: '2px', height: '2px', left: '78%', bottom: '48%', animationDuration: '9s', animationDelay: '1s' }} />
+        <div className={styles.heroParticle} style={{ width: '3px', height: '3px', left: '90%', bottom: '36%', animationDuration: '6s', animationDelay: '3s' }} />
       </div>
 
       <div className={styles.heroContent}>
         <span className={styles.heroEyebrow}>SILICA LAGOON BATH SALT</span>
 
-        <p className={styles.heroLeadSmall}>お風呂上がり、</p>
         <h1 className={styles.heroHeadline}>
-          何も塗らなくても<br />
-          <em>潤う</em>肌へ。
+          お湯が変わると、<br />
+          <em>夜が変わる。</em>
         </h1>
 
         <div className={styles.heroDivider} />
         <p className={styles.heroSubCopy}>"塗る"から"浸かる"へ。</p>
 
         <p className={styles.heroSub}>
-          自宅でスパ体験。<br />
-          乳青色のお湯が、<br />
-          肌をやさしく整える。
+          乳青色のやわらかなお湯が、<br />
+          夜時間を、変えていく。
         </p>
       </div>
 
@@ -113,7 +122,6 @@ function HeroSection({ shopUrl }) {
           <span className={styles.heroCtaArrow}>›</span>
         </a>
 
-        {/* ガラスモーフィズム価格カード */}
         <div className={styles.heroPriceCard}>
           <p className={styles.heroPriceMain}>720g（約12回分）　送料無料</p>
           <p className={styles.heroPriceAmt}>
@@ -129,7 +137,7 @@ function HeroSection({ shopUrl }) {
 }
 
 // ============================================================
-// QUICK BENEFIT — FV直後の超短文ベネフィット
+// QUICK BENEFIT
 // ============================================================
 function QuickBenefit() {
   return (
@@ -147,7 +155,7 @@ function QuickBenefit() {
 }
 
 // ============================================================
-// TRUST STRIP — 価格・内容量・送料
+// TRUST STRIP
 // ============================================================
 function TrustStrip() {
   const items = [
@@ -169,7 +177,7 @@ function TrustStrip() {
 }
 
 // ============================================================
-// INLINE CTA — ガラス感・高級ホテルUI
+// INLINE CTA
 // ============================================================
 function InlineCta({ shopUrl, text }) {
   return (
@@ -186,20 +194,20 @@ function InlineCta({ shopUrl, text }) {
 }
 
 // ============================================================
-// PAIN — 悩み共感
+// PAIN — 悩み共感（体験・時間訴求）
 // ============================================================
 function PainSection() {
   const pains = [
-    { icon: '😮‍💨', text: 'お風呂上がりに\nすぐ乾燥して\nしまう' },
-    { icon: '💧', text: 'スキンケアを\nしても\n追いつかない' },
-    { icon: '🪞', text: '化粧ノリが悪く\nメイクが\n決まらない' },
-    { icon: '🌫️', text: '透明感がなく\nくすみが\n気になる' },
+    { icon: '😮‍💨', text: 'お風呂上がりに\n肌がすぐ\n乾く気がする' },
+    { icon: '💧', text: 'スキンケアを\nしても\nなんか足りない' },
+    { icon: '🛁', text: 'お風呂の時間が\n惰性に\nなっている' },
+    { icon: '🌙', text: '夜時間を\nもっとゆっくり\n過ごしたい' },
   ]
 
   return (
     <section className={styles.painSection}>
       <div className={styles.sectionInner}>
-        <span className={styles.sectionEyebrow}>SKIN TROUBLE</span>
+        <span className={styles.sectionEyebrow}>NIGHT ROUTINE</span>
         <h2 className={styles.sectionTitle}>こんな夜、<br />ありませんか。</h2>
         <div className={styles.sectionDivider} />
 
@@ -213,7 +221,7 @@ function PainSection() {
         </div>
 
         <p className={styles.painResolve}>
-          その悩み、<br />
+          その夜を、<br />
           <em>お湯から変えられる。</em>
         </p>
       </div>
@@ -222,23 +230,23 @@ function PainSection() {
 }
 
 // ============================================================
-// BENEFIT
+// BENEFIT — 体験・感触訴求（効果断定なし）
 // ============================================================
 function BenefitSection() {
   const benefits = [
-    { img: '/images/neck-skin.png',        alt: 'お湯の中のうるおい肌',   label: 'お風呂上がりの',   strong: 'しっとりが続く'  },
-    { img: '/images/after-bath-towel.png', alt: 'お風呂上がりの肌',       label: '翌朝になって',    strong: '肌の違いに気づく' },
-    { img: '/images/calm-time-2.png',      alt: '目を閉じて肌を確かめる', label: 'つい触りたくなる', strong: '肌の感触'         },
+    { img: '/images/neck-skin.png',        alt: '湯上がりのやわらかな肌',   label: '湯上がりの',      strong: 'やわらかな質感'  },
+    { img: '/images/after-bath-towel.png', alt: '翌朝の肌の感触',           label: '翌朝も続く',      strong: 'しっとりした感触' },
+    { img: '/images/calm-time-2.png',      alt: '静かなバスタイム',         label: 'つい触れたくなる', strong: '湯上がりの肌'    },
   ]
 
   return (
     <section className={styles.benefitSection}>
       <div className={styles.sectionInner}>
-        <span className={styles.sectionEyebrow}>BEAUTY CHANGE</span>
+        <span className={styles.sectionEyebrow}>BATH EXPERIENCE</span>
         <h2 className={styles.benefitLead}>
-          浸かるだけで、<br />肌が変わる。
+          浸かるたびに、<br />夜が整う。
         </h2>
-        <p className={styles.benefitSub}>毎晩のお湯が、肌の返事を変える。</p>
+        <p className={styles.benefitSub}>毎晩のお湯が、夜の質を変える。</p>
 
         <div className={styles.benefitGrid}>
           {benefits.map((b) => (
@@ -274,20 +282,23 @@ function QuoteSection() {
 }
 
 // ============================================================
-// TRANSFORM — 青く変化する瞬間の演出
+// TRANSFORM — ② 青色リッチ化 + 深海グロー追加
 // ============================================================
 function TransformSection() {
   return (
     <section className={styles.transformSection}>
       <div className={styles.transformImgWrap}>
         <img
-          src="/images/dissolving.png"
+          src="/images/color-change.jpg"
           alt="乳青色に変わる瞬間"
           className={styles.transformImg}
           loading="lazy"
         />
         <div className={styles.transformGrad} />
         <div className={styles.transformRipple} />
+        {/* ② 深海グロー */}
+        <div className={styles.transformBlueGlow1} aria-hidden="true" />
+        <div className={styles.transformBlueGlow2} aria-hidden="true" />
       </div>
       <div className={styles.transformCopy}>
         <span className={styles.transformEye}>THE MOMENT</span>
@@ -305,14 +316,16 @@ function TransformSection() {
 }
 
 // ============================================================
-// ATMOSPHERE — 乳青色のお湯ビジュアル
+// ATMOSPHERE — ② 水面光反射追加
 // ============================================================
 function AtmosphereSection() {
   return (
     <section className={styles.atmosphereSection}>
       <div className={styles.atmosphereBg}>
-        <img src="/images/quiet-bath.png" alt="キャンドルの光の中で静かに浸かる" loading="lazy" />
+        <img src="/images/blue-bath.jpg" alt="乳青色のお湯に静かに浸かる" loading="lazy" />
         <div className={styles.atmosphereOverlay} />
+        {/* ② 水面揺らぎ */}
+        <div className={styles.atmosphereShimmer} aria-hidden="true" />
       </div>
       <div className={styles.atmosphereText}>
         <p className={styles.atmosphereCopy}>
@@ -326,20 +339,89 @@ function AtmosphereSection() {
 }
 
 // ============================================================
-// PRODUCT — 体験言語で伝える
+// HOW TO — ⑤ 使用フロー（5ステップ）
+// ============================================================
+function HowToSection() {
+  const steps = [
+    {
+      num: '01',
+      title: '粉を入れる',
+      desc: 'スプーン2杯（約60g）をお湯へ。それだけでいい。',
+      img: '/images/product-spill.jpg',
+    },
+    {
+      num: '02',
+      title: '青が、溶け出す',
+      desc: 'バタフライピーの青がゆっくりと広がっていく。',
+      img: '/images/butterfly-pea.jpg',
+    },
+    {
+      num: '03',
+      title: '乳青色のお湯へ',
+      desc: 'お湯全体が静かなブルーに変わっていく。',
+      img: '/images/bath-surface.jpg',
+    },
+    {
+      num: '04',
+      title: 'ゆっくり浸かる',
+      desc: '15〜20分。ただ、お湯の中にいる。',
+      img: '/images/quiet-bath.png',
+    },
+    {
+      num: '05',
+      title: '夜の静けさへ',
+      desc: '湯上がりの余韻とともに、静かな夜がはじまる。',
+      img: '/images/after-bath-night.png',
+    },
+  ]
+
+  return (
+    <section className={styles.howToSection}>
+      <div className={styles.howToInner}>
+        <span className={styles.howToEye}>THE RITUAL</span>
+        <h2 className={styles.howToTitle}>
+          青のスパ体験、<br />
+          5つの流れ。
+        </h2>
+        <div className={styles.howToDivider} />
+
+        <div className={styles.howToSteps}>
+          {steps.map((s) => (
+            <div key={s.num} className={styles.howToStep}>
+              <div className={styles.howToStepLeft}>
+                <span className={styles.howToNum}>{s.num}</span>
+                <div className={styles.howToLine} />
+              </div>
+              <div className={styles.howToStepRight}>
+                <div className={styles.howToStepImg}>
+                  <img src={s.img} alt={s.title} loading="lazy" />
+                </div>
+                <h3 className={styles.howToStepTitle}>{s.title}</h3>
+                <p className={styles.howToStepDesc}>{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================
+// PRODUCT — 体験言語（効果断定なし）
 // ============================================================
 function ProductSection() {
   const forWhom = [
     '乾燥が気になる方',
-    '透明感のある肌を目指したい方',
-    'スキンケアの効果を高めたい方',
-    '肌にやさしいケアを求める方',
+    '湯上がりをもっと心地よくしたい方',
+    'お風呂時間を特別にしたい方',
+    '肌にやさしいバスタイムを求める方',
   ]
 
   return (
     <section className={styles.productSection}>
       <div className={styles.productImgWrap}>
-        <img src="/images/dissolving.png" alt="シリカが水中で溶け広がる瞬間" loading="lazy" />
+        <img src="/images/water-surface.png" alt="乳青色のお湯が広がる" loading="lazy" />
         <div className={styles.productImgOverlay} />
       </div>
 
@@ -347,7 +429,7 @@ function ProductSection() {
         <span className={styles.sectionEyebrow}>THE SCIENCE</span>
         <h2 className={styles.productHeadline}>
           美容液のようなお湯で、<br />
-          肌をやさしく整える。
+          夜時間を豊かに。
         </h2>
         <p className={styles.productBody}>
           包み込まれるような湯あたり。<br />
@@ -382,7 +464,7 @@ function ProductSection() {
 }
 
 // ============================================================
-// VALUE — 720g / 約12回分 / 価格説明
+// VALUE
 // ============================================================
 function ValueSection() {
   return (
@@ -418,7 +500,7 @@ function ValueSection() {
 }
 
 // ============================================================
-// REVIEW — Instagram カード風（写真付き）
+// REVIEW — ④ リアル寄り（Instagram/iPhone感）
 // ============================================================
 function ReviewSection() {
   const reviews = [
@@ -426,25 +508,28 @@ function ReviewSection() {
       name: 'M.K',
       attr: '30代・乾燥肌',
       img: '/images/calm-time.png',
-      tag: '#乾燥肌改善',
-      title: 'お風呂上がりの\n肌が違います',
-      text: '乾燥しやすい肌が、しっとり潤って驚きました。翌朝の化粧ノリも変わりました。',
+      tag: '#バスタイム記録',
+      title: '湯上がりの\n感触が違います',
+      text: '乾燥しやすい季節も、湯上がりがしっとりやわらかく。毎晩のお風呂が楽しみになりました。',
+      daysAgo: '3日前',
     },
     {
       name: 'Y.T',
       attr: '30代・敏感肌',
       img: '/images/quiet-bath-2.png',
-      tag: '#美容液みたい',
-      title: 'まるで美容液に\n浸かっているみたい',
-      text: 'お湯がやわらかくて驚きます。使い続けるほどに肌の調子が変わってきた気がします。',
+      tag: '#自宅スパ',
+      title: 'まるで温泉に\n浸かっているみたい',
+      text: 'お湯がやわらかくて20分があっという間。体の力がふっと抜けていく感じがします。',
+      daysAgo: '1週間前',
     },
     {
       name: 'R.S',
       attr: '20代・混合肌',
-      img: '/images/clear-skin-morning.png',
-      tag: '#透明感UP',
-      title: '透明感が出て、\nすっぴんに自信が持てる',
-      text: 'くすみが抜けて、肌が明るくなった気がします。もう手放せません！',
+      img: '/images/relax-night.png',
+      tag: '#夜の楽しみ',
+      title: '青いお湯が、\n毎晩の楽しみに',
+      text: 'お湯の色が変わる瞬間がすごく好きで。以来、お風呂が一日のご褒美になりました。',
+      daysAgo: '2週間前',
     },
   ]
 
@@ -452,25 +537,33 @@ function ReviewSection() {
     <section className={styles.reviewSection}>
       <div className={styles.sectionInner}>
         <span className={styles.sectionEyebrow}>CUSTOMER VOICE</span>
-        <h2 className={styles.sectionTitle}>お客様の声</h2>
+        <h2 className={styles.sectionTitle}>使っている人の声</h2>
         <div className={styles.sectionDivider} />
 
         <div className={styles.reviewGrid}>
           {reviews.map((r) => (
             <div key={r.name} className={styles.reviewPostCard}>
+              {/* ④ Instagramストーリーバー */}
+              <div className={styles.reviewStoryBar} aria-hidden="true" />
               <div className={styles.reviewPostImg}>
                 <img src={r.img} alt="" loading="lazy" />
                 <div className={styles.reviewPostImgGrad} />
                 <span className={styles.reviewPostTag}>{r.tag}</span>
               </div>
               <div className={styles.reviewPostBody}>
+                <div className={styles.reviewMeta}>
+                  <div className={styles.reviewAvatar}>
+                    {r.name.charAt(0)}
+                  </div>
+                  <div className={styles.reviewMetaInfo}>
+                    <span className={styles.reviewName}>{r.name}</span>
+                    <span className={styles.reviewAttr}>{r.attr}</span>
+                  </div>
+                  <span className={styles.reviewDaysAgo}>{r.daysAgo}</span>
+                </div>
                 <div className={styles.reviewStars}>★★★★★</div>
                 <p className={styles.reviewTitle} style={{ whiteSpace: 'pre-line' }}>{r.title}</p>
                 <p className={styles.reviewText}>{r.text}</p>
-                <div className={styles.reviewByline}>
-                  <span className={styles.reviewName}>{r.name}</span>
-                  <span className={styles.reviewAttr}>{r.attr}</span>
-                </div>
               </div>
             </div>
           ))}
@@ -481,7 +574,31 @@ function ReviewSection() {
 }
 
 // ============================================================
-// CTA — 最下部・大型
+// NIGHT ENDING — ⑥ 感情訴求の締め「今夜入りたい」
+// ============================================================
+function NightEndingSection() {
+  return (
+    <section className={styles.nightEndingSection}>
+      <div className={styles.nightEndingGlow} aria-hidden="true" />
+      <div className={styles.nightEndingContent}>
+        <span className={styles.nightEndingEye}>TONIGHT</span>
+        <p className={styles.nightEndingMain}>
+          一日の終わりに、<br />
+          青いお湯の中へ。
+        </p>
+        <div className={styles.nightEndingDivider} />
+        <p className={styles.nightEndingSub}>
+          それだけで、夜の空気が変わる。<br />
+          明日の朝が、少し楽しみになる。
+        </p>
+        <span className={styles.nightEndingBrand}>SILICA LAGOON</span>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================
+// CTA — ⑦ 商品画像立体感強化 + 感情訴求コピー
 // ============================================================
 function CtaSection({ shopUrl }) {
   const trust = [
@@ -492,18 +609,22 @@ function CtaSection({ shopUrl }) {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaInner}>
-        <span className={styles.ctaEyebrow}>今日のお風呂から、肌は変えられる。</span>
+        <span className={styles.ctaEyebrow}>今夜、夜時間が変わる。</span>
 
-        <img
-          src="/images/product-720g-front.jpg"
-          alt="SILICA LAGOON BATH SALT"
-          className={styles.ctaProductImg}
-          loading="lazy"
-        />
+        {/* ⑦ 商品画像 — 立体感・ガラス感を強化 */}
+        <div className={styles.ctaProductWrap}>
+          <div className={styles.ctaProductGlow} aria-hidden="true" />
+          <img
+            src="/images/product-720g-front.jpg"
+            alt="SILICA LAGOON BATH SALT"
+            className={styles.ctaProductImg}
+            loading="lazy"
+          />
+        </div>
 
         <h2 className={styles.ctaHeadline}>
-          今日のお風呂から、<br />
-          肌を変えてみる。
+          今夜、<br />
+          青いお湯に浸かってみる。
         </h2>
 
         <p className={styles.ctaPrice}>
@@ -512,7 +633,7 @@ function CtaSection({ shopUrl }) {
         <p className={styles.ctaPriceDetail}>720g・約12回分</p>
 
         <a href={shopUrl} className={styles.ctaMainBtn}>
-          今すぐ、うるおう体験をはじめる
+          今夜の体験をはじめる
           <span className={styles.ctaMainBtnArrow}>›</span>
         </a>
 
@@ -540,14 +661,14 @@ export default function Lp2() {
       <Head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-        <title>何も塗らなくても潤う肌へ — SILICA LAGOON BATH SALT</title>
+        <title>お湯が変わると、夜が変わる — SILICA LAGOON BATH SALT</title>
         <meta
           name="description"
-          content="乾燥・化粧ノリ・くすみ。美容液のようなお湯に浸かるだけで、全身の肌が整う。シリカ・ヒアルロン酸・コラーゲン配合バスソルト。"
+          content="乳青色のお湯が、夜時間を変える。自宅でブルーラグーン体験。バタフライピー・シリカ配合バスソルト 720g・約12回分。"
         />
         <link rel="canonical" href="https://silica-lagoon.company/lp2" />
-        <meta property="og:title" content="何も塗らなくても潤う肌へ — SILICA LAGOON BATH SALT" />
-        <meta property="og:description" content="&ldquo;塗る&rdquo;から&ldquo;浸かる&rdquo;へ。美容液のようなお湯で肌を整える新習慣。" />
+        <meta property="og:title" content="お湯が変わると、夜が変わる — SILICA LAGOON BATH SALT" />
+        <meta property="og:description" content="&ldquo;塗る&rdquo;から&ldquo;浸かる&rdquo;へ。乳青色のやわらかなお湯で、夜時間を変える新習慣。" />
         <meta property="og:image" content="https://silica-lagoon.company/images/hero-bath.png" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://silica-lagoon.company/lp2" />
@@ -567,46 +688,52 @@ export default function Lp2() {
         {/* FV */}
         <HeroSection shopUrl={shopUrl} />
 
-        {/* 何が凄いか一瞬で伝える */}
+        {/* 世界観一文 */}
         <QuickBenefit />
 
-        {/* 価格・内容量・送料 */}
+        {/* 価格・内容量 */}
         <TrustStrip />
 
-        {/* CTA ① — FV直後：世界観で刺さった人向け */}
+        {/* CTA ① — FV直後 */}
         <InlineCta shopUrl={shopUrl} text="自宅で青のスパ体験を始める" />
 
-        {/* 悩み共感 → 変化の提示 */}
+        {/* 悩み共感 */}
         <PainSection />
         <BenefitSection />
         <QuoteSection />
 
-        {/* 青く変化する瞬間 — 最重要演出 */}
+        {/* 青く変化する演出 */}
         <TransformSection />
 
         {/* 乳青色ビジュアル */}
         <AtmosphereSection />
 
-        {/* CTA ② — 視覚で欲しくなった人向け */}
+        {/* ⑤ 使用フロー */}
+        <HowToSection />
+
+        {/* CTA ② */}
         <InlineCta shopUrl={shopUrl} text="乳青色のバスタイムを体験する" />
 
-        {/* 体験言語で伝える成分説明 */}
+        {/* 成分・設計思想 */}
         <ProductSection />
 
-        {/* CTA ③ — 美容目的ユーザー向け */}
-        <InlineCta shopUrl={shopUrl} text="湯上がりのしっとり感を体験する" />
+        {/* CTA ③ */}
+        <InlineCta shopUrl={shopUrl} text="湯上がりのやわらかさを体験する" />
 
-        {/* 価格・内容量の丁寧な説明 */}
+        {/* 価格説明 */}
         <ValueSection />
 
-        {/* CTA ④ — コスパ納得層向け */}
+        {/* CTA ④ */}
         <InlineCta shopUrl={shopUrl} text="送料無料で試してみる" />
 
-        {/* Instagram風レビュー */}
+        {/* ④ リアルレビュー */}
         <ReviewSection />
 
-        {/* CTA ⑤ — 信頼で購入する人向け */}
+        {/* CTA ⑤ */}
         <InlineCta shopUrl={shopUrl} text="自分へのご褒美時間を始める" />
+
+        {/* ⑥ 感情訴求の締め */}
+        <NightEndingSection />
 
         {/* 最終CTA */}
         <CtaSection shopUrl={shopUrl} />
