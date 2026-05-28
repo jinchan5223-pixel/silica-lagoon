@@ -530,6 +530,7 @@ function ReviewSection() {
       title: '青いお湯が、\n毎晩の楽しみに',
       text: 'お湯の色が変わる瞬間がすごく好きで。以来、お風呂が一日のご褒美になりました。',
       daysAgo: '2週間前',
+      imgPosition: 'center 65%',
     },
   ]
 
@@ -546,7 +547,7 @@ function ReviewSection() {
               {/* ④ Instagramストーリーバー */}
               <div className={styles.reviewStoryBar} aria-hidden="true" />
               <div className={styles.reviewPostImg}>
-                <img src={r.img} alt="" loading="lazy" />
+                <img src={r.img} alt="" loading="lazy" style={r.imgPosition ? { objectPosition: r.imgPosition } : undefined} />
                 <div className={styles.reviewPostImgGrad} />
                 <span className={styles.reviewPostTag}>{r.tag}</span>
               </div>
