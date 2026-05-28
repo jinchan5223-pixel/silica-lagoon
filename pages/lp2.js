@@ -289,7 +289,7 @@ function TransformSection() {
     <section className={styles.transformSection}>
       <div className={styles.transformImgWrap}>
         <img
-          src="/images/color-change.jpg"
+          src="/images/dissolving-scene.png"
           alt="乳青色に変わる瞬間"
           className={styles.transformImg}
           loading="lazy"
@@ -353,19 +353,19 @@ function HowToSection() {
       num: '02',
       title: '青が、溶け出す',
       desc: 'バタフライピーの青がゆっくりと広がっていく。',
-      img: '/images/butterfly-pea.jpg',
+      img: '/images/butterfly-pea-real.jpg',
     },
     {
       num: '03',
       title: '乳青色のお湯へ',
       desc: 'お湯全体が静かなブルーに変わっていく。',
-      img: '/images/bath-surface.jpg',
+      img: '/images/color-changing.jpg',
     },
     {
       num: '04',
       title: 'ゆっくり浸かる',
       desc: '15〜20分。ただ、お湯の中にいる。',
-      img: '/images/quiet-bath.png',
+      img: '/images/bath-pov.png',
     },
     {
       num: '05',
@@ -525,7 +525,7 @@ function ReviewSection() {
     {
       name: 'R.S',
       attr: '20代・混合肌',
-      img: '/images/relax-night.png',
+      img: '/images/review-real.jpg',
       tag: '#夜の楽しみ',
       title: '青いお湯が、\n毎晩の楽しみに',
       text: 'お湯の色が変わる瞬間がすごく好きで。以来、お風呂が一日のご褒美になりました。',
