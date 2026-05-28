@@ -3,7 +3,8 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import styles from '../styles/lp2.module.css'
 
-const STRIPE_URL = 'https://buy.stripe.com/4gMaEQ5l313Wfmg6n58k801'
+const STRIPE_URL        = 'https://buy.stripe.com/4gMaEQ5l313Wfmg6n58k801'
+const STRIPE_TEIKI_URL  = 'https://buy.stripe.com/00wfZacNv9Asa1W5j18k800'
 const SUP_URL = 'https://mrcvwlaawmlfpoibxjec.supabase.co'
 const SUP_KEY = 'sb_publishable_nONkmADAMLoZ1wxUrZqwug_F_Fm08yO'
 
@@ -41,7 +42,7 @@ function LpHeader({ shopUrl }) {
 }
 
 // ============================================================
-// STICKY BAR
+// STICKY BAR — 通常購入 + 定期便
 // ============================================================
 function StickyBar({ shopUrl }) {
   const [show, setShow] = useState(false)
@@ -63,10 +64,15 @@ function StickyBar({ shopUrl }) {
           <span className={styles.stickyInfoPrice}>¥3,300</span>
           <span className={styles.stickyInfoSub}>720g・約12回分　送料無料</span>
         </div>
-        <a href={shopUrl} className={styles.stickyBtn}>
-          購入する
-          <span className={styles.stickyBtnArrow}>›</span>
-        </a>
+        <div className={styles.stickyBtns}>
+          <a href={STRIPE_TEIKI_URL} className={styles.stickyBtnTeiki}>
+            定期　¥2,970
+          </a>
+          <a href={shopUrl} className={styles.stickyBtn}>
+            通常購入
+            <span className={styles.stickyBtnArrow}>›</span>
+          </a>
+        </div>
       </div>
     </div>
   )
@@ -494,6 +500,25 @@ function ValueSection() {
           毎日のお風呂が、<br />
           少し特別になる。
         </p>
+
+        {/* 定期便カード */}
+        <div className={styles.teikiCard}>
+          <span className={styles.teikiBadge}>定期便</span>
+          <p className={styles.teikiPrice}>
+            ¥2,970<span className={styles.teikiPriceSub}>/月（税込）</span>
+          </p>
+          <p className={styles.teikiDiscount}>通常価格より 10% OFF</p>
+          <ul className={styles.teikiFeatures}>
+            <li>毎月自動でお届け</li>
+            <li>いつでも解約OK</li>
+            <li>送料無料</li>
+          </ul>
+          <a href={STRIPE_TEIKI_URL} className={styles.teikiBtn}>
+            定期便で始める
+            <span className={styles.teikiBtnArrow}>›</span>
+          </a>
+          <p className={styles.teikiNote}>解約はマイページからいつでも可能</p>
+        </div>
       </div>
     </section>
   )
@@ -637,6 +662,14 @@ function CtaSection({ shopUrl }) {
           今夜の体験をはじめる
           <span className={styles.ctaMainBtnArrow}>›</span>
         </a>
+
+        {/* 定期便サブボタン */}
+        <a href={STRIPE_TEIKI_URL} className={styles.ctaTeikiBtn}>
+          <span className={styles.ctaTeikiBtnBadge}>定期便</span>
+          ¥2,970/月で続ける（10% OFF）
+          <span className={styles.ctaTeikiBtnArrow}>›</span>
+        </a>
+        <p className={styles.ctaTeikiNote}>いつでも解約OK　送料無料</p>
 
         <div className={styles.ctaTrustRow}>
           {trust.map((t) => (

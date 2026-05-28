@@ -1639,6 +1639,198 @@
   opacity: 0.45;
 }
 
+/* StickyBar — 定期便ボタン群 */
+.stickyBtns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.stickyBtnTeiki {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid rgba(125, 162, 255, 0.4);
+  color: #4a6ab5;
+  padding: 10px 14px;
+  border-radius: 50px;
+  font-size: 10.5px;
+  letter-spacing: 0.8px;
+  font-weight: 400;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.stickyBtnTeiki:hover {
+  opacity: 0.75;
+}
+
+/* ===================================================
+   定期便カード — ValueSection内
+   =================================================== */
+.teikiCard {
+  margin-top: 40px;
+  background: linear-gradient(
+    135deg,
+    rgba(214, 228, 255, 0.45) 0%,
+    rgba(230, 238, 255, 0.30) 100%
+  );
+  border: 1px solid rgba(125, 162, 255, 0.25);
+  border-radius: 20px;
+  padding: 32px 28px 28px;
+  text-align: center;
+  position: relative;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.teikiBadge {
+  display: inline-block;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #4a6ab5;
+  border: 1px solid rgba(125, 162, 255, 0.4);
+  border-radius: 20px;
+  padding: 4px 14px;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.teikiPrice {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: 1.75rem;
+  font-weight: 300;
+  color: #0a0f1e;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.teikiPriceSub {
+  font-size: 11px;
+  color: #888;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+}
+
+.teikiDiscount {
+  font-size: 10.5px;
+  color: #4a6ab5;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.teikiFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.teikiFeatures li {
+  font-size: 10.5px;
+  color: #666;
+  letter-spacing: 0.5px;
+  padding-left: 12px;
+  position: relative;
+}
+
+.teikiFeatures li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #7da2ff;
+  font-size: 9px;
+}
+
+.teikiBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #0a0f1e;
+  color: rgba(255, 255, 255, 0.88);
+  padding: 18px 36px;
+  border-radius: 60px;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  width: 100%;
+  margin-bottom: 12px;
+  transition: opacity 0.22s;
+}
+
+.teikiBtn:hover {
+  opacity: 0.85;
+}
+
+.teikiBtnArrow {
+  font-size: 14px;
+  opacity: 0.4;
+}
+
+.teikiNote {
+  font-size: 9px;
+  color: #bbb;
+  letter-spacing: 0.5px;
+}
+
+/* ===================================================
+   定期便サブボタン — CtaSection内
+   =================================================== */
+.ctaTeikiBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: transparent;
+  border: 1px solid rgba(125, 162, 255, 0.3);
+  color: #4a6ab5;
+  padding: 17px 36px;
+  border-radius: 60px;
+  font-size: 11.5px;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  width: 100%;
+  margin-bottom: 8px;
+  transition: opacity 0.22s, background 0.22s;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.ctaTeikiBtn:hover {
+  opacity: 0.75;
+  background: rgba(125, 162, 255, 0.05);
+}
+
+.ctaTeikiBtnBadge {
+  font-size: 8.5px;
+  letter-spacing: 2px;
+  color: #7da2ff;
+  border: 1px solid rgba(125, 162, 255, 0.4);
+  border-radius: 20px;
+  padding: 2px 8px;
+  flex-shrink: 0;
+}
+
+.ctaTeikiBtnArrow {
+  font-size: 13px;
+  opacity: 0.35;
+}
+
+.ctaTeikiNote {
+  font-size: 9px;
+  color: #bbb;
+  letter-spacing: 0.8px;
+  margin-bottom: 28px;
+}
+
 /* ===================================================
    RESPONSIVE
    =================================================== */
