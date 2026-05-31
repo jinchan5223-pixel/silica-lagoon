@@ -1121,11 +1121,13 @@ img {
   color: var(--text-dark);
   margin-bottom: 18px;
   font-family: var(--font-serif);
+  text-align: center;
 }
 .sl-answer-desc {
   font-size: 15px;
   line-height: 2.1;
   color: var(--text-body);
+  text-align: center;
 }
 
 /* ===== STEPS (3つの理由 — 理解優先) ===== */
