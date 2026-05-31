@@ -13,7 +13,6 @@ export default function WhyBlueWater() {
 
       {/* ─── ② 検索意図へ即答（SEO・感情なし・簡潔に） ─── */}
       <div className="sl-answer">
-        <p className="sl-answer-q">なぜ水は青く見えるのか。</p>
         <p className="sl-answer-a">
           水が青く見える主な理由は、<br />
           <NW>光の散乱</NW>です。
