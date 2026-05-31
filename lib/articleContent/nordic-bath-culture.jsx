@@ -144,8 +144,8 @@ export default function NordicBathCulture() {
       </div>
 
       <img
-        src="/images/quiet-bath.png"
-        alt="静かな乳青色のお湯"
+        src="/images/bath-pov.png"
+        alt="キャンドルの灯りと乳青色のお湯に浸かる"
         className="sl-section-img"
         loading="lazy"
       />
