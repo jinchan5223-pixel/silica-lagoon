@@ -3,19 +3,45 @@ import Link from 'next/link'
 import { articles } from '../../lib/articles'
 
 const CATEGORY_META = {
-  '乾燥肌ケア':       { eyebrow: 'DRY SKIN' },
-  'スキンケア':       { eyebrow: 'SKINCARE' },
-  'スキンケア理論':   { eyebrow: 'THEORY' },
-  '入浴剤':           { eyebrow: 'BATH SALT' },
-  '美肌':             { eyebrow: 'SKIN' },
-  '美容習慣':         { eyebrow: 'HABIT' },
-  'メイク':           { eyebrow: 'MAKEUP' },
-  '年齢肌':           { eyebrow: 'AGING CARE' },
-  '美容ライフスタイル':{ eyebrow: 'LIFESTYLE' },
-  'トレンド美容':     { eyebrow: 'TREND' },
+  '乾燥肌ケア':         { eyebrow: 'DRY SKIN' },
+  'スキンケア':         { eyebrow: 'SKINCARE' },
+  'スキンケア理論':     { eyebrow: 'THEORY' },
+  '入浴剤':             { eyebrow: 'BATH SALT' },
+  '美肌':               { eyebrow: 'SKIN' },
+  '美容習慣':           { eyebrow: 'HABIT' },
+  'メイク':             { eyebrow: 'MAKEUP' },
+  '年齢肌':             { eyebrow: 'AGING CARE' },
+  '美容ライフスタイル': { eyebrow: 'LIFESTYLE' },
+  'トレンド美容':       { eyebrow: 'TREND' },
+  '北欧スパ文化':       { eyebrow: 'NORDIC SPA' },
+  '温泉文化':           { eyebrow: 'SPA CULTURE' },
+  '自宅スパ':           { eyebrow: 'HOME SPA' },
+  '北欧ライフスタイル': { eyebrow: 'NORDIC LIFE' },
+  '夜時間':             { eyebrow: 'NIGHT TIME' },
+  '世界観':             { eyebrow: 'WORLD VIEW' },
+  'ご褒美バスタイム':   { eyebrow: 'REWARD BATH' },
+  'ラグジュアリースパ': { eyebrow: 'LUXURY SPA' },
+  '感覚・心理':         { eyebrow: 'SENSATION' },
+  '体験デザイン':       { eyebrow: 'EXPERIENCE' },
 }
 
 const groups = [
+  {
+    label: '北欧スパ・Blue Lagoon世界観',
+    eyebrow: 'NORDIC SPA WORLD',
+    slugs: [
+      'blue-lagoon-world',
+      'why-bath-turns-blue',
+      'milky-blue-world',
+      'why-blue-water',
+      'luxury-spa-silence',
+      'nordic-bath-culture',
+      'home-spa-experience',
+      'tired-night-bath',
+      'reward-bath-habit',
+      'bath-as-experience',
+    ],
+  },
   {
     label: '乾燥・保湿ケア',
     eyebrow: 'DRY & MOISTURE',
@@ -107,6 +133,41 @@ export default function BlogIndex() {
             </div>
           </section>
         ))}
+
+        {/* LP3 CTA — 北欧スパ世界観 */}
+        <div style={{
+          marginTop: '64px',
+          marginBottom: '32px',
+          background: 'linear-gradient(160deg, #060f1e 0%, #0a1830 100%)',
+          borderRadius: '20px',
+          padding: '52px 28px',
+          textAlign: 'center',
+        }}>
+          <span style={{ fontSize: '9px', letterSpacing: '4px', color: 'rgba(91,124,250,0.55)', display: 'block', marginBottom: '16px', textTransform: 'uppercase' }}>
+            NORDIC SPA EXPERIENCE
+          </span>
+          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 200, color: 'rgba(255,255,255,0.85)', lineHeight: 2.0, letterSpacing: '0.1em', marginBottom: '14px' }}>
+            今夜の浴室を、<br />
+            青い静けさへ。
+          </h2>
+          <p style={{ fontSize: '12.5px', color: 'rgba(191,231,255,0.38)', lineHeight: '2.2', marginBottom: '32px', letterSpacing: '0.05em' }}>
+            ミルキーブルーのお湯に包まれる、静かな夜時間。<br />
+            北欧ラグジュアリースパの空気感を、自宅で。
+          </p>
+          <a href="/lp3" style={{
+            display: 'inline-block',
+            padding: '16px 36px',
+            background: 'rgba(255,255,255,0.06)',
+            border: '1px solid rgba(255,255,255,0.14)',
+            borderRadius: '3px',
+            color: 'rgba(255,255,255,0.76)',
+            fontSize: '10.5px',
+            letterSpacing: '2.5px',
+            fontWeight: 300,
+          }}>
+            青に包まれる体験をはじめる
+          </a>
+        </div>
 
         {/* LP2 CTA */}
         <div style={{

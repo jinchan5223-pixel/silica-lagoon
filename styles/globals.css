@@ -42,7 +42,8 @@ body {
   font-family: var(--font-sans);
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
-  /* 日本語改行制御: 句読点を行頭・行末に出さない */
+  /* 日本語改行制御: nowrap spanで重要語を保護しつつ行頭禁則を厳守 */
+  word-break: normal;
   line-break: strict;
   overflow-wrap: break-word;
 }
@@ -50,6 +51,11 @@ body {
 a {
   color: var(--dark);
   text-decoration: none;
+}
+
+/* 重要単語の途中改行を強制禁止 */
+.nowrap {
+  white-space: nowrap;
 }
 
 img {
@@ -130,7 +136,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 30%;
 }
 
 .sl-hero-overlay {
@@ -215,14 +221,14 @@ img {
 
 /* ===== ARTICLE BODY ===== */
 .sl-body {
-  font-size: 15px;
-  line-height: 1.9;
+  font-size: 16px;
+  line-height: 2.0;
   color: var(--text-body);
 }
 
 .sl-body p {
   margin-bottom: 28px;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.03em;
 }
 
 .sl-body strong {
@@ -260,7 +266,7 @@ img {
   margin-bottom: 72px;
   padding: 56px 24px;
   text-align: center;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
 }
 
 /* ===== SECTION IMAGE ===== */
@@ -294,15 +300,22 @@ img {
   margin-bottom: 28px;
   padding-bottom: 18px;
   border-bottom: 1px solid var(--border);
-  letter-spacing: 0.05em;
-  line-height: 1.7;
+  letter-spacing: 0.03em;
+  line-height: 1.85;
+  white-space: pre-line;
 }
 
 .sl-article-section p {
-  font-size: 14px;
-  line-height: 2.2;
+  font-size: 16px;
+  line-height: 2.1;
   color: var(--text-body);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
+  margin-bottom: 24px;
+}
+
+/* 短文スタック: 1〜2文の小パラグラフを美しく見せる */
+.sl-article-section p:last-child {
+  margin-bottom: 0;
 }
 
 /* Lead sub — brand short copy */
@@ -319,11 +332,11 @@ img {
 /* Breath — atmospheric single sentence, full width, very airy */
 .sl-breath {
   font-family: var(--font-serif);
-  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-size: clamp(1.05rem, 3vw, 1.35rem);
   color: var(--text-dark);
   text-align: center;
-  line-height: 2;
-  letter-spacing: 0.1em;
+  line-height: 2.1;
+  letter-spacing: 0.05em;
   padding: 80px 24px;
   opacity: 0.85;
 }
@@ -335,7 +348,7 @@ img {
   color: var(--text-dark);
   text-align: center;
   line-height: 2.5;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   padding: 80px 24px 100px;
   opacity: 0.52;
 }
@@ -743,6 +756,87 @@ img {
   margin-top: 16px;
 }
 
+/* ===== LP3 PREMIUM CTA ===== */
+
+/* コンテナ — 記事の白からなめらかに遷移する乳青色背景 */
+.sl-cta-lp3 {
+  background: linear-gradient(180deg, #ecf3ff 0%, #f2f7ff 50%, #f8fbff 100%);
+  border-top: none;
+  margin-top: 0;
+}
+
+/* 無音ゾーン — CTA前の没入画像 */
+.sl-cta-silence {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.sl-cta-silence-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 50%;
+  filter: saturate(1.08) brightness(0.97);
+}
+
+/* 画像下端から背景色へなめらかにフェード */
+.sl-cta-silence-grad {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(240, 247, 255, 0) 0%,
+    rgba(236, 243, 255, 0.08) 50%,
+    rgba(236, 243, 255, 0.96) 100%
+  );
+}
+
+/* CTA本体パディング（LP3専用） */
+.sl-cta-body-lp3 {
+  padding: 36px 32px 72px;
+}
+
+/* ガラスボタン — 静かに目立つ高級感 */
+.sl-cta-btn-lp3 {
+  display: block;
+  width: 88%;
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 0;
+  height: 54px;
+  line-height: 54px;
+  text-align: center;
+  background: rgba(214, 228, 255, 0.32);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(125, 162, 255, 0.32);
+  border-radius: 27px;
+  color: rgba(36, 50, 120, 0.88);
+  font-size: 10.5px;
+  letter-spacing: 3.5px;
+  font-weight: 400;
+  box-shadow:
+    0 4px 24px rgba(125, 162, 255, 0.13),
+    0 1px 0 rgba(255, 255, 255, 0.62) inset,
+    0 -1px 0 rgba(125, 162, 255, 0.08) inset;
+  transition: opacity 0.28s ease, box-shadow 0.28s ease;
+}
+
+.sl-cta-btn-lp3:hover {
+  opacity: 0.74;
+  box-shadow:
+    0 8px 32px rgba(125, 162, 255, 0.22),
+    0 1px 0 rgba(255, 255, 255, 0.70) inset;
+}
+
+/* LP3 CTA — sl-closing後の余白を詰める */
+.sl-article-wrap + * .sl-cta-lp3,
+.sl-cta-lp3 {
+  margin-top: 0;
+}
+
 /* ===== RELATED ===== */
 .sl-related {
   margin: 80px 0 0;
@@ -887,6 +981,271 @@ img {
   margin-bottom: 4px;
 }
 
+/* ===== 3 REASONS ===== */
+.sl-reason-list {
+  padding: 0 24px;
+  margin: 0 0 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.sl-reason-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+.sl-reason-img {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+.sl-reason-content { flex: 1; }
+.sl-reason-num {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: rgba(125, 162, 255, 0.65);
+  margin-bottom: 6px;
+  font-family: var(--font-serif);
+}
+.sl-reason-title {
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.75;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+.sl-reason-desc {
+  font-size: 13px;
+  line-height: 2.1;
+  color: var(--text-body);
+}
+
+/* ===== WORLD SECTION ===== */
+.sl-world-section {
+  position: relative;
+  width: 100%;
+  margin: 56px 0;
+  overflow: hidden;
+}
+.sl-world-img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+}
+.sl-world-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 15, 40, 0.50) 0%,
+    rgba(5, 15, 50, 0.82) 100%
+  );
+}
+.sl-world-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 32px;
+  text-align: center;
+}
+.sl-world-title {
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.9;
+  color: rgba(220, 235, 255, 0.92) !important;
+  border-bottom: none !important;
+  margin: 0 0 20px !important;
+  padding-bottom: 0 !important;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.8), 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+.sl-world-text {
+  font-size: 13px;
+  line-height: 2.3;
+  color: rgba(220, 235, 255, 0.88);
+  margin-bottom: 32px;
+  text-shadow: 0 1px 8px rgba(0, 20, 80, 0.35);
+}
+.sl-world-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 26px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 10px;
+  letter-spacing: 2px;
+  transition: opacity 0.25s ease;
+  white-space: nowrap;
+}
+.sl-world-btn:hover { opacity: 0.72; }
+
+/* ===== REASON DIAGRAM ===== */
+.sl-reason-diagram {
+  display: block;
+  width: 100vw;
+  margin-left: -24px; /* デスクトップ: article-wrap padding 24px */
+  max-width: none;
+  margin-bottom: 64px;
+}
+
+/* ===== ANSWER (Hero直下 — 答えを提示) ===== */
+.sl-answer {
+  padding: 40px 32px 52px;
+  margin-bottom: 56px;
+}
+.sl-answer-q {
+  font-size: 1.2rem;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+  letter-spacing: 0.03em;
+  text-align: center;
+  line-height: 1.7;
+}
+.sl-answer-a {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.85;
+  color: var(--text-dark);
+  margin-bottom: 18px;
+  font-family: var(--font-serif);
+}
+.sl-answer-desc {
+  font-size: 15px;
+  line-height: 2.1;
+  color: var(--text-body);
+}
+
+/* ===== STEPS (3つの理由 — 理解優先) ===== */
+.sl-steps {
+  padding: 0 32px;
+  margin: 0 0 72px;
+}
+.sl-step {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(125, 162, 255, 0.14);
+}
+.sl-step:last-child { border-bottom: none; }
+.sl-step-num {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: rgba(125, 162, 255, 0.55);
+  flex-shrink: 0;
+  min-width: 24px;
+  font-family: var(--font-serif);
+}
+.sl-step-title {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.9;
+  color: var(--text-dark);
+  letter-spacing: 0.03em;
+}
+
+/* ===== SINK (3 REASONS — 縦に沈む) ===== */
+.sl-sink {
+  padding: 0 0 72px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sl-sink-scene {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 80px;
+}
+
+.sl-sink-num {
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: rgba(125, 162, 255, 0.5);
+  margin-bottom: 18px;
+  font-family: var(--font-serif);
+}
+
+.sl-sink-img {
+  object-fit: cover;
+  display: block;
+}
+
+.sl-sink-text {
+  font-size: 14px;
+  line-height: 2.3;
+  color: var(--text-dark);
+  margin-top: 22px;
+  padding: 0 32px;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+/* 01 シリカ — 中央寄り・中サイズ */
+.sl-sink-scene--1 {
+  align-items: center;
+}
+.sl-sink-scene--1 .sl-sink-num {
+  text-align: center;
+}
+.sl-sink-scene--1 .sl-sink-img {
+  width: 76%;
+  height: 280px;
+  border-radius: 4px;
+}
+.sl-sink-scene--1 .sl-sink-text {
+  text-align: center;
+}
+
+/* 02 光拡散 — 右寄り */
+.sl-sink-scene--2 {
+  align-items: flex-end;
+}
+.sl-sink-scene--2 .sl-sink-num {
+  text-align: right;
+  padding-right: 24px;
+}
+.sl-sink-scene--2 .sl-sink-img {
+  width: 86%;
+  height: 220px;
+  border-radius: 4px;
+}
+.sl-sink-scene--2 .sl-sink-text {
+  text-align: right;
+  padding: 0 24px 0 0;
+}
+
+/* 03 乳青色 — フル幅・余韻重視 */
+.sl-sink-scene--3 {
+  align-items: flex-start;
+}
+.sl-sink-scene--3 .sl-sink-num {
+  text-align: left;
+  padding-left: 28px;
+}
+.sl-sink-scene--3 .sl-sink-img {
+  width: 100%;
+  height: 300px;
+  border-radius: 0;
+}
+.sl-sink-scene--3 .sl-sink-text {
+  text-align: left;
+  padding: 0 32px;
+}
+
 .sl-article-list-desc {
   font-size: 12.5px;
   color: var(--text-muted);
@@ -920,8 +1279,8 @@ img {
     line-height: 1.95;
     letter-spacing: 0.04em;
   }
-  /* 横パディング増：1行の文字数を自然に絞る */
-  .sl-article-wrap { padding: 0 28px 80px; }
+  /* 横パディング：90%以上のコンテンツ幅を確保 */
+  .sl-article-wrap { padding: 0 16px 80px; }
   .sl-article-title {
     font-size: 1.35rem;
     line-height: 1.95;
@@ -933,18 +1292,41 @@ img {
   .sl-blog-list-wrap { padding: 40px 24px 80px; }
   .sl-related-grid { grid-template-columns: 1fr; }
   .sl-timeline { grid-template-columns: 1fr; }
+
+  /* sl-lead: 短冊解消 — 横パディングを絞り、自然な長行を作る */
+  .sl-lead {
+    padding: 56px 8px;
+    font-size: 0.9rem;
+    line-height: 2.2;
+  }
+
+  /* セクション余白をモバイルで縮小 */
+  .sl-article-section { margin: 72px 0; }
+
+  /* 短文パラグラフの行間 */
+  .sl-article-section p {
+    font-size: 16px;
+    line-height: 2.1;
+    letter-spacing: 0.02em;
+    margin-bottom: 20px;
+  }
+
+  /* セクション画像の間隔 */
+  .sl-section-img { margin: 44px 0; }
+  .sl-section-img-caption { margin-top: -28px; margin-bottom: 36px; }
+
+  /* reason-diagram: article-wrap padding 16px に合わせる */
+  .sl-reason-diagram { margin-left: -16px; }
 }
 
 /* ===== RESPONSIVE — 430px iPhone最優先 ===== */
 @media (max-width: 430px) {
-  /* 日本語感情改行: max-widthで1行の文字数を12〜16文字に制御 */
-
-  /* max-widthは使わない — <br />タグで行を制御する */
+  /* sl-lead: 段落余白で余韻を出す — <br />ではなく自然な折り返しで */
   .sl-lead {
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     line-height: 2.2;
-    padding: 60px 40px;
-    margin-bottom: 56px;
+    padding: 56px 4px;
+    margin-bottom: 52px;
   }
 
   .sl-breath {
@@ -959,14 +1341,15 @@ img {
     padding: 72px 40px 96px;
   }
 
+  /* quoteText: 254px幅 / 16px=15.9文字/行 → 14文字の行が確実に収まる */
   .sl-quote-text {
-    font-size: 1.15rem;
-    line-height: 2.1;
-    letter-spacing: 0.07em;
+    font-size: 1.0rem;
+    line-height: 2.2;
+    letter-spacing: 0.05em;
   }
 
   .sl-quote {
-    padding: 44px 32px;
+    padding: 44px 28px;
   }
 
   .sl-hero-catchphrase {
@@ -983,8 +1366,8 @@ img {
   }
 
   .sl-body {
-    line-height: 2.05;
-    font-size: 15px;
+    line-height: 2.1;
+    font-size: 16px;
   }
 
   .sl-body p {
@@ -994,4 +1377,31 @@ img {
   .sl-cta-body {
     padding: 52px 24px 64px;
   }
+
+  /* LP3 CTA モバイル最適化 */
+  .sl-cta-silence { height: 240px; }
+  .sl-cta-body-lp3 { padding: 32px 24px 64px; }
+  .sl-cta-btn-lp3 {
+    width: 90%;
+    height: 52px;
+    line-height: 52px;
+    font-size: 10px;
+    letter-spacing: 3px;
+  }
+
+  /* sink scenes モバイル */
+  .sl-sink { padding: 0 0 48px; }
+  .sl-sink-scene { margin-bottom: 64px; }
+  .sl-sink-scene--1 .sl-sink-img {
+    width: 80%;
+    height: 240px;
+  }
+  .sl-sink-scene--2 .sl-sink-img {
+    width: 90%;
+    height: 200px;
+  }
+  .sl-sink-scene--3 .sl-sink-img {
+    height: 260px;
+  }
+  .sl-world-img { height: 400px; }
 }

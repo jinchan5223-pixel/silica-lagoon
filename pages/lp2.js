@@ -42,7 +42,7 @@ function LpHeader({ shopUrl }) {
 }
 
 // ============================================================
-// STICKY BAR — 通常購入 + 定期便
+// STICKY BAR
 // ============================================================
 function StickyBar({ shopUrl }) {
   const [show, setShow] = useState(false)
@@ -79,7 +79,7 @@ function StickyBar({ shopUrl }) {
 }
 
 // ============================================================
-// HERO — ① 余白改善 + 水面光 + 浮遊粒子 + 禁止表現修正
+// HERO
 // ============================================================
 function HeroSection({ shopUrl }) {
   return (
@@ -92,17 +92,15 @@ function HeroSection({ shopUrl }) {
           fetchPriority="high"
         />
         <div className={styles.heroOverlay} />
-        {/* ② 水面光の反射 */}
         <div className={styles.heroWaterShimmer} aria-hidden="true" />
       </div>
 
-      {/* ③ 浮遊する光の粒子 */}
       <div className={styles.heroParticles} aria-hidden="true">
         <div className={styles.heroParticle} style={{ width: '3px', height: '3px', left: '14%', bottom: '40%', animationDuration: '8s', animationDelay: '0s' }} />
-        <div className={styles.heroParticle} style={{ width: '2px', height: '2px', left: '36%', bottom: '55%', animationDuration: '11s', animationDelay: '2.5s' }} />
-        <div className={styles.heroParticle} style={{ width: '4px', height: '4px', left: '60%', bottom: '30%', animationDuration: '7s', animationDelay: '4s' }} />
-        <div className={styles.heroParticle} style={{ width: '2px', height: '2px', left: '78%', bottom: '48%', animationDuration: '9s', animationDelay: '1s' }} />
-        <div className={styles.heroParticle} style={{ width: '3px', height: '3px', left: '90%', bottom: '36%', animationDuration: '6s', animationDelay: '3s' }} />
+        <div className={styles.heroParticle} style={{ width: '2px', height: '2px', left: '36%', bottom: '55%', animationDuration: '11s', animationDelay: '3s' }} />
+        <div className={styles.heroParticle} style={{ width: '4px', height: '4px', left: '60%', bottom: '30%', animationDuration: '7s', animationDelay: '5s' }} />
+        <div className={styles.heroParticle} style={{ width: '2px', height: '2px', left: '78%', bottom: '48%', animationDuration: '9s', animationDelay: '1.5s' }} />
+        <div className={styles.heroParticle} style={{ width: '3px', height: '3px', left: '90%', bottom: '36%', animationDuration: '6s', animationDelay: '4s' }} />
       </div>
 
       <div className={styles.heroContent}>
@@ -200,7 +198,7 @@ function InlineCta({ shopUrl, text }) {
 }
 
 // ============================================================
-// PAIN — 悩み共感（体験・時間訴求）
+// PAIN
 // ============================================================
 function PainSection() {
   const pains = [
@@ -236,7 +234,7 @@ function PainSection() {
 }
 
 // ============================================================
-// BENEFIT — 体験・感触訴求（効果断定なし）
+// BENEFIT
 // ============================================================
 function BenefitSection() {
   const benefits = [
@@ -288,7 +286,7 @@ function QuoteSection() {
 }
 
 // ============================================================
-// TRANSFORM — ② 青色リッチ化 + 深海グロー追加
+// TRANSFORM
 // ============================================================
 function TransformSection() {
   return (
@@ -302,7 +300,6 @@ function TransformSection() {
         />
         <div className={styles.transformGrad} />
         <div className={styles.transformRipple} />
-        {/* ② 深海グロー */}
         <div className={styles.transformBlueGlow1} aria-hidden="true" />
         <div className={styles.transformBlueGlow2} aria-hidden="true" />
       </div>
@@ -322,7 +319,7 @@ function TransformSection() {
 }
 
 // ============================================================
-// ATMOSPHERE — ② 水面光反射追加
+// ATMOSPHERE
 // ============================================================
 function AtmosphereSection() {
   return (
@@ -330,7 +327,6 @@ function AtmosphereSection() {
       <div className={styles.atmosphereBg}>
         <img src="/images/blue-bath.jpg" alt="乳青色のお湯に静かに浸かる" loading="lazy" />
         <div className={styles.atmosphereOverlay} />
-        {/* ② 水面揺らぎ */}
         <div className={styles.atmosphereShimmer} aria-hidden="true" />
       </div>
       <div className={styles.atmosphereText}>
@@ -345,7 +341,7 @@ function AtmosphereSection() {
 }
 
 // ============================================================
-// HOW TO — ⑤ 使用フロー（5ステップ）
+// HOW TO
 // ============================================================
 function HowToSection() {
   const steps = [
@@ -414,7 +410,7 @@ function HowToSection() {
 }
 
 // ============================================================
-// PRODUCT — 体験言語（効果断定なし）
+// PRODUCT
 // ============================================================
 function ProductSection() {
   const forWhom = [
@@ -501,7 +497,6 @@ function ValueSection() {
           少し特別になる。
         </p>
 
-        {/* 定期便カード */}
         <div className={styles.teikiCard}>
           <span className={styles.teikiBadge}>定期便</span>
           <p className={styles.teikiPrice}>
@@ -525,7 +520,7 @@ function ValueSection() {
 }
 
 // ============================================================
-// REVIEW — ④ リアル寄り（Instagram/iPhone感）
+// REVIEW
 // ============================================================
 function ReviewSection() {
   const reviews = [
@@ -569,7 +564,6 @@ function ReviewSection() {
         <div className={styles.reviewGrid}>
           {reviews.map((r) => (
             <div key={r.name} className={styles.reviewPostCard}>
-              {/* ④ Instagramストーリーバー */}
               <div className={styles.reviewStoryBar} aria-hidden="true" />
               <div className={styles.reviewPostImg}>
                 <img src={r.img} alt="" loading="lazy" style={r.imgPosition ? { objectPosition: r.imgPosition } : undefined} />
@@ -600,7 +594,7 @@ function ReviewSection() {
 }
 
 // ============================================================
-// NIGHT ENDING — ⑥ 感情訴求の締め「今夜入りたい」
+// NIGHT ENDING
 // ============================================================
 function NightEndingSection() {
   return (
@@ -624,7 +618,7 @@ function NightEndingSection() {
 }
 
 // ============================================================
-// CTA — ⑦ 商品画像立体感強化 + 感情訴求コピー
+// CTA
 // ============================================================
 function CtaSection({ shopUrl }) {
   const trust = [
@@ -637,7 +631,6 @@ function CtaSection({ shopUrl }) {
       <div className={styles.ctaInner}>
         <span className={styles.ctaEyebrow}>今夜、夜時間が変わる。</span>
 
-        {/* ⑦ 商品画像 — 立体感・ガラス感を強化 */}
         <div className={styles.ctaProductWrap}>
           <div className={styles.ctaProductGlow} aria-hidden="true" />
           <img
@@ -663,7 +656,6 @@ function CtaSection({ shopUrl }) {
           <span className={styles.ctaMainBtnArrow}>›</span>
         </a>
 
-        {/* 定期便サブボタン */}
         <a href={STRIPE_TEIKI_URL} className={styles.ctaTeikiBtn}>
           <span className={styles.ctaTeikiBtnBadge}>定期便</span>
           ¥2,970/月で続ける（10% OFF）
@@ -719,57 +711,28 @@ export default function Lp2() {
       <StickyBar shopUrl={shopUrl} />
 
       <main>
-        {/* FV */}
         <HeroSection shopUrl={shopUrl} />
-
-        {/* 世界観一文 */}
         <QuickBenefit />
-
-        {/* 価格・内容量 */}
         <TrustStrip />
-
-        {/* CTA ① — FV直後 */}
         <InlineCta shopUrl={shopUrl} text="自宅で青のスパ体験を始める" />
 
-        {/* 悩み共感 */}
         <PainSection />
         <BenefitSection />
         <QuoteSection />
 
-        {/* 青く変化する演出 */}
         <TransformSection />
-
-        {/* 乳青色ビジュアル */}
         <AtmosphereSection />
-
-        {/* ⑤ 使用フロー */}
         <HowToSection />
 
-        {/* CTA ② */}
         <InlineCta shopUrl={shopUrl} text="乳青色のバスタイムを体験する" />
-
-        {/* 成分・設計思想 */}
         <ProductSection />
-
-        {/* CTA ③ */}
         <InlineCta shopUrl={shopUrl} text="湯上がりのやわらかさを体験する" />
-
-        {/* 価格説明 */}
         <ValueSection />
-
-        {/* CTA ④ */}
         <InlineCta shopUrl={shopUrl} text="送料無料で試してみる" />
-
-        {/* ④ リアルレビュー */}
         <ReviewSection />
-
-        {/* CTA ⑤ */}
         <InlineCta shopUrl={shopUrl} text="自分へのご褒美時間を始める" />
 
-        {/* ⑥ 感情訴求の締め */}
         <NightEndingSection />
-
-        {/* 最終CTA */}
         <CtaSection shopUrl={shopUrl} />
       </main>
 

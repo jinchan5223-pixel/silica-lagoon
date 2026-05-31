@@ -197,7 +197,7 @@
   color: #7da2ff;
   text-transform: uppercase;
   display: block;
-  margin-bottom: 36px; /* ← 拡大（旧24px） */
+  margin-bottom: 36px;
 }
 
 .heroHeadline {
@@ -205,9 +205,9 @@
   font-size: clamp(2rem, 9.5vw, 3rem);
   font-weight: 300;
   color: #0a0f1e;
-  line-height: 1.68; /* ← 拡大（旧1.55） */
+  line-height: 1.68;
   letter-spacing: 0.04em;
-  margin-bottom: 40px; /* ← 拡大（旧32px） */
+  margin-bottom: 40px;
 }
 
 .heroHeadline em {
@@ -219,7 +219,7 @@
   width: 28px;
   height: 1px;
   background: #c0cef5;
-  margin-bottom: 24px; /* ← 拡大（旧18px） */
+  margin-bottom: 24px;
 }
 
 .heroSubCopy {
@@ -228,14 +228,14 @@
   font-weight: 300;
   color: #888;
   letter-spacing: 0.06em;
-  margin-bottom: 18px; /* ← 拡大（旧12px） */
+  margin-bottom: 18px;
   font-style: italic;
 }
 
 .heroSub {
   font-size: 12px;
   color: #777;
-  line-height: 2.2; /* ← 拡大（旧2） */
+  line-height: 2.2;
   letter-spacing: 0.02em;
   max-width: 240px;
 }
@@ -243,7 +243,7 @@
 /* Hero 底部 CTA wrap — ① 余白調整 */
 .heroCtaWrap {
   position: absolute;
-  bottom: 56px; /* ← 拡大（旧48px） */
+  bottom: 56px;
   left: 0;
   right: 0;
   padding: 0 28px;
@@ -257,7 +257,7 @@
   gap: 12px;
   background: rgba(255, 255, 255, 0.88);
   color: #0a0f1e;
-  padding: 22px 40px; /* ← 拡大（旧20px） */
+  padding: 22px 40px;
   border-radius: 60px;
   font-size: 13px;
   font-weight: 400;
@@ -271,7 +271,7 @@
   -webkit-backdrop-filter: blur(14px);
   width: 100%;
   max-width: 360px;
-  margin: 0 auto 20px; /* ← margin追加 */
+  margin: 0 auto 20px;
 }
 
 .heroCtaArrow {
@@ -290,7 +290,7 @@
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.78);
   border-radius: 16px;
-  padding: 16px 24px 14px; /* ← 拡大 */
+  padding: 16px 24px 14px;
   max-width: 290px;
   margin: 0 auto 10px;
   text-align: center;
@@ -303,7 +303,7 @@
   font-size: 10px;
   color: #666;
   letter-spacing: 0.8px;
-  margin-bottom: 6px; /* ← 拡大 */
+  margin-bottom: 6px;
 }
 
 .heroPriceAmt {
@@ -423,7 +423,7 @@
    QUICK BENEFIT
    =================================================== */
 .quickBenefit {
-  padding: 72px 28px; /* ← 拡大（旧64px） */
+  padding: 72px 28px;
   text-align: center;
   background: #fafbff;
   border-bottom: 1px solid rgba(125, 162, 255, 0.07);
@@ -434,9 +434,9 @@
   font-size: clamp(1.25rem, 5.5vw, 1.75rem);
   font-weight: 300;
   color: #0a0f1e;
-  line-height: 1.9; /* ← 拡大（旧1.8） */
+  line-height: 1.9;
   letter-spacing: 0.07em;
-  margin-bottom: 20px; /* ← 拡大（旧16px） */
+  margin-bottom: 20px;
 }
 
 .quickBenefitSub {
@@ -450,7 +450,7 @@
    INLINE CTA
    =================================================== */
 .inlineCtaWrap {
-  padding: 56px 28px 52px; /* ← 拡大（旧48px/44px） */
+  padding: 56px 28px 52px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -505,7 +505,7 @@
    PAIN SECTION
    =================================================== */
 .painSection {
-  padding: 104px 0 88px; /* ← 拡大（旧96px/80px） */
+  padding: 104px 0 88px;
   background: white;
 }
 
@@ -520,7 +520,7 @@
   background: #f7f9fd;
   border: 1px solid rgba(125, 162, 255, 0.1);
   border-radius: 14px;
-  padding: 28px 14px 24px; /* ← 拡大 */
+  padding: 28px 14px 24px;
   text-align: center;
 }
 
@@ -557,7 +557,7 @@
    BENEFIT SECTION
    =================================================== */
 .benefitSection {
-  padding: 104px 0; /* ← 拡大（旧96px） */
+  padding: 104px 0;
   background: #fafbff;
 }
 
@@ -630,7 +630,7 @@
    QUOTE SECTION
    =================================================== */
 .quoteSection {
-  padding: 104px 28px; /* ← 拡大（旧88px） */
+  padding: 104px 28px;
   background: white;
   text-align: center;
 }
@@ -1198,7 +1198,6 @@
   height: 100%;
   object-fit: cover;
   object-position: center 35%;
-  /* ④ 少しだけリアル感を出す画像処理 */
   filter: contrast(1.03) saturate(1.06) brightness(0.97);
   transition: transform 0.6s ease;
 }
@@ -1441,7 +1440,7 @@
 
 /* ⑦ 商品画像 — 多層シャドウで立体・重厚感 */
 .ctaProductImg {
-  width: 160px; /* ← 拡大（旧128px） */
+  width: 160px;
   height: auto;
   object-fit: contain;
   display: block;

@@ -14,6 +14,7 @@ export default function BlogArticle({ articleData }) {
       tags={articleData.tags}
       slug={articleData.slug}
       lp={articleData.lp}
+      description={articleData.description || ''}
       relatedArticles={articleData.relatedArticles}
     >
       {Content ? <Content /> : <p>コンテンツを準備中です。</p>}

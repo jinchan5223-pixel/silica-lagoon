@@ -61,11 +61,12 @@
   .flow-node-col  { background: rgba(76,201,240,0.05); border: 1px solid rgba(76,201,240,0.15); color: rgba(76,201,240,0.7); }
   .flow-node-lp2  { background: rgba(201,169,110,0.12); border: 1px solid rgba(201,169,110,0.35); color: #c9a96e; }
   .flow-node-lp1  { background: rgba(100,180,255,0.08); border: 1px solid rgba(100,180,255,0.25); color: #74b0ff; }
+  .flow-node-lp3  { background: rgba(100,220,180,0.10); border: 1px solid rgba(100,220,180,0.30); color: #5ddbb8; }
   .flow-node-cv   { background: rgba(100,220,120,0.1); border: 1px solid rgba(100,220,120,0.3); color: #6ddc7a; }
   .flow-arr { font-size: 14px; color: rgba(255,255,255,0.2); padding: 0 10px; flex-shrink: 0; }
 
   /* LP カード列 */
-  .lp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid rgba(76,201,240,0.12); }
+  .lp-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; border: 1px solid rgba(76,201,240,0.12); }
   .lp-card { background: #0d1829; padding: 0; }
   .lp-card + .lp-card { border-left: 1px solid rgba(76,201,240,0.12); }
   .lp-card-head { padding: 20px 24px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 12px; }
@@ -107,11 +108,16 @@
   .col-cat-beauty{ background: rgba(201,169,110,0.08); color: rgba(201,169,110,0.7); border: 1px solid rgba(201,169,110,0.12); }
   .col-cat-make  { background: rgba(180,100,220,0.08); color: rgba(200,130,240,0.7); border: 1px solid rgba(180,100,220,0.12); }
   .col-cat-life  { background: rgba(100,200,130,0.08); color: rgba(120,210,150,0.65); border: 1px solid rgba(100,200,130,0.12); }
+  .col-cat-spa   { background: rgba(93,219,184,0.10); color: rgba(93,219,184,0.85); border: 1px solid rgba(93,219,184,0.18); }
+  .col-pv { font-size: 9px; color: rgba(255,255,255,0.22); letter-spacing: 0.5px; white-space: nowrap; flex-shrink: 0; margin-left: auto; padding-left: 8px; }
   .col-title { font-size: 12px; color: rgba(255,255,255,0.6); flex: 1; line-height: 1.4; }
   .col-url { font-size: 9.5px; color: rgba(255,255,255,0.2); margin-left: auto; white-space: nowrap; flex-shrink: 0; font-family: monospace; }
 
   .lp-no-col { padding: 32px 24px; text-align: center; color: rgba(255,255,255,0.2); font-size: 12px; letter-spacing: 2px; line-height: 2; }
 
+  .tag-experience { background: rgba(100,220,180,0.1); color: #5ddbb8; border: 1px solid rgba(100,220,180,0.25); }
+  .kw-teal { background: rgba(100,220,180,0.08); color: rgba(93,219,184,0.85); border: 1px solid rgba(100,220,180,0.15); }
+  @media (max-width: 1100px) { .lp-cards { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 860px) { .lp-cards { grid-template-columns: 1fr; } .lp-card + .lp-card { border-left: none; border-top: 1px solid rgba(76,201,240,0.12); } }
 </style>
 </head>
@@ -172,6 +178,8 @@
       <div class="flow-node flow-node-lp1">💎 LP1 /</div>
       <div class="flow-arr">or</div>
       <div class="flow-node flow-node-lp2">✨ LP2 /lp2</div>
+      <div class="flow-arr">or</div>
+      <div class="flow-node flow-node-lp3">🌊 LP3 /lp3</div>
       <div class="flow-arr">→</div>
       <div class="flow-node flow-node-cv">🛒 購入</div>
     </div>
@@ -383,6 +391,90 @@
         </div><!-- /lp-col-list -->
       </div><!-- /lp-card LP2 -->
 
+      <!-- LP3 -->
+      <div class="lp-card">
+        <div class="lp-card-head">
+          <span class="lp-num">LP 3</span>
+          <span class="lp-name">没入体験LP</span>
+          <span class="lp-concept-tag tag-experience">Blue Lagoon体験</span>
+        </div>
+
+        <div class="lp-url-row">
+          <span class="lp-url-label">URL</span>
+          <a href="https://silica-lagoon.company/lp3" target="_blank" class="lp-url-link">silica-lagoon.company/lp3</a>
+          <a href="https://silica-lagoon.company/lp3" target="_blank" class="lp-open-btn">↗ 開く</a>
+        </div>
+
+        <div class="lp-kw-row">
+          <div class="lp-kw-label">CONCEPT KEYWORDS</div>
+          <div class="lp-kw-list">
+            <span class="lp-kw kw-teal">Blue Lagoon 自宅</span>
+            <span class="lp-kw kw-teal">没入体験</span>
+            <span class="lp-kw kw-teal">青いお湯</span>
+            <span class="lp-kw kw-teal">バスタイム 非日常</span>
+            <span class="lp-kw kw-teal">整う 夜</span>
+          </div>
+        </div>
+
+        <div class="lp-col-head">
+          <span>COLUMN FEED</span>
+          <span class="lp-col-count" style="color:#5ddbb8">10 記事</span>
+        </div>
+
+        <div class="lp-col-list">
+          <div class="col-item"><a href="https://silica-lagoon.company/blog/blue-lagoon-world" target="_blank">
+            <span class="col-cat col-cat-spa">SPA</span>
+            <span class="col-title">ブルーラグーンが、世界中の人を惹きつける理由</span>
+            <span class="col-url">/blog/blue-lagoon-world</span>
+          </a></div>
+          <div class="col-item"><a href="https://silica-lagoon.company/blog/why-bath-turns-blue" target="_blank">
+            <span class="col-cat col-cat-spa">SPA</span>
+            <span class="col-title">なぜ温泉は、青く見えるのか</span>
+            <span class="col-url">/blog/why-bath-turns-blue</span>
+          </a></div>
+          <div class="col-item"><a href="https://silica-lagoon.company/blog/milky-blue-world" target="_blank">
+            <span class="col-cat col-cat-spa">SPA</span>
+            <span class="col-title">ミルキーブルーの世界が、人を惹きつける理由</span>
+            <span class="col-url">/blog/milky-blue-world</span>
+          </a></div>
+          <div class="col-item"><a href="https://silica-lagoon.company/blog/why-blue-water" target="_blank">
+            <span class="col-cat col-cat-spa">SPA</span>
+            <span class="col-title">なぜ人は、「青い水」に惹かれるのか</span>
+            <span class="col-url">/blog/why-blue-water</span>
+          </a></div>
+          <div class="col-item"><a href="https://silica-lagoon.company/blog/luxury-spa-silence" target="_blank">
+            <span class="col-cat col-cat-spa">SPA</span>
+            <span class="col-title">海外ラグジュアリースパに共通する、静けさ</span>
+            <span class="col-url">/blog/luxury-spa-silence</span>
+          </a></div>
+          <div class="col-item"><a href="https://silica-lagoon.company/blog/nordic-bath-culture" target="_blank">
+            <span class="col-cat col-cat-spa">NORDIC</span>
+            <span class="col-title">北欧の人が、お風呂時間を大切にする理由</span>
+            <span class="col-url">/blog/nordic-bath-culture</span>
+          </a></div>
+          <div class="col-item"><a href="https://silica-lagoon.company/blog/home-spa-experience" target="_blank">
+            <span class="col-cat col-cat-spa">HOME</span>
+            <span class="col-title">自宅に、静かなスパをつくる</span>
+            <span class="col-url">/blog/home-spa-experience</span>
+          </a></div>
+          <div class="col-item"><a href="https://silica-lagoon.company/blog/tired-night-bath" target="_blank">
+            <span class="col-cat col-cat-spa">NIGHT</span>
+            <span class="col-title">疲れた夜ほど、お風呂時間を変えたくなる</span>
+            <span class="col-url">/blog/tired-night-bath</span>
+          </a></div>
+          <div class="col-item"><a href="https://silica-lagoon.company/blog/reward-bath-habit" target="_blank">
+            <span class="col-cat col-cat-spa">NIGHT</span>
+            <span class="col-title">「ご褒美時間」をつくる、入浴という習慣</span>
+            <span class="col-url">/blog/reward-bath-habit</span>
+          </a></div>
+          <div class="col-item"><a href="https://silica-lagoon.company/blog/bath-as-experience" target="_blank">
+            <span class="col-cat col-cat-spa">EXP</span>
+            <span class="col-title">お風呂を、「作業」から「体験」へ変える</span>
+            <span class="col-url">/blog/bath-as-experience</span>
+          </a></div>
+        </div>
+      </div><!-- /lp-card LP3 -->
+
     </div><!-- /lp-cards -->
   </div><!-- /lp-map-wrap -->
 
@@ -547,6 +639,33 @@ document.getElementById('todayClicks').textContent = todayClicks;
       ph += '</tbody></table>';
       document.getElementById('paymentTableContent').innerHTML = ph;
     }
+
+    // コラム閲覧数
+    try {
+      const resPv = await fetch(`${SUPABASE_URL}/rest/v1/clicks?lp=eq.pv&select=ref`, {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+      });
+      const pvData = await resPv.json();
+      const pvCounts = {};
+      if (Array.isArray(pvData)) {
+        pvData.forEach(d => { pvCounts[d.ref] = (pvCounts[d.ref] || 0) + 1; });
+      }
+      document.querySelectorAll('.col-item a[href*="/blog/"]').forEach(link => {
+        const m = link.href.match(/\/blog\/([^?#]+)$/);
+        if (!m) return;
+        const slug = m[1];
+        const count = pvCounts[slug] || 0;
+        const urlEl = link.querySelector('.col-url');
+        if (!urlEl) return;
+        let pvEl = link.querySelector('.col-pv');
+        if (!pvEl) {
+          pvEl = document.createElement('span');
+          pvEl.className = 'col-pv';
+          urlEl.after(pvEl);
+        }
+        pvEl.textContent = count > 0 ? count + ' views' : '';
+      });
+    } catch(e) {}
 
     // テーブル
     const sorted = Object.entries(refCount).sort((a, b) => b[1] - a[1]);

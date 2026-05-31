@@ -3,16 +3,19 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import styles from '../styles/lp3.module.css'
 
-const STRIPE_URL = 'https://buy.stripe.com/4gMaEQ5l313Wfmg6n58k801'
+const STRIPE_URL      = 'https://buy.stripe.com/4gMaEQ5l313Wfmg6n58k801'
+const STRIPE_TEIKI_URL = 'https://buy.stripe.com/00wfZacNv9Asa1W5j18k800'
 const SUP_URL = 'https://mrcvwlaawmlfpoibxjec.supabase.co'
 const SUP_KEY = 'sb_publishable_nONkmADAMLoZ1wxUrZqwug_F_Fm08yO'
 
-function useShopUrl() {
+function useShopUrls() {
   const [shopUrl, setShopUrl] = useState(STRIPE_URL)
+  const [teikiUrl, setTeikiUrl] = useState(STRIPE_TEIKI_URL)
   useEffect(() => {
     const ref = new URLSearchParams(window.location.search).get('ref')
     if (!ref) return
     setShopUrl(`${STRIPE_URL}?client_reference_id=${encodeURIComponent(ref)}`)
+    setTeikiUrl(`${STRIPE_TEIKI_URL}?client_reference_id=${encodeURIComponent(ref)}`)
     fetch(`${SUP_URL}/rest/v1/clicks`, {
       method: 'POST',
       headers: {
@@ -23,7 +26,7 @@ function useShopUrl() {
       body: JSON.stringify({ ref, lp: 'lp3' }),
     }).catch(() => {})
   }, [])
-  return shopUrl
+  return { shopUrl, teikiUrl }
 }
 
 // ============================================================
@@ -39,65 +42,87 @@ function Lp3Header({ shopUrl }) {
 }
 
 // ============================================================
-// HERO — 没入感・余白・動画対応
+// HERO
 // ============================================================
 function HeroSection({ shopUrl }) {
   return (
     <section className={styles.hero}>
       <div className={styles.heroBg}>
-        {/* 動画ファイルが存在すれば表示、なければposterの静止画にフォールバック */}
-        <video
-          className={styles.heroBgVideo}
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/images/blue-bath.jpg"
-        >
-          <source src="/videos/hero-water.mp4" type="video/mp4" />
-        </video>
+        <img src="/images/hero-lp3.png" alt="" className={styles.heroBgImg} />
         <div className={styles.heroGrad} />
+        <div className={styles.heroWaterLight} aria-hidden="true" />
+        <div className={styles.heroMist} aria-hidden="true" />
+        <div className={styles.heroVignette} aria-hidden="true" />
       </div>
 
       <div className={styles.heroBody}>
+        <span className={styles.heroEyebrow}>北欧の大地が育んだ、青の癒し</span>
+        <p className={styles.heroBrand}>
+          Silica Lagoon<sup className={styles.heroBrandSup}>®</sup>
+        </p>
+        <p className={styles.heroBrandSub}>Bath Salt</p>
+        <div className={styles.heroDivider} />
         <h1 className={styles.heroH1}>
-          自宅で、<br />
-          Blue Lagoon体験。
+          青に包まれる、<br />
+          静かな夜時間。
         </h1>
         <p className={styles.heroSub}>
-          青に包まれる、<br />
-          静かな20分。
+          火山の恵みから生まれたミネラル入浴料で、<br />
+          自宅が北欧のスパに。
         </p>
-        <a href={shopUrl} className={styles.heroBtn}>
-          体験をはじめる
-          <span className={styles.heroBtnArrow}>↓</span>
-        </a>
+      </div>
+
+      <div className={styles.heroScrollCircle} aria-hidden="true">
+        <span className={styles.heroScrollText}>SCROLL</span>
+        <span className={styles.heroScrollArrow}>↓</span>
       </div>
     </section>
   )
 }
 
 // ============================================================
-// EXPERIENCE — 物語・最小限のテキスト
+// INGREDIENT — 成分・スペック
 // ============================================================
-function ExperienceSection() {
+function IngredientSection() {
   return (
-    <section className={styles.experience}>
-      <div className={styles.expInner}>
-        <span className={styles.expEye}>BLUE LAGOON EXPERIENCE</span>
-        <h2 className={styles.expH2}>
-          白く青い、<br />
-          静かな温泉体験。
+    <section className={styles.ingredientSection}>
+      <div className={styles.ingredientInner}>
+        <div className={styles.ingredientMain}>
+          <p className={styles.ingredientLabel}>美肌の湯</p>
+          <p className={styles.ingredientSpec}>
+            メタケイ酸Na 250mg以上<sup className={styles.ingredientNote}>*1</sup>
+          </p>
+          <p className={styles.ingredientFoot}>*1 温泉に匹敵、湯出し1回分あたり</p>
+        </div>
+        <div className={styles.ingredientBadge}>
+          <p className={styles.ingredientBadgeLabel}>保湿成分</p>
+          <p className={styles.ingredientBadgeItems}>
+            スクワラン<br />コラーゲン<br />ヒアルロン酸
+          </p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================
+// DISSOLVE — 乳青色に変わる瞬間
+// ============================================================
+function DissolveSection() {
+  return (
+    <section className={styles.dissolveSection}>
+      <div className={styles.dissolveImgWrap}>
+        <img src="/images/dissolving.png" alt="" loading="lazy" />
+        <div className={styles.dissolveOverlay} />
+      </div>
+      <div className={styles.dissolveCopy}>
+        <h2 className={styles.dissolveH2}>
+          透明なお湯が、<br />
+          乳青色に変わる瞬間。
         </h2>
-        <p className={styles.expBody}>
-          アイスランドで出会った、白く青い温泉。<br />
-          その静けさを、今日の浴室へ。
-        </p>
-        <p className={styles.expStory}>
-          ミルキーブルーのお湯が広がる瞬間、<br />
-          遠い旅先の静けさが戻ってくる。<br />
-          <br />
-          それが、SILICA LAGOON。
+        <p className={styles.dissolveBody}>
+          まるでアイスランドのラグーンに<br />
+          身をゆだねるような、特別な体験を。
         </p>
       </div>
     </section>
@@ -105,90 +130,121 @@ function ExperienceSection() {
 }
 
 // ============================================================
-// VISUAL 1 — 全画面インパクト・溶ける瞬間
+// BENEFIT — 3つの体験
 // ============================================================
-function DissolvingVisual() {
+function BenefitSection() {
+  const benefits = [
+    {
+      img: '/images/hand-detail.png',
+      title: 'やさしく、とろける湯ざわり',
+      desc: 'ミネラルを含んだやわらかなお湯が、全身をやさしく包み込む。',
+    },
+    {
+      img: '/images/quiet-bath-2.png',
+      title: '深く、からだをゆるめる',
+      desc: '温かいお湯の中で、ゆっくりと力が抜けていく静かな時間。',
+    },
+    {
+      img: '/images/bath-scene-3.png',
+      title: '青いお湯に、ただ浸かる。',
+      desc: 'ミルキーブルーの湯面が広がる。それだけで、体験が始まる。',
+    },
+  ]
   return (
-    <div className={styles.fullVisual}>
-      <img
-        src="/images/dissolving.png"
-        alt="バスソルトがお湯に溶け込む"
-        loading="lazy"
-      />
-      <div className={styles.fullVisualOverlay} />
-    </div>
-  )
-}
-
-// ============================================================
-// JOURNEY — 暗背景・旅の詩
-// ============================================================
-function JourneySection() {
-  return (
-    <section className={styles.journey}>
-      <p className={styles.journeyText}>
-        遠くへ行かなくても、<br />
-        お風呂は旅になる。
-      </p>
-    </section>
-  )
-}
-
-// ============================================================
-// QUOTE
-// ============================================================
-function QuoteSection() {
-  return (
-    <section className={styles.quote}>
-      <div className={styles.quoteInner}>
-        <span className={styles.quoteMark}>"</span>
-        <p className={styles.quoteText}>
-          お風呂が、<br />
-          旅になる。
-        </p>
-        <div className={styles.quoteLine} />
-        <p className={styles.quoteSub}>SILICA LAGOON</p>
+    <section className={styles.benefitSection}>
+      <div className={styles.benefitGrid}>
+        {benefits.map((b, i) => (
+          <div key={i} className={styles.benefitItem}>
+            <div className={styles.benefitImgWrap}>
+              <img src={b.img} alt="" loading="lazy" />
+            </div>
+            <div className={styles.benefitText}>
+              <p className={styles.benefitTitle}>{b.title}</p>
+              <p className={styles.benefitDesc}>{b.desc}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   )
 }
 
 // ============================================================
-// LUXURY — 体験の3項目
+// JOURNEY END — 今日の終わりに
 // ============================================================
-function LuxurySection() {
-  const items = [
+function JourneyEndSection() {
+  return (
+    <section className={styles.journeyEndSection}>
+      <div className={styles.journeyEndImgWrap}>
+        <img src="/images/quiet-bath.png" alt="" loading="lazy" />
+        <div className={styles.journeyEndOverlay} />
+      </div>
+      <div className={styles.journeyEndCopy}>
+        <h2 className={styles.journeyEndH2}>
+          今日の終わりに、<br />
+          自分をととのえる。
+        </h2>
+        <p className={styles.journeyEndBody}>
+          スマホを置いて、深く息をつく。<br />
+          静かな青が、心まで満たしていく。<br />
+          それは、自分だけのスパ時間。
+        </p>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================
+// REVIEW — 誰かの夜時間の断片
+// ============================================================
+function ReviewSection() {
+  const reviews = [
     {
-      num: '01',
-      title: '青に包まれる',
-      desc: 'ミルキーブルーの湯が、視界を静かに染める。',
+      name: 'M.K',
+      img: '/images/calm-time.png',
+      tag: '#バスタイム記録',
+      quote: '夜が、少し楽しみになった。',
     },
     {
-      num: '02',
-      title: '音が消える',
-      desc: '湯気と光だけが残る、静かな時間。',
+      name: 'Y.T',
+      img: '/images/quiet-bath-2.png',
+      tag: '#自宅スパ',
+      quote: 'このヌルヌル感が効いてる感じ。',
     },
     {
-      num: '03',
-      title: '旅の余韻',
-      desc: '遠くへ行かなくても、心だけ旅に出る。',
+      name: 'R.S',
+      img: '/images/honninmesen.png',
+      tag: '#夜の楽しみ',
+      quote: '静かな青に、包まれる感じ。',
     },
   ]
 
   return (
-    <section className={styles.luxury}>
-      <div className={styles.luxInner}>
-        <span className={styles.luxEye}>THE EXPERIENCE</span>
-        <h2 className={styles.luxH2}>
-          ただ浸かる、<br />
-          その贅沢。
-        </h2>
-        <div className={styles.luxItems}>
-          {items.map(item => (
-            <div key={item.num} className={styles.luxItem}>
-              <span className={styles.luxNum}>{item.num}</span>
-              <h3 className={styles.luxTitle}>{item.title}</h3>
-              <p className={styles.luxDesc}>{item.desc}</p>
+    <section className={styles.reviewSection}>
+      <div className={styles.reviewInner}>
+        <span className={styles.reviewEye}>CUSTOMER VOICE</span>
+        <p className={styles.reviewTitle}>誰かの、夜時間。</p>
+        <div className={styles.reviewGrid}>
+          {reviews.map((r) => (
+            <div key={r.name} className={styles.reviewCard}>
+              <div className={styles.reviewStoryBar} />
+              <div className={styles.reviewImgWrap}>
+                <img
+                  src={r.img}
+                  alt=""
+                  loading="lazy"
+                  style={r.imgPosition ? { objectPosition: r.imgPosition } : undefined}
+                />
+                <div className={styles.reviewImgGrad} />
+                <div className={styles.reviewOverlay}>
+                  <span className={styles.reviewTag}>{r.tag}</span>
+                  <p className={styles.reviewQuote}>「{r.quote}」</p>
+                  <div className={styles.reviewMeta}>
+                    <div className={styles.reviewAvatar}>{r.name.charAt(0)}</div>
+                    <span className={styles.reviewName}>{r.name}</span>
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -198,60 +254,144 @@ function LuxurySection() {
 }
 
 // ============================================================
-// VISUAL 2 — 後ろ姿・青いお湯
+// NIGHT ENDING — 感情の締め
 // ============================================================
-function ImmersionVisual() {
+function NightEndingSection() {
   return (
-    <section className={styles.immersion}>
-      <div className={styles.immersionImgWrap}>
-        <img src="/images/back-figure.png" alt="青いお湯に浸かる" loading="lazy" />
-        <div className={styles.immersionOverlay} />
-      </div>
-      <div className={styles.immersionCopy}>
-        <p className={styles.immersionText}>
-          青に包まれる、<br />
-          静かな時間。
+    <section className={styles.nightSection}>
+      <div className={styles.nightGlow} aria-hidden="true" />
+      <div className={styles.nightMist} aria-hidden="true" />
+      <div className={styles.nightInner}>
+        <span className={styles.nightEye}>TONIGHT</span>
+        <p className={styles.nightMain}>
+          今夜、<br />
+          青に包まれる。
         </p>
-        <p className={styles.immersionSub}>毎晩を、特別にする。</p>
+        <div className={styles.nightDivider} />
+        <p className={styles.nightSub}>
+          スマホを置いて、深く息をつく。<br />
+          静かな青が、一日を洗い流していく。<br />
+          それだけで、今夜が変わる。
+        </p>
+        <div className={styles.nightBreath} aria-hidden="true" />
       </div>
     </section>
   )
 }
 
 // ============================================================
-// CTA — 世界観の入口
+// CTA BAR — 横並びCTA
 // ============================================================
-function CtaSection({ shopUrl }) {
+function CtaBarSection({ shopUrl, teikiUrl }) {
+  const [plan, setPlan] = useState('teiki')
+  const icons = [
+    { key: 'a', label: 'アイスランドの\n自然に着想' },
+    { key: 'b', label: '美肌の湯\nメタケイ酸Na配合' },
+    { key: 'c', label: '弱アルカリ性\nやさしい処方' },
+    { key: 'd', label: '国内製造\n品質安心' },
+  ]
+  const selectedUrl = plan === 'teiki' ? teikiUrl : shopUrl
   return (
-    <section className={styles.cta}>
-      <div className={styles.ctaInner}>
-        <span className={styles.ctaEye}>START YOUR EXPERIENCE</span>
-        <h2 className={styles.ctaH2}>
-          いつもの浴室を、<br />
-          少し遠い場所へ。
-        </h2>
-
-        <div className={styles.ctaVisual}>
+    <section className={styles.ctaBar}>
+      <div className={styles.ctaBarInner}>
+        <div className={styles.ctaBarImgWrap}>
+          <div className={styles.ctaBarImgAura} aria-hidden="true" />
           <img
-            src="/images/bath-salt-crystal.png"
+            src="/images/product-package.png"
             alt="SILICA LAGOON BATH SALT"
+            className={styles.ctaBarImg}
             loading="lazy"
           />
         </div>
-
-        <p className={styles.ctaName}>SILICA LAGOON BATH SALT</p>
-
-        <a href={shopUrl} className={styles.ctaBtn}>
-          自宅で体験をはじめる
-          <span className={styles.ctaBtnArrow}>›</span>
-        </a>
-
-        <div className={styles.ctaTrust}>
-          <span>迅速発送</span>
-          <span>国内製造</span>
+        <div className={styles.ctaBarInfo}>
+          <p className={styles.ctaBarBrand}>
+            Silica Lagoon<sup className={styles.ctaBarBrandSup}>®</sup>
+          </p>
+          <p className={styles.ctaBarBrandSub}>Bath Salt</p>
+          <p className={styles.ctaBarTagline} style={{ whiteSpace: 'pre-line' }}>
+            {'ミネラル豊富な乳青色のお湯を、\nあなたの毎日に。'}
+          </p>
         </div>
       </div>
+
+      {/* プラン選択 */}
+      <div className={styles.ctaBarPlans}>
+        <button
+          className={`${styles.ctaBarPlanCard} ${plan === 'teiki' ? styles.ctaBarPlanCardActive : ''}`}
+          onClick={() => setPlan('teiki')}
+          type="button"
+        >
+          <span className={styles.ctaBarPlanBadge}>おすすめ</span>
+          <span className={styles.ctaBarPlanName}>定期購入</span>
+          <span className={styles.ctaBarPlanPrice}>¥2,970<span className={styles.ctaBarPlanUnit}>/月</span></span>
+          <span className={styles.ctaBarPlanNote}>送料無料・いつでも解約可</span>
+        </button>
+        <button
+          className={`${styles.ctaBarPlanCard} ${plan === 'ippan' ? styles.ctaBarPlanCardActive : ''}`}
+          onClick={() => setPlan('ippan')}
+          type="button"
+        >
+          <span className={styles.ctaBarPlanBadgeEmpty} />
+          <span className={styles.ctaBarPlanName}>通常購入</span>
+          <span className={styles.ctaBarPlanPrice}>¥3,300</span>
+          <span className={styles.ctaBarPlanNote}>送料無料・1回限り</span>
+        </button>
+      </div>
+
+      <div className={styles.ctaBarBtnWrap}>
+        <a href={selectedUrl} className={styles.ctaBarBtn}>
+          {plan === 'teiki' ? '定期購入をはじめる ›' : '通常購入をはじめる ›'}
+        </a>
+        <p className={styles.ctaBarBtnNote}>税込・送料無料</p>
+      </div>
+
+      <div className={styles.ctaBarIcons}>
+        {icons.map((ic) => (
+          <div key={ic.key} className={styles.ctaBarIcon}>
+            <span className={styles.ctaBarIconLabel} style={{ whiteSpace: 'pre-line' }}>
+              {ic.label}
+            </span>
+          </div>
+        ))}
+      </div>
     </section>
+  )
+}
+
+// ============================================================
+// STICKY NAV — 静かなブランド導線
+// ============================================================
+function StickyNav({ shopUrl }) {
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => {
+      const scrollY = window.scrollY
+      const winH   = window.innerHeight
+      const docH   = document.documentElement.scrollHeight
+      // ヒーロー通過後に表示、最終CTAの手前200pxで消える
+      const pastHero   = scrollY > winH * 0.72
+      const nearBottom = scrollY + winH > docH - 220
+      setVisible(pastHero && !nearBottom)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  return (
+    <div className={`${styles.stickyNav} ${visible ? styles.stickyNavVisible : ''}`} aria-hidden={!visible}>
+      <div className={styles.stickyNavInner}>
+        <div className={styles.stickyNavInfo}>
+          <p className={styles.stickyNavBrand}>
+            Silica Lagoon<sup className={styles.stickyNavSup}>®</sup>
+          </p>
+          <p className={styles.stickyNavSub}>bath salt</p>
+        </div>
+        <a href={shopUrl} className={styles.stickyNavBtn} tabIndex={visible ? 0 : -1}>
+          夜に、青を。
+        </a>
+      </div>
+    </div>
   )
 }
 
@@ -259,44 +399,45 @@ function CtaSection({ shopUrl }) {
 // PAGE
 // ============================================================
 export default function Lp3() {
-  const shopUrl = useShopUrl()
+  const { shopUrl, teikiUrl } = useShopUrls()
 
   return (
     <>
       <Head>
         <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>自宅で、Blue Lagoon体験。— SILICA LAGOON BATH SALT</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+        <title>青に包まれる、静かな夜時間。— SILICA LAGOON BATH SALT</title>
         <meta
           name="description"
-          content="遠い旅先で出会うような静けさを、今日のお風呂に。ミルキーブルーのお湯に包まれる、静かな20分。SILICA LAGOON BATH SALT。"
+          content="アイスランドのスパ文化に着想を受けた、乳青色のバスタイム。ブルーラグーンのような静けさを、今夜の浴室へ。ミルキーブルー温泉体験。SILICA LAGOON。"
         />
         <link rel="canonical" href="https://silica-lagoon.company/lp3" />
-        <meta property="og:title" content="自宅で、Blue Lagoon体験。— SILICA LAGOON BATH SALT" />
-        <meta property="og:description" content="遠い旅先で出会うような静けさを、今日のお風呂に。" />
-        <meta property="og:image" content="https://silica-lagoon.company/images/blue-bath.jpg" />
+        <meta property="og:title" content="青に包まれる、静かな夜時間。— SILICA LAGOON BATH SALT" />
+        <meta property="og:description" content="アイスランドのスパ文化に着想を受けた、乳青色のバスタイム。北欧ラグジュアリースパのような静けさを、今夜の浴室で。" />
+        <meta property="og:image" content="https://silica-lagoon.company/images/hero-lp3.png" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://silica-lagoon.company/lp3" />
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
           rel="stylesheet"
         />
       </Head>
 
       <Lp3Header shopUrl={shopUrl} />
+      <StickyNav shopUrl={shopUrl} />
 
       <main>
         <HeroSection shopUrl={shopUrl} />
-        <ExperienceSection />
-        <DissolvingVisual />
-        <JourneySection />
-        <QuoteSection />
-        <LuxurySection />
-        <ImmersionVisual />
-        <CtaSection shopUrl={shopUrl} />
+        <IngredientSection />
+        <DissolveSection />
+        <BenefitSection />
+        <JourneyEndSection />
+        <ReviewSection />
+        <NightEndingSection />
+        <CtaBarSection shopUrl={shopUrl} teikiUrl={teikiUrl} />
       </main>
 
       <footer className={styles.footer}>

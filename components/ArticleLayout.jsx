@@ -1,6 +1,10 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { useEffect } from 'react'
 import ProductCTA from './ProductCTA'
+
+const SUP_URL = 'https://mrcvwlaawmlfpoibxjec.supabase.co'
+const SUP_KEY = 'sb_publishable_nONkmADAMLoZ1wxUrZqwug_F_Fm08yO'
 
 export default function ArticleLayout({
   title,
@@ -11,11 +15,28 @@ export default function ArticleLayout({
   tags = [],
   slug,
   lp = 'lp2',
+  description = '',
   relatedArticles = [],
   children,
 }) {
   const canonicalUrl = `https://silica-lagoon.company/blog/${slug}`
   const ogTitle = `${title} | SILICA LAGOON`
+  const metaDesc = description || catchphrase?.replace(/\n/g, '') || ''
+
+  useEffect(() => {
+    const key = `pv_${slug}`
+    if (sessionStorage.getItem(key)) return
+    sessionStorage.setItem(key, '1')
+    fetch(`${SUP_URL}/rest/v1/clicks`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUP_KEY,
+        'Authorization': `Bearer ${SUP_KEY}`,
+      },
+      body: JSON.stringify({ ref: slug, lp: 'pv' }),
+    }).catch(() => {})
+  }, [slug])
 
   return (
     <>
@@ -24,7 +45,9 @@ export default function ArticleLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{ogTitle}</title>
         <link rel="canonical" href={canonicalUrl} />
+        {metaDesc && <meta name="description" content={metaDesc} />}
         <meta property="og:title" content={ogTitle} />
+        {metaDesc && <meta property="og:description" content={metaDesc} />}
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:type" content="article" />
         <meta property="og:image" content="https://silica-lagoon.company/images/ogp.jpg" />

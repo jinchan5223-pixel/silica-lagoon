@@ -1,12 +1,89 @@
 /* ===================================================
-   SILICA LAGOON — LP3 Blue Lagoon 体験LP
+   SILICA LAGOON — LP3 Blue Lagoon 体験LP v2
    White / Milky Blue / Deep Blue / Void Dark
    Aesop × Blue Lagoon Iceland × AMAN
    =================================================== */
 
 /* ===================================================
+   KEYFRAMES
+   =================================================== */
+
+/* ⑦ 水面の超緩やかな揺らぎ */
+@keyframes driftSlow {
+  0%, 100% { transform: translateX(0)    scaleX(1);    opacity: 0.18; }
+  45%       { transform: translateX(10px) scaleX(1.03); opacity: 0.30; }
+  70%       { transform: translateX(-6px) scaleX(0.98); opacity: 0.22; }
+}
+
+/* ⑦ 水面光の反射スウィープ */
+@keyframes liquidShimmer {
+  0%   { opacity: 0; transform: translateX(-110%) skewX(-14deg); }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translateX(210%)  skewX(-14deg); }
+}
+
+/* ③⑦ グロー脈動 */
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.32; transform: translate(-50%, -50%) scale(1); }
+  50%       { opacity: 0.58; transform: translate(-50%, -50%) scale(1.09); }
+}
+
+/* ① スクロールライン下降 */
+@keyframes scrollDrop {
+  0%   { height: 0;    opacity: 0; }
+  20%  { opacity: 0.7; }
+  100% { height: 48px; opacity: 0; }
+}
+
+/* ② 商品画像の微浮遊 */
+@keyframes floatMicro {
+  0%, 100% { transform: translateY(0);   }
+  50%       { transform: translateY(-7px); }
+}
+
+/* ① 霧感・乳白色の揺らぎ */
+@keyframes mistFloat {
+  0%, 100% { opacity: 0.0; transform: translateY(6px) scale(1.02); }
+  45%       { opacity: 1.0; transform: translateY(-4px) scale(1.0); }
+}
+
+/* ⑤ 霧の横流れ */
+@keyframes mistDrift {
+  0%, 100% { opacity: 0.0; transform: translateX(-10px) scale(1.04); }
+  50%       { opacity: 1.0; transform: translateX(8px)  scale(1.00); }
+}
+
+/* ② 商品オーラの呼吸 */
+@keyframes auraBreath {
+  0%, 100% { opacity: 0.22; transform: translate(-50%, -50%) scale(1.00); }
+  50%       { opacity: 0.44; transform: translate(-50%, -50%) scale(1.14); }
+}
+
+/* ⑦ 感情ピーク — 下辺ラインの脈動 */
+@keyframes breathLine {
+  0%, 100% { opacity: 0.08; transform: scaleX(0.6); }
+  50%       { opacity: 0.22; transform: scaleX(1.0); }
+}
+
+/* 追従CTA — 呼吸する浮遊感 */
+@keyframes pillBreath {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-2.5px); }
+}
+
+/* 追従CTA — ボタン内の水面光 */
+@keyframes btnShimmer {
+  0%   { opacity: 0; transform: translateX(-120%) skewX(-18deg); }
+  18%  { opacity: 1; }
+  82%  { opacity: 1; }
+  100% { opacity: 0; transform: translateX(220%)  skewX(-18deg); }
+}
+
+/* ===================================================
    HEADER
    =================================================== */
+/* Header — Heroの暗さと馴染む薄いガラス */
 .header {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -16,33 +93,40 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(46, 58, 140, 0.07);
+  background: rgba(6, 12, 28, 0.72);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .headerLogo {
   font-size: 9px;
   letter-spacing: 5.5px;
-  color: #2E3A8C;
-  font-weight: 600;
+  color: rgba(201, 169, 110, 0.80);
+  font-weight: 500;
   text-transform: uppercase;
 }
 
 .headerBtn {
-  font-size: 10px;
+  font-size: 9.5px;
   letter-spacing: 1.5px;
-  color: #2E3A8C;
-  border: 1px solid rgba(46, 58, 140, 0.28);
+  color: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   padding: 8px 18px;
   border-radius: 20px;
-  background: transparent;
-  transition: background 0.2s, color 0.2s;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 0.22s, border-color 0.22s;
+}
+
+.headerBtn:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.24);
 }
 
 /* ===================================================
-   HERO — 没入感・余白・動画対応
+   HERO — ① 感覚寄り・空気を感じさせる
    =================================================== */
 .hero {
   position: relative;
@@ -60,54 +144,145 @@
   top: 56px;
 }
 
-/* 動画 — objectFitでposterも自動的に同じ扱い */
 .heroBgVideo {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center center;
-  opacity: 0.8;
+  opacity: 0.72;
 }
 
-/* 下部から暗くする — テキスト可読性 */
+.heroBgImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  opacity: 0.88;
+  /* ② 濡れ感・彩度を微上げ、深みを出す */
+  filter: saturate(1.12) contrast(1.04) brightness(0.94);
+}
+
+/* 下部から暗くして文字を浮かす */
 .heroGrad {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(8, 17, 30, 0.00)  0%,
-    rgba(8, 17, 30, 0.00)  30%,
-    rgba(8, 17, 30, 0.60)  65%,
-    rgba(8, 17, 30, 0.92) 100%
+    rgba(8, 17, 30, 0.08)  0%,
+    rgba(8, 17, 30, 0.00)  22%,
+    rgba(8, 17, 30, 0.52)  65%,
+    rgba(8, 17, 30, 0.96) 100%
   );
 }
 
+/* ⑦ 水面光レイヤー — 超低輝度のスウィープ */
+.heroWaterLight {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.heroWaterLight::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  right: -60%;
+  bottom: 0;
+  background: linear-gradient(
+    112deg,
+    transparent 30%,
+    rgba(160, 210, 255, 0.03) 44%,
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(160, 210, 255, 0.03) 56%,
+    transparent 70%
+  );
+  animation: liquidShimmer 20s ease-in-out infinite;
+}
+
+/* ⑤ 映画的ヴィネット — 四辺を沈めて被写界深度を演出 */
+.heroVignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 85% 75% at 50% 38%,
+    transparent 38%,
+    rgba(4, 10, 28, 0.38) 75%,
+    rgba(4, 10, 28, 0.62) 100%
+  );
+  pointer-events: none;
+}
+
+/* ⑤ 霧・水蒸気レイヤー — 底面から立ち昇る */
+.heroMist {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* 下部から上る白青霧 */
+.heroMist::before {
+  content: '';
+  position: absolute;
+  bottom: -5%;
+  left: -15%;
+  right: -15%;
+  height: 60%;
+  background: radial-gradient(
+    ellipse 85% 65% at 50% 100%,
+    rgba(180, 218, 255, 0.07) 0%,
+    rgba(200, 232, 255, 0.04) 38%,
+    transparent 68%
+  );
+  animation: mistDrift 22s ease-in-out infinite;
+}
+
+/* 中段に漂う霞 */
+.heroMist::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: -20%;
+  right: -20%;
+  height: 45%;
+  background: radial-gradient(
+    ellipse 65% 45% at 38% 55%,
+    rgba(140, 190, 255, 0.04) 0%,
+    transparent 60%
+  );
+  animation: mistDrift 30s ease-in-out infinite reverse;
+}
+
+/* ① コンテンツ — 左下配置、大きな余白 */
 .heroBody {
   position: relative;
   z-index: 2;
-  padding: 0 32px 96px;
+  padding: 0 36px 108px;
   width: 100%;
-  max-width: 430px;
+  max-width: 440px;
 }
 
-.heroH1 {
-  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
-  font-size: clamp(2rem, 9vw, 2.8rem);
-  font-weight: 300;
-  color: #ffffff;
-  line-height: 1.75;
-  letter-spacing: 0.06em;
+/* ① ブランド名 — 極小・薄い */
+.heroEye {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 5px;
+  color: rgba(221, 243, 255, 0.32);
+  text-transform: uppercase;
   margin-bottom: 28px;
 }
 
-.heroSub {
+/* ① 一言コピー — 極細・大きく・空気感 */
+.heroH1 {
   font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
-  font-size: 0.92rem;
-  font-weight: 300;
-  color: rgba(221, 243, 255, 0.68);
-  line-height: 2.2;
+  font-size: clamp(2.4rem, 11vw, 3.4rem);
+  font-weight: 200;
+  color: #ffffff;
+  line-height: 1.68;
   letter-spacing: 0.08em;
-  margin-bottom: 52px;
+  margin-bottom: 56px;
 }
 
 /* ガラスCTAボタン */
@@ -115,24 +290,46 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.20);
-  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.78);
   font-size: 10px;
   letter-spacing: 3px;
   padding: 16px 32px;
   border-radius: 40px;
+  transition: background 0.22s;
+}
+
+.heroBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .heroBtnArrow {
-  font-size: 16px;
-  opacity: 0.5;
+  font-size: 15px;
+  opacity: 0.42;
+}
+
+/* ① スクロール誘導 — 細いラインが下に伸びる */
+.heroScroll {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.heroScrollLine {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.28);
+  animation: scrollDrop 2.6s ease-out infinite;
 }
 
 /* ===================================================
-   EXPERIENCE — 最小限のテキスト
+   EXPERIENCE — 物語・最小限テキスト
    =================================================== */
 .experience {
   background: #ffffff;
@@ -157,10 +354,10 @@
 .expH2 {
   font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
   font-size: clamp(1.5rem, 6vw, 2rem);
-  font-weight: 300;
+  font-weight: 200;
   color: #2E3A8C;
-  line-height: 2.1;
-  letter-spacing: 0.07em;
+  line-height: 2.2;
+  letter-spacing: 0.13em;
   margin-bottom: 44px;
 }
 
@@ -173,63 +370,139 @@
 
 .expStory {
   font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   font-weight: 300;
-  color: #2E3A8C;
-  line-height: 2.4;
-  letter-spacing: 0.07em;
+  color: #3a4fa0;
+  line-height: 2.6;
+  letter-spacing: 0.09em;
   margin-top: 56px;
   padding-top: 52px;
   border-top: 1px solid rgba(91, 124, 250, 0.10);
 }
 
 /* ===================================================
-   FULL VISUAL — 全画面インパクトビジュアル
+   TRANSFORM — ⑤ 変化体験を主役に
    =================================================== */
-.fullVisual {
-  width: 100%;
-  min-height: 100svh;
+.transformSection {
+  background: #03070f;
+  padding: 112px 0 120px;
   overflow: hidden;
+}
+
+.transformInner {
+  padding: 0 0;
+  max-width: 100%;
+}
+
+.transformEye {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 5px;
+  color: rgba(91, 124, 250, 0.40);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 48px;
+  padding: 0 28px;
+}
+
+/* ⑤ 3カット縦積み（モバイル）→ 横並び（タブレット+） */
+.transformGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 56px;
+}
+
+.transformItem {
   position: relative;
 }
 
-.fullVisual img {
-  width: 100%;
-  height: 100%;
-  min-height: 100svh;
-  object-fit: cover;
-  object-position: center center;
-  display: block;
+.transformImgWrap {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
 }
 
-/* 四隅を暗くして没入感を上げる */
-.fullVisualOverlay {
+.transformImgWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 1s ease;
+}
+
+.transformImgWrap:hover img {
+  transform: scale(1.04);
+}
+
+/* ⑤ 横向き（ランドスケープ）表示 */
+.transformImgWrapLandscape {
+  aspect-ratio: 16 / 9 !important;
+}
+
+/* ⑤ 暗いグラデーション — 下部を沈める */
+.transformImgLayer {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(6, 15, 30, 0.18) 0%,
-    rgba(6, 15, 30, 0.00) 35%,
-    rgba(6, 15, 30, 0.00) 65%,
-    rgba(6, 15, 30, 0.28) 100%
+    rgba(3, 7, 15, 0.08) 0%,
+    rgba(3, 7, 15, 0.00) 35%,
+    rgba(3, 7, 15, 0.60) 100%
   );
   pointer-events: none;
+}
+
+/* ⑤ 各カットの一言 */
+.transformItemLabel {
+  position: absolute;
+  bottom: 18px;
+  left: 22px;
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: 0.76rem;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.68);
+  letter-spacing: 0.10em;
+  z-index: 1;
+}
+
+/* ⑤ セクション締めコピー */
+.transformBody {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: clamp(1rem, 4.5vw, 1.3rem);
+  font-weight: 200;
+  color: rgba(221, 243, 255, 0.48);
+  line-height: 2.5;
+  letter-spacing: 0.10em;
+  text-align: center;
+  padding: 0 28px;
 }
 
 /* ===================================================
    JOURNEY — 暗背景・旅の詩
    =================================================== */
 .journey {
+  position: relative;
   background: #060f1e;
   padding: 120px 40px;
   text-align: center;
+  overflow: hidden;
+}
+
+.journey::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(100, 160, 255, 0.05) 0%, transparent 70%);
+  animation: mistFloat 14s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .journeyText {
   font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
   font-size: clamp(1.05rem, 4.5vw, 1.4rem);
-  font-weight: 300;
-  color: rgba(221, 243, 255, 0.62);
+  font-weight: 200;
+  color: rgba(221, 243, 255, 0.60);
   line-height: 2.5;
   letter-spacing: 0.10em;
 }
@@ -262,7 +535,7 @@
 .quoteText {
   font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
   font-size: clamp(1.7rem, 7.5vw, 2.3rem);
-  font-weight: 300;
+  font-weight: 200;
   color: #2E3A8C;
   line-height: 2.0;
   letter-spacing: 0.09em;
@@ -273,7 +546,7 @@
   width: 28px;
   height: 1px;
   background: #5B7CFA;
-  opacity: 0.30;
+  opacity: 0.28;
   margin: 0 auto 24px;
 }
 
@@ -282,7 +555,63 @@
   letter-spacing: 4.5px;
   color: #5B7CFA;
   text-transform: uppercase;
-  opacity: 0.5;
+  opacity: 0.45;
+}
+
+/* ===================================================
+   PERSON — ② 人の存在感・自分を投影できる要素
+   =================================================== */
+.personSection {
+  background: #fafbff;
+  padding: 0 0 88px;
+}
+
+/* ② 2分割グリッド — 端から端まで */
+.personGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-bottom: 36px;
+}
+
+.personImgWrap {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.personImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 1.0s ease;
+}
+
+.personImgWrap:hover .personImg {
+  transform: scale(1.04);
+}
+
+/* ⑥ 上品なオーバーレイ — 下部を軽く沈める */
+.personImgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(8, 17, 30, 0.18) 100%
+  );
+  pointer-events: none;
+}
+
+.personCaption {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: 0.78rem;
+  font-weight: 200;
+  color: #aaa;
+  letter-spacing: 0.18em;
+  text-align: center;
+  line-height: 2.2;
 }
 
 /* ===================================================
@@ -311,7 +640,7 @@
 .luxH2 {
   font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
   font-size: clamp(1.45rem, 5.5vw, 1.85rem);
-  font-weight: 300;
+  font-weight: 200;
   color: #2E3A8C;
   line-height: 2.1;
   letter-spacing: 0.07em;
@@ -325,17 +654,18 @@
 }
 
 .luxItem {
-  border-top: 1px solid rgba(91, 124, 250, 0.10);
+  border-top: 1px solid rgba(91, 124, 250, 0.09);
   padding-top: 40px;
 }
 
 .luxNum {
   display: block;
   font-size: 9px;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   color: #5B7CFA;
-  opacity: 0.38;
+  opacity: 0.45;
   margin-bottom: 16px;
+  font-weight: 400;
 }
 
 .luxTitle {
@@ -356,12 +686,13 @@
 }
 
 /* ===================================================
-   IMMERSION — 後ろ姿・青いお湯
+   IMMERSION — ⑥ 青の表現上質化・全画面没入
    =================================================== */
 .immersion {
   position: relative;
-  height: 80vw;
-  max-height: 520px;
+  height: 85vw;
+  max-height: 580px;
+  min-height: 320px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -380,14 +711,45 @@
   object-position: center center;
 }
 
+/* ⑥ 深海感・青を重ねる */
 .immersionOverlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(6, 15, 30, 0.10) 0%,
-    rgba(6, 15, 30, 0.55) 100%
+    rgba(4, 10, 28, 0.10) 0%,
+    rgba(8, 22, 64, 0.20) 40%,
+    rgba(4, 10, 28, 0.75) 100%
   );
+}
+
+/* ⑥ 乳白感レイヤー — ミルキーブルーの空気を上乗せ */
+.immersionMilky {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 90% 55% at 50% 25%,
+    rgba(215, 238, 255, 0.08) 0%,
+    rgba(180, 220, 255, 0.04) 45%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* ⑦ 水面の光揺らぎ */
+.immersionShimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    transparent 15%,
+    rgba(140, 200, 255, 0.05) 38%,
+    rgba(200, 240, 255, 0.09) 50%,
+    rgba(140, 200, 255, 0.05) 62%,
+    transparent 85%
+  );
+  animation: driftSlow 16s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .immersionCopy {
@@ -400,7 +762,7 @@
 .immersionText {
   font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
   font-size: clamp(1.4rem, 6vw, 1.9rem);
-  font-weight: 300;
+  font-weight: 200;
   color: #ffffff;
   line-height: 2.1;
   letter-spacing: 0.09em;
@@ -410,11 +772,280 @@
 .immersionSub {
   font-size: 9px;
   letter-spacing: 3.5px;
-  color: rgba(221, 243, 255, 0.55);
+  color: rgba(221, 243, 255, 0.42);
 }
 
 /* ===================================================
-   CTA — 世界観の入口（暗背景）
+   REVIEW — ④ Instagramストーリー風・リアル寄り
+   =================================================== */
+/* レビュー — 誰かの夜時間の断片 */
+.reviewSection {
+  background: #030810;
+  padding: 104px 0 96px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 背景の静かな青グロー */
+.reviewSection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 50% at 50% 50%,
+    rgba(91, 124, 250, 0.04) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.reviewInner {
+  position: relative;
+  z-index: 1;
+  padding: 0 24px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.reviewEye {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 5px;
+  color: rgba(91, 124, 250, 0.38);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+/* セクションタイトル — 口コミではなく夜時間の扉 */
+.reviewTitle {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: clamp(1.05rem, 4.2vw, 1.3rem);
+  font-weight: 200;
+  color: rgba(221, 243, 255, 0.48);
+  line-height: 1.7;
+  letter-spacing: 0.12em;
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+.reviewGrid {
+  display: grid;
+  gap: 14px;
+}
+
+/* ストーリーカード — 浮遊するガラス、枠感ゼロ */
+.reviewCard {
+  background: transparent;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.36);
+}
+
+/* 上部ストーリーライン — 細く静か */
+.reviewStoryBar {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(91, 124, 250, 0.65) 0%,
+    rgba(160, 200, 255, 0.42) 60%,
+    rgba(221, 243, 255, 0.22) 100%
+  );
+}
+
+/* 縦長ポートレート — ストーリー比率 */
+.reviewImgWrap {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.reviewImgWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  filter: saturate(1.06) brightness(0.90);
+  transition: transform 1.0s ease;
+}
+
+.reviewCard:hover .reviewImgWrap img {
+  transform: scale(1.03);
+}
+
+/* 下部グラデーション — テキスト可読性のため深く沈める */
+.reviewImgGrad {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.0)  20%,
+    rgba(0, 0, 0, 0.10) 48%,
+    rgba(0, 0, 0, 0.76) 100%
+  );
+}
+
+/* テキストオーバーレイ — 写真に乗せる */
+.reviewOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 18px 22px;
+}
+
+/* ハッシュタグ */
+.reviewTag {
+  display: block;
+  font-size: 8.5px;
+  color: rgba(191, 231, 255, 0.48);
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+
+/* 短文引用 — 感覚的・余白ある言葉 */
+.reviewQuote {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: clamp(0.80rem, 3.0vw, 0.90rem);
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.9;
+  letter-spacing: 0.06em;
+  margin-bottom: 16px;
+}
+
+/* メタ — アバター + イニシャルのみ */
+.reviewMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reviewAvatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(91, 124, 250, 0.16);
+  border: 1px solid rgba(91, 124, 250, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: 500;
+  color: rgba(191, 231, 255, 0.60);
+  flex-shrink: 0;
+}
+
+.reviewName {
+  font-size: 9px;
+  font-weight: 300;
+  color: rgba(191, 231, 255, 0.38);
+  letter-spacing: 1px;
+}
+
+/* ===================================================
+   NIGHT ENDING — ③ 感情の締め「だから今夜入りたい」
+   =================================================== */
+.nightSection {
+  position: relative;
+  background: #020510;
+  padding: 136px 28px 128px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* ③ 深海ブルーグロー — より強く */
+.nightGlow {
+  position: absolute;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(91, 124, 250, 0.17) 0%,
+    rgba(50, 80, 200, 0.08) 42%,
+    rgba(30, 50, 160, 0.03) 62%,
+    transparent 72%
+  );
+  left: 50%;
+  top: 50%;
+  animation: glowPulse 9s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ⑦ 霧レイヤー — 感情ピーク空気感 */
+.nightMist {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 55% at 50% 65%,
+    rgba(91, 124, 250, 0.06) 0%,
+    rgba(60, 100, 220, 0.03) 50%,
+    transparent 72%
+  );
+  animation: mistDrift 26s ease-in-out infinite;
+}
+
+.nightInner {
+  position: relative;
+  z-index: 1;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.nightEye {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 5px;
+  color: rgba(91, 124, 250, 0.34);
+  text-transform: uppercase;
+  margin-bottom: 44px;
+}
+
+/* ⑦ メインコピー — 最大フォント・息を呑む空白感 */
+.nightMain {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: clamp(2rem, 9vw, 2.9rem);
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.90);
+  line-height: 2.0;
+  letter-spacing: 0.18em;
+  margin-bottom: 52px;
+  text-shadow: 0 2px 32px rgba(91, 124, 250, 0.18);
+}
+
+.nightDivider {
+  width: 28px;
+  height: 1px;
+  background: rgba(91, 124, 250, 0.22);
+  margin: 0 auto 36px;
+}
+
+/* ⑦ サブコピー — 感情の着地点 */
+.nightSub {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: 12px;
+  font-weight: 200;
+  color: rgba(221, 243, 255, 0.42);
+  line-height: 2.8;
+  letter-spacing: 0.08em;
+}
+
+/* ⑦ 底辺の脈打つライン — 感情余韻 */
+.nightBreath {
+  width: 60px;
+  height: 1px;
+  background: rgba(91, 124, 250, 0.30);
+  margin: 56px auto 0;
+  animation: breathLine 6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* ===================================================
+   CTA — ② 商品画像の実在感強化
    =================================================== */
 .cta {
   background: #060f1e;
@@ -432,7 +1063,7 @@
   display: block;
   font-size: 8px;
   letter-spacing: 4px;
-  color: rgba(191, 231, 255, 0.40);
+  color: rgba(191, 231, 255, 0.32);
   text-transform: uppercase;
   margin-bottom: 40px;
 }
@@ -440,41 +1071,81 @@
 .ctaH2 {
   font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
   font-size: clamp(1.3rem, 5.5vw, 1.7rem);
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.85);
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.80);
   line-height: 2.2;
   letter-spacing: 0.08em;
   margin-bottom: 64px;
 }
 
-/* 高級オブジェとして — 小さく・光を感じる */
-.ctaVisual {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 0 auto 28px;
-  border: 1px solid rgba(191, 231, 255, 0.12);
-  opacity: 0.48;
-  filter: brightness(1.1) saturate(0.9);
+/* ② 商品画像ラッパー */
+.ctaProductWrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 28px;
 }
 
-.ctaVisual img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
+/* ③ 青グロー — 結露・光滲み強化 */
+.ctaProductGlow {
+  position: absolute;
+  width: 180%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(120, 170, 255, 0.18) 0%,
+    rgba(91, 124, 250, 0.09) 38%,
+    rgba(60, 100, 220, 0.04) 58%,
+    transparent 72%
+  );
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: glowPulse 8s ease-in-out infinite;
+}
+
+/* ③ 商品画像 — 結露感・光滲み・ブランド空間に存在している重厚感 */
+.ctaProductImg {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  position: relative;
+  filter:
+    drop-shadow(0 0px 1px rgba(200, 230, 255, 0.18))
+    drop-shadow(0 6px 20px rgba(91, 124, 250, 0.32))
+    drop-shadow(0 24px 64px rgba(4, 10, 28, 0.36))
+    drop-shadow(0 2px 6px rgba(160, 200, 255, 0.20));
+  animation: floatMicro 11s ease-in-out infinite;
 }
 
 .ctaName {
   font-size: 8px;
   letter-spacing: 4px;
-  color: rgba(191, 231, 255, 0.30);
+  color: rgba(191, 231, 255, 0.26);
   text-transform: uppercase;
-  margin-bottom: 48px;
+  margin-bottom: 16px;
 }
 
-/* ガラスボタン — 世界観の入口 */
+.ctaPrice {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: 1.5rem;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.04em;
+  margin-bottom: 44px;
+}
+
+.ctaPriceSub {
+  font-size: 10px;
+  font-weight: 300;
+  color: rgba(191, 231, 255, 0.32);
+  letter-spacing: 0.5px;
+  margin-left: 4px;
+}
+
+/* ガラスボタン */
 .ctaBtn {
   display: flex;
   align-items: center;
@@ -485,8 +1156,8 @@
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.80);
   font-size: 10.5px;
   letter-spacing: 2.5px;
   border-radius: 3px;
@@ -495,14 +1166,14 @@
   transition: background 0.25s, border-color 0.25s;
 }
 
-.ctaBtn:active {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.28);
+.ctaBtn:hover {
+  background: rgba(255, 255, 255, 0.11);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .ctaBtnArrow {
   font-size: 18px;
-  opacity: 0.5;
+  opacity: 0.42;
 }
 
 .ctaTrust {
@@ -510,9 +1181,194 @@
   justify-content: center;
   gap: 20px;
   font-size: 9.5px;
-  color: rgba(191, 231, 255, 0.22);
+  color: rgba(191, 231, 255, 0.18);
   letter-spacing: 0.5px;
   flex-wrap: wrap;
+}
+
+/* ===================================================
+   STICKY NAV — 静かなブランド導線
+   =================================================== */
+
+/* ③ 水面グロー — ピル下に広がる青い反射光 */
+.stickyNav::before {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 12%;
+  right: 12%;
+  height: 28px;
+  background: radial-gradient(
+    ellipse 80% 100% at 50% 100%,
+    rgba(91, 124, 250, 0.20) 0%,
+    rgba(60, 100, 220, 0.08) 45%,
+    transparent 72%
+  );
+  filter: blur(5px);
+  pointer-events: none;
+  z-index: -1;
+  border-radius: 50%;
+  /* 表示・非表示はopacityで親から継承 */
+}
+
+/* 浮遊するガラスピル — 初期状態：非表示 */
+.stickyNav {
+  position: fixed;
+  bottom: max(20px, calc(16px + env(safe-area-inset-bottom)));
+  left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  z-index: 150;
+  width: calc(100% - 40px);
+  max-width: 420px;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 1.0s cubic-bezier(0.16, 0.84, 0.44, 1),
+    transform 1.0s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+/* 表示状態 */
+.stickyNavVisible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+/* ④ 表示後に浮遊する呼吸感 — innerに付与して親のtransformと分離 */
+.stickyNavVisible .stickyNavInner {
+  animation: pillBreath 9s ease-in-out infinite;
+}
+
+/* ③ ガラスの器 — 青い反射を強化 */
+.stickyNavInner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13px 16px 13px 20px;
+  background: rgba(4, 10, 28, 0.86);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+  box-shadow:
+    0 12px 48px rgba(0, 0, 0, 0.48),
+    0 2px 12px rgba(91, 124, 250, 0.07),
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 -1px 0 rgba(91, 124, 250, 0.10) inset;
+  overflow: hidden;
+}
+
+/* 極細ブルーライン — 左端の環境光 */
+.stickyNavInner::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12%;
+  bottom: 12%;
+  width: 1.5px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(91, 124, 250, 0.50) 50%,
+    transparent 100%
+  );
+  border-radius: 2px;
+  animation: glowPulse 7s ease-in-out infinite;
+}
+
+/* ③ 水面光スウィープ — より自然な揺れ */
+.stickyNavInner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    112deg,
+    transparent 25%,
+    rgba(140, 200, 255, 0.03) 44%,
+    rgba(210, 240, 255, 0.055) 50%,
+    rgba(140, 200, 255, 0.03) 56%,
+    transparent 75%
+  );
+  animation: liquidShimmer 22s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.stickyNavInfo {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ブランド名 — ゴールド・極細 */
+.stickyNavBrand {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: 10px;
+  font-weight: 300;
+  color: rgba(201, 169, 110, 0.72);
+  letter-spacing: 2.5px;
+  line-height: 1.3;
+  margin-bottom: 2px;
+}
+
+.stickyNavSup {
+  font-size: 0.52em;
+  vertical-align: super;
+  opacity: 0.6;
+}
+
+/* ① サブ — ミニマル・英字 */
+.stickyNavSub {
+  font-size: 7.5px;
+  color: rgba(191, 231, 255, 0.20);
+  letter-spacing: 2px;
+  font-weight: 300;
+  text-transform: lowercase;
+}
+
+/* ① CTA — 詩的・金縁ガラスボタン */
+.stickyNavBtn {
+  position: relative;
+  z-index: 1;
+  display: block;
+  overflow: hidden;
+  padding: 9px 16px;
+  background: transparent;
+  border: 1px solid rgba(201, 169, 110, 0.28);
+  color: rgba(201, 169, 110, 0.72);
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: 9px;
+  letter-spacing: 1.8px;
+  border-radius: 4px;
+  font-weight: 200;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+}
+
+/* ③ ボタン内の水面光 */
+.stickyNavBtn::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: -60%;
+  width: 40%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201, 169, 110, 0.10),
+    transparent
+  );
+  animation: btnShimmer 8s ease-in-out infinite 2s;
+  pointer-events: none;
+}
+
+.stickyNavBtn:hover {
+  background: rgba(201, 169, 110, 0.07);
+  border-color: rgba(201, 169, 110, 0.48);
+  color: rgba(201, 169, 110, 0.88);
 }
 
 /* ===================================================
@@ -530,7 +1386,7 @@
 .footerLogo {
   font-size: 9px;
   letter-spacing: 5.5px;
-  color: rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.20);
   text-transform: uppercase;
 }
 
@@ -539,10 +1395,741 @@
   align-items: center;
   gap: 12px;
   font-size: 10px;
-  color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.16);
 }
 
 .footerNav a {
-  color: rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.20);
   letter-spacing: 0.3px;
+}
+
+/* ===================================================
+   HERO — 新デザイン追加クラス
+   =================================================== */
+
+/* 細い金色アイブロウ */
+.heroEyebrow {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: rgba(255, 230, 170, 0.92);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  font-weight: 300;
+  text-shadow:
+    0 1px 8px rgba(0, 0, 0, 0.55),
+    0 0 20px rgba(201, 169, 110, 0.30);
+}
+
+/* ブランド名 — 大きく・ゴールド */
+.heroBrand {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: clamp(1.35rem, 5.5vw, 1.8rem);
+  font-weight: 200;
+  color: rgba(201, 169, 110, 0.90);
+  letter-spacing: 0.12em;
+  margin-bottom: 2px;
+  line-height: 1.4;
+}
+
+.heroBrandSup {
+  font-size: 0.5em;
+  vertical-align: super;
+  opacity: 0.7;
+}
+
+/* Bath Salt サブタイトル */
+.heroBrandSub {
+  font-size: 9px;
+  letter-spacing: 5px;
+  color: rgba(201, 169, 110, 0.50);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  font-weight: 300;
+}
+
+/* 区切り線 */
+.heroDivider {
+  width: 32px;
+  height: 1px;
+  background: rgba(201, 169, 110, 0.28);
+  margin-bottom: 28px;
+}
+
+/* H1下のサブテキスト */
+.heroSub {
+  font-size: 12px;
+  color: rgba(221, 243, 255, 0.46);
+  line-height: 2.2;
+  letter-spacing: 0.05em;
+  margin-top: 20px;
+  margin-bottom: 0;
+  font-weight: 300;
+}
+
+/* 円形スクロールインジケーター */
+.heroScrollCircle {
+  position: absolute;
+  bottom: 36px;
+  right: 32px;
+  z-index: 2;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.heroScrollText {
+  font-size: 5.5px;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.38);
+  text-transform: uppercase;
+}
+
+.heroScrollArrow {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.38);
+  animation: scrollDrop 2.6s ease-out infinite;
+  display: block;
+  line-height: 1;
+}
+
+/* ===================================================
+   INGREDIENT — 成分スペック帯
+   =================================================== */
+.ingredientSection {
+  background: #ffffff;
+  padding: 52px 28px 48px;
+  border-bottom: 1px solid rgba(46, 58, 140, 0.06);
+}
+
+.ingredientInner {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.ingredientMain {
+  flex: 1;
+}
+
+.ingredientLabel {
+  font-size: 8.5px;
+  letter-spacing: 3.5px;
+  color: #5B7CFA;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+
+.ingredientSpec {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: clamp(1rem, 3.5vw, 1.2rem);
+  font-weight: 200;
+  color: #2E3A8C;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.ingredientNote {
+  font-size: 0.6em;
+  vertical-align: super;
+  color: #aaa;
+}
+
+.ingredientFoot {
+  font-size: 9px;
+  color: #bbb;
+  letter-spacing: 0.3px;
+  line-height: 1.6;
+}
+
+.ingredientBadge {
+  background: #f2f5ff;
+  border: 1px solid rgba(91, 124, 250, 0.12);
+  border-radius: 10px;
+  padding: 16px 20px;
+  text-align: center;
+  flex-shrink: 0;
+  min-width: 110px;
+}
+
+.ingredientBadgeLabel {
+  font-size: 8px;
+  letter-spacing: 2.5px;
+  color: #5B7CFA;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.ingredientBadgeItems {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: 10.5px;
+  font-weight: 300;
+  color: #2E3A8C;
+  line-height: 2.0;
+  letter-spacing: 0.05em;
+}
+
+/* ===================================================
+   DISSOLVE — 乳青色に変わる瞬間
+   =================================================== */
+.dissolveSection {
+  position: relative;
+  overflow: hidden;
+}
+
+.dissolveImgWrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+
+.dissolveImgWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* ③ Dissolve — テキスト側をしっかり沈め、右は写真を活かす */
+.dissolveOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(4, 10, 28, 0.88) 0%,
+    rgba(4, 10, 28, 0.55) 42%,
+    rgba(4, 10, 28, 0.08) 100%
+  );
+}
+
+.dissolveCopy {
+  position: absolute;
+  top: 50%;
+  left: 28px;
+  transform: translateY(-50%);
+  z-index: 2;
+  max-width: 260px;
+}
+
+.dissolveH2 {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: clamp(1.15rem, 5vw, 1.5rem);
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 2.1;
+  letter-spacing: 0.09em;
+  margin-bottom: 20px;
+}
+
+.dissolveBody {
+  font-size: 11px;
+  color: rgba(221, 243, 255, 0.50);
+  line-height: 2.2;
+  letter-spacing: 0.04em;
+  font-weight: 300;
+}
+
+/* ===================================================
+   BENEFIT — 3つの体験
+   =================================================== */
+/* ③ ベネフィット — 夜の空気感に寄せた落ち着いた背景 */
+.benefitSection {
+  background: #f3f6fc;
+  padding: 88px 0 80px;
+  border-top: 1px solid rgba(46, 58, 140, 0.06);
+}
+
+.benefitGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  max-width: 100%;
+}
+
+.benefitItem {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(46, 58, 140, 0.06);
+}
+
+.benefitImgWrap {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.benefitImgWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.8s ease;
+  display: block;
+}
+
+.benefitItem:hover .benefitImgWrap img {
+  transform: scale(1.04);
+}
+
+.benefitText {
+  padding: 24px 28px 32px;
+}
+
+.benefitTitle {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: 0.98rem;
+  font-weight: 300;
+  color: #2E3A8C;
+  letter-spacing: 0.06em;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.benefitDesc {
+  font-size: 11px;
+  color: #aaa;
+  line-height: 2.0;
+  letter-spacing: 0.03em;
+}
+
+/* ===================================================
+   JOURNEY END — 今日の終わりに
+   =================================================== */
+.journeyEndSection {
+  position: relative;
+  overflow: hidden;
+}
+
+.journeyEndImgWrap {
+  position: relative;
+  height: 72vw;
+  max-height: 520px;
+  min-height: 300px;
+}
+
+.journeyEndImgWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+}
+
+/* ③ JourneyEnd — 写真上部は活かし、テキスト周辺を深く沈める */
+.journeyEndOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(4, 10, 28, 0.12) 0%,
+    rgba(4, 10, 28, 0.52) 52%,
+    rgba(4, 10, 28, 0.92) 100%
+  );
+}
+
+.journeyEndCopy {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  text-align: center;
+  padding: 0 36px;
+}
+
+.journeyEndH2 {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: clamp(1.25rem, 5.5vw, 1.7rem);
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 2.1;
+  letter-spacing: 0.10em;
+  margin-bottom: 20px;
+}
+
+.journeyEndBody {
+  font-size: 11px;
+  color: rgba(221, 243, 255, 0.44);
+  line-height: 2.4;
+  letter-spacing: 0.05em;
+  font-weight: 300;
+}
+
+/* ===================================================
+   CTA BAR — 横並びCTA
+   =================================================== */
+/* ② CTAバー — 夜の空気をそのまま引き継ぐダークガラスUI */
+.ctaBar {
+  background: linear-gradient(180deg, #040b18 0%, #060e1c 100%);
+  padding: 0 0 48px;
+  position: relative;
+}
+
+.ctaBarInner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 36px 24px 28px;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.ctaBarImg {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  position: relative;
+  /* ① 結露・光滲み・空間への溶け込み */
+  filter:
+    drop-shadow(0 0 6px rgba(160, 200, 255, 0.18))
+    drop-shadow(0 4px 20px rgba(91, 124, 250, 0.26))
+    drop-shadow(0 14px 40px rgba(4, 10, 28, 0.22));
+}
+
+.ctaBarInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.ctaBarBrand {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: rgba(201, 169, 110, 0.82);
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  margin-bottom: 1px;
+}
+
+.ctaBarBrandSup {
+  font-size: 0.55em;
+  vertical-align: super;
+}
+
+.ctaBarBrandSub {
+  font-size: 8px;
+  letter-spacing: 3.5px;
+  color: rgba(191, 231, 255, 0.25);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.ctaBarTagline {
+  font-size: 9.5px;
+  color: rgba(191, 231, 255, 0.36);
+  line-height: 1.9;
+  letter-spacing: 0.03em;
+}
+
+.ctaBarActions {
+  flex-shrink: 0;
+  text-align: center;
+}
+
+/* 定期購入価格 — 強調 */
+.ctaBarSubPrice {
+  font-size: 10px;
+  color: #5B7CFA;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  font-weight: 300;
+}
+
+.ctaBarSubPrice strong {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #2E3A8C;
+  letter-spacing: 0.04em;
+}
+
+.ctaBarPrice {
+  font-size: 9px;
+  font-weight: 300;
+  color: #bbb;
+  letter-spacing: 0.3px;
+  margin-bottom: 12px;
+  white-space: nowrap;
+  text-decoration: line-through;
+  text-decoration-color: rgba(187, 187, 187, 0.5);
+}
+
+.ctaBarPriceSub {
+  font-size: 9px;
+  font-weight: 300;
+  color: #aaa;
+  letter-spacing: 0.2px;
+}
+
+/* ② ゴールドボタン — ガラス背景に映える上品な発光 */
+.ctaBarBtn {
+  display: block;
+  padding: 15px 24px;
+  background: linear-gradient(135deg, #c9a96e 0%, #b8944e 100%);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 9.5px;
+  letter-spacing: 2px;
+  border-radius: 3px;
+  font-weight: 400;
+  white-space: nowrap;
+  text-align: center;
+  box-shadow:
+    0 2px 16px rgba(201, 169, 110, 0.22),
+    0 1px 0 rgba(255, 255, 255, 0.12) inset;
+  transition: background 0.22s, box-shadow 0.22s;
+}
+
+.ctaBarBtn:hover {
+  background: linear-gradient(135deg, #d4b47a 0%, #c9a96e 100%);
+  box-shadow:
+    0 4px 24px rgba(201, 169, 110, 0.32),
+    0 1px 0 rgba(255, 255, 255, 0.14) inset;
+}
+
+/* ① 商品グロー包みラッパー */
+.ctaBarImgWrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* ① 青い光輪 — 結露・反射・空間の一部として */
+.ctaBarImgAura {
+  position: absolute;
+  width: 200%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(120, 170, 255, 0.22) 0%,
+    rgba(91, 124, 250, 0.12) 35%,
+    rgba(60, 110, 220, 0.05) 58%,
+    transparent 72%
+  );
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: auraBreath 10s ease-in-out infinite;
+}
+
+/* プラン選択行 */
+.ctaBarPlans {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 20px 16px;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.ctaBarPlanCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 18px 10px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  cursor: pointer;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: border-color 0.22s, box-shadow 0.22s, background 0.22s;
+  text-align: center;
+}
+
+.ctaBarPlanCard:hover {
+  border-color: rgba(91, 124, 250, 0.28);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.ctaBarPlanCardActive {
+  border-color: rgba(91, 124, 250, 0.50);
+  background: rgba(91, 124, 250, 0.09);
+  box-shadow:
+    0 0 0 1px rgba(91, 124, 250, 0.18),
+    0 8px 32px rgba(91, 124, 250, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.ctaBarPlanBadge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #c9a96e;
+  color: #fff;
+  font-size: 8px;
+  letter-spacing: 1px;
+  padding: 2px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.ctaBarPlanBadgeEmpty {
+  display: block;
+  height: 0;
+}
+
+.ctaBarPlanName {
+  font-size: 9.5px;
+  letter-spacing: 2px;
+  color: rgba(191, 231, 255, 0.45);
+  font-weight: 300;
+  margin-top: 6px;
+}
+
+.ctaBarPlanPrice {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-size: 1.25rem;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.88);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.ctaBarPlanUnit {
+  font-size: 0.65em;
+  color: rgba(191, 231, 255, 0.36);
+  font-weight: 300;
+}
+
+.ctaBarPlanNote {
+  font-size: 8px;
+  color: rgba(191, 231, 255, 0.24);
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+}
+
+/* ボタン — 周囲にゴールドの環境光 */
+.ctaBarBtnWrap {
+  position: relative;
+  padding: 0 20px 8px;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.ctaBarBtnWrap::before {
+  content: '';
+  position: absolute;
+  inset: -20px 20% 0;
+  background: radial-gradient(
+    ellipse 70% 50% at 50% 50%,
+    rgba(201, 169, 110, 0.07) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.ctaBarBtnNote {
+  text-align: center;
+  font-size: 9px;
+  color: rgba(191, 231, 255, 0.18);
+  letter-spacing: 0.5px;
+  margin-top: 8px;
+}
+
+/* アイコン行 */
+.ctaBarIcons {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 0;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.ctaBarIcon {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 20px 8px;
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ctaBarIcon:last-child {
+  border-right: none;
+}
+
+.ctaBarIconMark {
+  font-size: 13px;
+  color: rgba(91, 124, 250, 0.40);
+  line-height: 1;
+}
+
+.ctaBarIconLabel {
+  font-size: 8.5px;
+  color: rgba(191, 231, 255, 0.28);
+  letter-spacing: 0.3px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* ===================================================
+   RESPONSIVE
+   =================================================== */
+@media (min-width: 600px) {
+  /* ⑤ TransformGrid — 横並び */
+  .transformGrid {
+    flex-direction: row;
+    gap: 2px;
+  }
+
+  .transformImgWrap {
+    aspect-ratio: 2 / 3;
+  }
+}
+
+@media (min-width: 640px) {
+  /* ④ レビュー3列 */
+  .reviewGrid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  /* ベネフィット3列 */
+  .benefitGrid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .benefitItem {
+    border-top: none;
+    border-left: 1px solid rgba(46, 58, 140, 0.06);
+  }
+
+  .benefitItem:first-child {
+    border-left: none;
+  }
+
+  /* Dissolve — 横で画像比率変更 */
+  .dissolveImgWrap {
+    aspect-ratio: 16 / 9;
+  }
+
+  /* JourneyEnd — 高さを増やす */
+  .journeyEndImgWrap {
+    height: 56vw;
+    max-height: 600px;
+  }
 }
