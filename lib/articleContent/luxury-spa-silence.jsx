@@ -102,8 +102,8 @@ export default function LuxurySpasilence() {
       </div>
 
       <img
-        src="/images/cta-water-surface.png"
-        alt="乳青色の水面に光が揺れる"
+        src="/images/dissolving-scene.png"
+        alt="乳青色に溶けていく入浴剤"
         className="sl-section-img"
         loading="lazy"
       />
